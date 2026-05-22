@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react";
+import { AtmosphereLoading } from "@/components/AtmosphereLoading";
 import { compressImage, MAX_UPLOAD_SIZE } from "@/lib/image-compression";
 import { isMoodResult } from "@/lib/mood-schema";
 
@@ -13,6 +14,7 @@ export function ImageUploadMood() {
   const [fileName, setFileName] = useState<string>("");
   const [isDragging, setIsDragging] = useState(false);
   const [isListening, setIsListening] = useState(false);
+  const [isDissolvingLoading, setIsDissolvingLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
@@ -54,6 +56,7 @@ export function ImageUploadMood() {
     if (!imageFile || isListening) return;
 
     setIsListening(true);
+    setIsDissolvingLoading(false);
     setErrorMessage("");
 
     try {
@@ -87,33 +90,26 @@ export function ImageUploadMood() {
       const imageDataUrl = await fileToDataUrl(imageFile);
       sessionStorage.setItem("hearspace:mood-result", JSON.stringify(payload.result));
       sessionStorage.setItem("hearspace:mood-image", imageDataUrl);
+      setIsDissolvingLoading(true);
+      await sleep(760);
       router.push("/result");
     } catch {
       setErrorMessage("这段空间暂时还没有被听见，请稍后再试。");
       setIsListening(false);
+      setIsDissolvingLoading(false);
     }
   }
 
-  if (isListening) {
-    return (
-      <section className="atmosphere-listening relative isolate mx-auto flex min-h-[calc(100vh-88px)] max-w-6xl items-center justify-center overflow-hidden bg-[#0b1119] px-6 py-24 text-center text-paper shadow-film sm:rounded-[2rem]">
-        <div className="film-grain" />
-        <div className="absolute inset-0 animate-atmosphere bg-[radial-gradient(circle_at_50%_34%,rgba(77,101,123,0.2),transparent_30%),linear-gradient(140deg,rgba(9,14,22,0.98),rgba(17,27,39,0.98),rgba(6,9,14,1))]" />
-        <div className="relative">
-          <div className="mx-auto h-24 w-24 rounded-full border border-paper/10 bg-paper/5 shadow-[0_0_72px_rgba(139,168,190,0.24)]" />
-          <h1 className="mt-10 text-3xl font-medium tracking-wide text-paper/88 sm:text-5xl">
-            Listening to the atmosphere...
-          </h1>
-          <p className="mt-3 text-sm tracking-wide text-paper/48">
-            Optimizing image for atmosphere analysis
-          </p>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <div className="grid min-w-0 gap-6 lg:grid-cols-[1fr_0.78fr]">
+    <>
+      {isListening ? (
+        <AtmosphereLoading
+          imageSrc={previewUrl}
+          isDissolving={isDissolvingLoading}
+        />
+      ) : null}
+
+      <div className="grid min-w-0 gap-6 lg:grid-cols-[1fr_0.78fr]">
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
@@ -192,7 +188,8 @@ export function ImageUploadMood() {
           Generate Mood
         </button>
       </aside>
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -203,4 +200,8 @@ function fileToDataUrl(file: File) {
     reader.onerror = () => reject(reader.error);
     reader.readAsDataURL(file);
   });
+}
+
+function sleep(ms: number) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
 }

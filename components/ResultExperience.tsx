@@ -1,14 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { AtmospherePlayer } from "@/components/AtmospherePlayer";
 import { FilmFrame, MotionText, ScrollReveal } from "@/components/MotionPrimitives";
 import { MoodResultPanel } from "@/components/MoodResultPanel";
+import { ShareMoodNote } from "@/components/ShareMoodNote";
+import { matchAtmosphereAudio, type AtmosphereAudioTrack } from "@/lib/audio-library";
 import { mockMoodResult } from "@/lib/mockMood";
 import { isMoodResult, type MoodResult } from "@/lib/mood-schema";
 
 export function ResultExperience() {
   const [result, setResult] = useState<MoodResult>(mockMoodResult);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const defaultAudioTrack = useMemo(() => matchAtmosphereAudio(result), [result]);
+  const [audioTrack, setAudioTrack] =
+    useState<AtmosphereAudioTrack>(defaultAudioTrack);
 
   useEffect(() => {
     const storedResult = sessionStorage.getItem("hearspace:mood-result");
@@ -25,6 +31,10 @@ export function ResultExperience() {
 
     if (storedImage) setImageUrl(storedImage);
   }, []);
+
+  useEffect(() => {
+    setAudioTrack(defaultAudioTrack);
+  }, [defaultAudioTrack]);
 
   return (
     <section className="mx-auto max-w-7xl overflow-hidden pb-28 pt-10 sm:pb-32 sm:pt-16">
@@ -70,7 +80,13 @@ export function ResultExperience() {
 
       <div className="mx-auto mt-20 max-w-6xl sm:mt-32 lg:mt-36">
         <ScrollReveal delay={0.25} y={34} duration={1.8} amount={0.14}>
-          <MoodResultPanel result={result} />
+          <MoodResultPanel result={result} onSelectAudioTrack={setAudioTrack} />
+        </ScrollReveal>
+        <ScrollReveal delay={0.08} y={28} duration={1.35} amount={0.16}>
+          <AtmospherePlayer track={audioTrack} />
+        </ScrollReveal>
+        <ScrollReveal delay={0.1} y={28} duration={1.4} amount={0.16}>
+          <ShareMoodNote result={result} imageUrl={imageUrl} />
         </ScrollReveal>
       </div>
     </section>

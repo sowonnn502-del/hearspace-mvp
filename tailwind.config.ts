@@ -16,7 +16,15 @@ const config: Config = {
         moss: "#66735b",
       },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Arial", "sans-serif"],
+        sans: [
+          "SF Pro Display",
+          "PingFang SC",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Inter",
+          "Arial",
+          "sans-serif",
+        ],
         serif: [
           "Noto Serif SC",
           "Source Han Serif SC",
@@ -25,7 +33,15 @@ const config: Config = {
           "SimSun",
           "serif",
         ],
-        meta: ["Inter", "-apple-system", "BlinkMacSystemFont", "Arial", "sans-serif"],
+        meta: [
+          "SF Pro Display",
+          "PingFang SC",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Inter",
+          "Arial",
+          "sans-serif",
+        ],
       },
       boxShadow: {
         film: "0 24px 80px rgba(17, 17, 19, 0.24)",

@@ -6,22 +6,27 @@ import {
   ScrollReveal,
   hearspaceEase,
 } from "@/components/MotionPrimitives";
+import { matchAtmosphereAudio, type AtmosphereAudioTrack } from "@/lib/audio-library";
 import {
   getMusicMemoryRecommendations,
   type MusicMemoryMatch,
 } from "@/lib/music-matcher";
+import { createMusicSearchLinks } from "@/lib/music-search";
 import type { MoodResult } from "@/lib/mood-schema";
 
 type MoodResultPanelProps = {
   result: MoodResult;
+  onSelectAudioTrack?: (track: AtmosphereAudioTrack) => void;
 };
 
 type MusicMemoryCardProps = {
   recommendation: MusicMemoryMatch;
   index: number;
+  result: MoodResult;
+  onSelectAudioTrack?: (track: AtmosphereAudioTrack) => void;
 };
 
-export function MoodResultPanel({ result }: MoodResultPanelProps) {
+export function MoodResultPanel({ result, onSelectAudioTrack }: MoodResultPanelProps) {
   const musicRecommendations = getMusicMemoryRecommendations(result);
 
   return (
@@ -74,7 +79,7 @@ export function MoodResultPanel({ result }: MoodResultPanelProps) {
         <div className="mx-auto flex max-w-5xl items-end gap-5">
           <div>
             <p className="font-meta text-[10px] uppercase tracking-[0.34em] text-tide/58">
-              Music Memory
+              Now Playing / Music Memory
             </p>
             <h2 className="mt-5 break-words font-serif text-4xl font-normal tracking-normal text-ink sm:text-5xl">
               Tape liner notes
@@ -89,6 +94,8 @@ export function MoodResultPanel({ result }: MoodResultPanelProps) {
               key={`${recommendation.title}-${index}`}
               recommendation={recommendation}
               index={index}
+              result={result}
+              onSelectAudioTrack={onSelectAudioTrack}
             />
           ))}
         </div>
@@ -118,7 +125,18 @@ export function MoodResultPanel({ result }: MoodResultPanelProps) {
 export function MusicMemoryCard({
   recommendation,
   index,
+  result,
+  onSelectAudioTrack,
 }: MusicMemoryCardProps) {
+  const matchedTrack = matchAtmosphereAudio(result, recommendation);
+  const searchLinks = createMusicSearchLinks({
+    title: recommendation.title,
+    artist: recommendation.artist,
+    source: recommendation.source,
+    mood: recommendation.mood,
+    keywords: recommendation.keywords,
+  });
+
   return (
     <motion.article
       className="group relative min-w-0 overflow-hidden bg-[linear-gradient(115deg,rgba(17,17,19,0.94),rgba(39,62,71,0.9)_52%,rgba(135,85,64,0.72))] px-5 py-5 text-paper shadow-[0_22px_70px_rgba(17,17,19,0.16)] sm:px-7 sm:py-7"
@@ -168,8 +186,39 @@ export function MusicMemoryCard({
               <span key={tag}>{tag}</span>
             ))}
           </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => onSelectAudioTrack?.(matchedTrack)}
+              className="border border-paper/14 px-3 py-2 font-meta text-[10px] uppercase tracking-[0.18em] text-paper/58 transition duration-500 hover:border-paper/34 hover:text-paper"
+            >
+              Listen
+            </button>
+            <MusicSearchLink href={searchLinks.youtubeUrl}>YouTube</MusicSearchLink>
+            <MusicSearchLink href={searchLinks.neteaseUrl}>网易云</MusicSearchLink>
+            <MusicSearchLink href={searchLinks.spotifyUrl}>Spotify</MusicSearchLink>
+          </div>
         </div>
       </div>
     </motion.article>
+  );
+}
+
+function MusicSearchLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="border border-paper/14 px-3 py-2 font-meta text-[10px] uppercase tracking-[0.18em] text-paper/58 transition duration-500 hover:border-paper/34 hover:text-paper"
+    >
+      {children}
+    </a>
   );
 }

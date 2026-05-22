@@ -656,7 +656,7 @@ function createMusicKeywords(sceneObservation: MoodResultCore["scene_observation
     evidence.includes("庭") ||
     evidence.includes("园")
   ) {
-    return ["国风 ambient", "中式电影配乐", "古琴/笛/弦乐 ambient"];
+    return ["garden ambient", "soft piano", "spring afternoon"];
   }
 
   if (
@@ -666,10 +666,10 @@ function createMusicKeywords(sceneObservation: MoodResultCore["scene_observation
     evidence.includes("街") ||
     evidence.includes("夜")
   ) {
-    return ["华语 city pop", "东方氛围电子", "soft piano"];
+    return ["city pop", "soft cinematic", "slow ambient"];
   }
 
-  return ["国风 ambient", "中式电影配乐", "soft piano"];
+  return ["soft piano", "slow ambient", "pastel memory"];
 }
 
 function createMusicRecommendations(
