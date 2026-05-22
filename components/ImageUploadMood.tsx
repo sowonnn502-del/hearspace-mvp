@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react";
+import { compressImage, MAX_UPLOAD_SIZE } from "@/lib/image-compression";
 import { isMoodResult } from "@/lib/mood-schema";
 
 export function ImageUploadMood() {
@@ -22,6 +23,10 @@ export function ImageUploadMood() {
 
   function setImage(file: File) {
     if (!file.type.startsWith("image/")) return;
+    if (file.size > MAX_UPLOAD_SIZE) {
+      setErrorMessage("Image too large for atmosphere capture.");
+      return;
+    }
     const nextUrl = URL.createObjectURL(file);
 
     setPreviewUrl((currentUrl) => {
@@ -52,8 +57,9 @@ export function ImageUploadMood() {
     setErrorMessage("");
 
     try {
+      const compressed = await compressImage(imageFile);
       const formData = new FormData();
-      formData.append("image", imageFile);
+      formData.append("image", compressed);
 
       const response = await fetch("/api/generate-mood", {
         method: "POST",
@@ -98,6 +104,9 @@ export function ImageUploadMood() {
           <h1 className="mt-10 text-3xl font-medium tracking-wide text-paper/88 sm:text-5xl">
             Listening to the atmosphere...
           </h1>
+          <p className="mt-3 text-sm tracking-wide text-paper/48">
+            Optimizing image for atmosphere analysis
+          </p>
         </div>
       </section>
     );
