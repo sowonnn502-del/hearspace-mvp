@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background: #f6f1e8;
+  color: #111113;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(184, 92, 56, 0.13), transparent 28%),
+    radial-gradient(circle at 88% 72%, rgba(49, 90, 102, 0.16), transparent 32%),
+    linear-gradient(145deg, #f6f1e8 0%, #d8d1c5 54%, #bfc6bd 100%);
+  color: #111113;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(184, 92, 56, 0.28);
+}
+
+.film-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.24;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.34) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(0, 0, 0, 0.2) 0 1px, transparent 1px),
+    radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px);
+  background-size: 13px 13px, 19px 19px, 31px 31px;
+  animation: film-grain-shift 8s steps(7) infinite;
+}
+
+@keyframes film-grain-shift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-2%, 1%, 0);
+  }
+  100% {
+    transform: translate3d(1%, -2%, 0);
+  }
+}
+
+@keyframes atmosphere-drift {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+.animate-atmosphere {
+  animation: atmosphere-drift 8s ease-in-out infinite;
+}
+
+.ken-burns-image {
+  transform-origin: 48% 44%;
+  animation: ken-burns 28s ease-in-out infinite alternate;
+}
+
+.image-breath {
+  animation: image-breath 13s ease-in-out infinite;
+}
+
+@keyframes ken-burns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  45% {
+    transform: scale(1.055) translate3d(-1.4%, -0.8%, 0);
+  }
+  100% {
+    transform: scale(1.105) translate3d(1.2%, 0.9%, 0);
+  }
+}
+
+@keyframes image-breath {
+  0%,
+  100% {
+    opacity: 0.78;
+  }
+  50% {
+    opacity: 1;
+  }
+}
