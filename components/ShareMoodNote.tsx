@@ -112,13 +112,13 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(184,92,56,0.12),transparent_28%),linear-gradient(180deg,#f6f1e8,#ded7cb_72%,#c6cbc3)]" />
       <FilmGrain className="opacity-[0.14]" />
 
-      <div className="relative flex h-full flex-col">
-        <div className="relative h-[60%] min-h-0 overflow-hidden bg-ink shadow-[0_18px_52px_rgba(17,17,19,0.22)]">
+      <div className="relative grid h-full grid-rows-[58fr_42fr]">
+        <div className="relative min-h-0 overflow-hidden bg-ink shadow-[0_18px_52px_rgba(17,17,19,0.22)]">
           {imageUrl ? (
             <img
               src={imageUrl}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover object-center"
+              className="absolute inset-0 h-full w-full object-cover object-[center_45%]"
             />
           ) : (
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(246,241,232,0.18),rgba(184,92,56,0.34),rgba(49,90,102,0.72))]" />
@@ -130,34 +130,37 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
           </p>
         </div>
 
-        <div className="flex h-[40%] min-h-0 flex-col p-6">
-          <div>
+        <div className="flex min-h-0 flex-col overflow-hidden p-5">
+          <div className="min-h-0">
             <p className="font-meta text-[8px] uppercase tracking-[0.28em] text-tide/58">
               Mood Note
             </p>
-            <h3 className="mt-3 break-words font-serif text-[2rem] font-normal leading-[1.02] tracking-normal text-ink">
+            <h3 className="mt-2 line-clamp-2 break-words font-serif text-[1.72rem] font-normal leading-[1.04] tracking-normal text-ink">
               {result.mood_title}
             </h3>
-            <p className="mt-3 line-clamp-4 break-words font-serif text-[0.92rem] leading-[1.58] text-ink/68">
+            <p className="mt-2 line-clamp-2 break-words font-serif text-[0.86rem] leading-[1.48] text-ink/68">
               {result.writing}
             </p>
           </div>
 
-          <div className="mt-auto min-h-0">
+          <div className="mt-3 min-h-0">
             <p className="font-meta text-[8px] uppercase tracking-[0.28em] text-tide/62">
               Music Memory
             </p>
-            <div className="mt-2 grid gap-1">
+            <div className="mt-1.5 grid gap-0.5">
               {musicRecommendations.map((recommendation, index) => (
-                <div key={`${recommendation.title}-${index}`} className="flex gap-3">
-                  <span className="font-meta text-[9px] text-ink/32">
+                <div
+                  key={`${recommendation.title}-${index}`}
+                  className="grid min-w-0 grid-cols-[1.5rem_1fr] items-baseline gap-2"
+                >
+                  <span className="font-meta text-[8px] text-ink/32">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className="min-w-0">
-                    <p className="truncate font-sans text-[12px] font-medium text-ink/78">
+                    <p className="truncate font-sans text-[11px] font-medium leading-4 text-ink/78">
                       {recommendation.title}
                     </p>
-                    <p className="truncate font-meta text-[8px] uppercase tracking-[0.16em] text-ink/34">
+                    <p className="truncate font-meta text-[7px] uppercase leading-3 tracking-[0.14em] text-ink/34">
                       {recommendation.mood}
                     </p>
                   </div>
@@ -165,14 +168,14 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
               ))}
             </div>
 
-            <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-meta text-[8px] uppercase tracking-[0.2em] text-ink/32">
-              {result.visual_mood_tags.slice(0, 4).map((tag) => (
+            <div className="mt-2 flex flex-wrap gap-x-2.5 gap-y-1 font-meta text-[7px] uppercase tracking-[0.18em] text-ink/32">
+              {result.visual_mood_tags.slice(0, 3).map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
 
-            <div className="mt-3 flex items-center justify-between border-t border-ink/10 pt-3">
-              <p className="font-serif text-xs text-ink/42">来自 HearSpace</p>
+            <div className="mt-2 flex items-center justify-between border-t border-ink/10 pt-2">
+              <p className="font-serif text-[11px] text-ink/42">来自 HearSpace</p>
               <p className="font-meta text-[8px] uppercase tracking-[0.22em] text-ink/28">
                 Spatial Memory
               </p>
