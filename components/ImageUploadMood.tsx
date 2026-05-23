@@ -11,7 +11,6 @@ export function ImageUploadMood() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string>("");
   const [isDragging, setIsDragging] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isDissolvingLoading, setIsDissolvingLoading] = useState(false);
@@ -36,7 +35,6 @@ export function ImageUploadMood() {
       return nextUrl;
     });
     setImageFile(file);
-    setFileName(file.name);
     setErrorMessage("");
   }
 
@@ -109,85 +107,67 @@ export function ImageUploadMood() {
         />
       ) : null}
 
-      <div className="grid min-w-0 gap-6 lg:grid-cols-[1fr_0.78fr]">
-      <button
-        type="button"
-        onClick={() => inputRef.current?.click()}
-        onDragOver={(event) => {
-          event.preventDefault();
-          setIsDragging(true);
-        }}
-        onDragLeave={() => setIsDragging(false)}
-        onDrop={handleDrop}
-        className={`relative flex min-h-[360px] cursor-pointer items-center justify-center overflow-hidden border border-dashed p-6 text-center shadow-film transition sm:min-h-[440px] sm:rounded-[1.75rem] ${
-          isDragging
-            ? "border-tide bg-paper/78"
-            : "border-ink/24 bg-paper/58 hover:border-ink/42"
-        }`}
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={handleFileChange}
-        />
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-6">
+        <button
+          type="button"
+          onClick={() => inputRef.current?.click()}
+          onDragOver={(event) => {
+            event.preventDefault();
+            setIsDragging(true);
+          }}
+          onDragLeave={() => setIsDragging(false)}
+          onDrop={handleDrop}
+          className={`group relative flex min-h-[52vh] w-full cursor-pointer items-center justify-center overflow-hidden bg-ink/[0.035] p-6 text-center transition duration-700 sm:min-h-[58vh] ${
+            isDragging ? "bg-tide/10" : "hover:bg-ink/[0.055]"
+          }`}
+        >
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleFileChange}
+          />
 
-        {previewUrl ? (
-          <>
-            <img
-              src={previewUrl}
-              alt="Uploaded atmosphere preview"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-ink/18" />
-            <div className="relative rounded-full bg-paper/82 px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-ink/64 backdrop-blur">
-              Replace Image
+          {previewUrl ? (
+            <>
+              <img
+                src={previewUrl}
+                alt="Uploaded atmosphere preview"
+                className="absolute inset-0 h-full w-full object-cover transition duration-[2800ms] ease-out group-hover:scale-[1.035]"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(17,17,19,0.38),transparent_46%,rgba(246,241,232,0.08))]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,transparent_0%,rgba(17,17,19,0.18)_60%,rgba(17,17,19,0.45)_100%)]" />
+              <div className="relative rounded-full bg-paper/72 px-4 py-2 font-meta text-[10px] uppercase tracking-[0.24em] text-ink/62 backdrop-blur-md">
+                Replace Image
+              </div>
+            </>
+          ) : (
+            <div className="max-w-sm">
+              <p className="font-meta text-[10px] uppercase tracking-[0.3em] text-ink/36">
+                Drop Photo
+              </p>
+              <p className="mt-5 font-serif text-3xl font-normal leading-tight text-ink/72 sm:text-4xl">
+                A room, a window, a quiet corner.
+              </p>
             </div>
-          </>
-        ) : (
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink/45">
-              Image Drop Zone
-            </p>
-          <h2 className="mt-4 text-2xl font-semibold">Click or drop an image.</h2>
-            <p className="mx-auto mt-3 max-w-sm leading-7 text-ink/62">
-              Upload a room, a corner, a table, a window. HearSpace will read the
-              mood from the photo.
-            </p>
-          </div>
-        )}
-      </button>
+          )}
+        </button>
 
-      <aside className="flex min-w-0 flex-col justify-between bg-paper/70 p-6 shadow-film backdrop-blur-md sm:rounded-[1.75rem] sm:p-7">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-tide">
-            Preview
+        {errorMessage ? (
+          <p className="max-w-xl text-center text-sm leading-6 text-ember">
+            {errorMessage}
           </p>
-          <h2 className="mt-4 text-3xl font-semibold">
-            {previewUrl ? "Atmosphere captured." : "Waiting for an image."}
-          </h2>
-          <p className="mt-4 min-h-14 leading-7 text-ink/62">
-            {previewUrl
-              ? fileName
-              : "Drag a picture into the frame, or click the upload area to choose one."}
-          </p>
-          {errorMessage ? (
-            <p className="mt-4 rounded-2xl bg-ember/10 px-4 py-3 text-sm leading-6 text-ember">
-              {errorMessage}
-            </p>
-          ) : null}
-        </div>
+        ) : null}
 
         <button
           type="button"
           disabled={!previewUrl}
           onClick={generateMood}
-          className="mt-8 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper shadow-film transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:bg-ink/28 disabled:text-paper/70 disabled:shadow-none disabled:hover:translate-y-0"
+          className="rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper transition duration-500 hover:-translate-y-0.5 hover:bg-tide disabled:cursor-not-allowed disabled:bg-ink/24 disabled:text-paper/70 disabled:hover:translate-y-0"
         >
           Generate Mood
         </button>
-      </aside>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ export type MockFeedMood = {
   music_memory: string;
   visual_mood_tags: string[];
   source: string;
+  audio_id: string;
   image_position?: string;
 };
 
@@ -19,6 +20,7 @@ export const mockFeedMoods: MockFeedMood[] = [
     music_memory: "一段旧磁带里的木吉他，混着风声和很远的脚步。",
     visual_mood_tags: ["天井", "花影", "旧墙", "午后"],
     source: "来自 HearSpace",
+    audio_id: "spring-courtyard",
     image_position: "center",
   },
   {
@@ -30,6 +32,7 @@ export const mockFeedMoods: MockFeedMood[] = [
     music_memory: "低声的爵士鼓刷，像杯壁上快要消失的水汽。",
     visual_mood_tags: ["暖灯", "餐桌", "低语", "深夜"],
     source: "来自 HearSpace",
+    audio_id: "midnight-restaurant",
     image_position: "center",
   },
   {
@@ -41,6 +44,7 @@ export const mockFeedMoods: MockFeedMood[] = [
     music_memory: "慢钢琴和远处铃声，被下午的蓝色阴影轻轻盖住。",
     visual_mood_tags: ["空教室", "斜阳", "粉笔灰", "蓝影"],
     source: "来自 HearSpace",
+    audio_id: "last-classroom",
     image_position: "center",
   },
   {
@@ -52,6 +56,7 @@ export const mockFeedMoods: MockFeedMood[] = [
     music_memory: "很轻的环境电子，像晨光穿过树叶后落在长椅上。",
     visual_mood_tags: ["公园", "晨光", "恢复", "城市"],
     source: "来自 HearSpace",
+    audio_id: "city-park-breathing",
     image_position: "center",
   },
 ];

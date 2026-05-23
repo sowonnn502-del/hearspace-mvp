@@ -3,18 +3,21 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { AtmospherePlayer } from "@/components/AtmospherePlayer";
 import {
   FilmGrain,
   MotionText,
   VignetteLayer,
   hearspaceEase,
 } from "@/components/MotionPrimitives";
+import { getAtmosphereAudioById } from "@/lib/audio-library";
 import { mockFeedMoods } from "@/lib/mock-feed";
 
 export function HomeMoodFeed() {
   const [activeIndex, setActiveIndex] = useState(0);
   const touchStartY = useRef<number | null>(null);
   const activeMood = mockFeedMoods[activeIndex];
+  const activeAudioTrack = getAtmosphereAudioById(activeMood.audio_id);
 
   const showNext = () => {
     setActiveIndex((current) => (current + 1) % mockFeedMoods.length);
@@ -138,25 +141,20 @@ export function HomeMoodFeed() {
           <AnimatePresence mode="wait">
             <motion.div
               key={`${activeMood.mood_title}-tape`}
-              className="mt-10 overflow-hidden bg-[linear-gradient(115deg,rgba(17,17,19,0.94),rgba(49,90,102,0.78)_58%,rgba(184,92,56,0.58))] px-5 py-5 text-paper shadow-[0_22px_70px_rgba(17,17,19,0.14)] sm:mt-12"
+              className="mt-10 sm:mt-12"
               initial={{ opacity: 0, y: 22, filter: "blur(7px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -14, filter: "blur(6px)" }}
               transition={{ duration: 1.18, ease: hearspaceEase, delay: 0.18 }}
             >
-              <div className="flex items-start gap-5">
-                <div className="mt-1 flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-paper/24 bg-ink/28 shadow-inner">
-                  <div className="h-7 w-7 rounded-full border border-paper/18 bg-paper/10" />
-                </div>
-                <div>
-                  <p className="font-meta text-[10px] uppercase tracking-[0.28em] text-paper/48">
-                    MUSIC MEMORY
-                  </p>
-                  <p className="mt-3 break-words font-sans text-sm font-normal leading-7 tracking-[-0.01em] text-paper/72">
-                    {activeMood.music_memory}
-                  </p>
-                </div>
-              </div>
+              <AtmospherePlayer
+                track={activeAudioTrack}
+                compact
+                className="max-w-[520px]"
+              />
+              <p className="mt-4 max-w-[520px] break-words font-sans text-sm leading-7 tracking-[-0.01em] text-ink/48">
+                {activeMood.music_memory}
+              </p>
             </motion.div>
           </AnimatePresence>
 

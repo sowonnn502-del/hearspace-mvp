@@ -4,119 +4,167 @@ import type { MusicMemoryMatch } from "@/lib/music-matcher";
 export type AtmosphereAudioTrack = {
   id: string;
   title: string;
+  subtitle: string;
   file: string;
-  moods: string[];
+  cover: string;
   scenes: string[];
-  music_keywords: string[];
-  time_feelings: string[];
+  moods: string[];
+  keywords: string[];
+  tags: string[];
+  reason: string;
 };
 
 export const atmosphereAudioLibrary: AtmosphereAudioTrack[] = [
   {
     id: "after-midnight",
-    title: "After Midnight",
+    title: "午夜以后",
+    subtitle: "after midnight tape",
     file: "/audio/after-midnight.mp3",
-    moods: ["深夜", "孤独", "失眠", "blue", "quiet"],
-    scenes: ["窗边", "房间", "夜街", "城市"],
-    music_keywords: ["ambient", "slow", "midnight", "night"],
-    time_feelings: ["midnight", "凌晨", "深夜"],
+    cover: "/feed/midnight-restaurant.png",
+    scenes: ["窗边", "房间", "夜街", "城市", "卧室", "深夜"],
+    moods: ["安静", "孤独", "失眠", "夜色", "冷光"],
+    keywords: ["after", "midnight", "night", "ambient", "quiet", "room"],
+    tags: ["深夜", "冷光", "慢速"],
+    reason: "适合夜色、窗边、低照度和独处感明显的空间。",
   },
   {
     id: "city-park-breathing",
-    title: "City Park Breathing",
+    title: "城市在呼吸",
+    subtitle: "city park breathing tape",
     file: "/audio/city-park-breathing.mp3",
-    moods: ["呼吸", "绿色", "恢复", "轻盈"],
-    scenes: ["公园", "树", "草地", "花园"],
-    music_keywords: ["park", "breathing", "ambient", "moss"],
-    time_feelings: ["afternoon", "午后", "傍晚"],
+    cover: "/feed/city-park-breathing.png",
+    scenes: ["公园", "草地", "树", "树影", "长椅", "城市", "晨光"],
+    moods: ["恢复", "呼吸", "柔和", "绿色", "清晨"],
+    keywords: ["park", "breathing", "city", "green", "ambient", "morning"],
+    tags: ["公园", "晨光", "恢复"],
+    reason: "适合有树影、公园、晨光和城市喘息感的空间记忆。",
   },
   {
     id: "jiangnan-morning",
-    title: "Jiangnan Morning",
+    title: "水气清晨",
+    subtitle: "jiangnan morning tape",
     file: "/audio/jiangnan-morning.mp3",
-    moods: ["江南", "清晨", "水气", "温柔"],
-    scenes: ["江南", "庭院", "天井", "水边", "屋檐"],
-    music_keywords: ["国风", "古琴", "笛", "jiangnan", "morning"],
-    time_feelings: ["morning", "清晨", "雨后"],
+    cover: "/feed/spring-courtyard.png",
+    scenes: ["水边", "屋檐", "中式建筑", "古典园林", "庭院", "天井", "江南"],
+    moods: ["清晨", "水气", "柔和", "安静", "留白"],
+    keywords: ["jiangnan", "morning", "water", "courtyard", "garden", "soft"],
+    tags: ["水气", "清晨", "屋檐"],
+    reason: "只适合画面中明确出现水边、屋檐、中式建筑或古典园林线索的空间。",
   },
   {
     id: "last-classroom",
-    title: "Last Classroom",
+    title: "最后一课",
+    subtitle: "last classroom tape",
     file: "/audio/last-classroom.mp3",
-    moods: ["毕业", "怀旧", "空教室", "告别"],
-    scenes: ["教室", "校园", "课桌", "走廊", "classroom"],
-    music_keywords: ["校园", "毕业", "piano", "bell", "青春"],
-    time_feelings: ["傍晚", "5:12", "毕业季", "afternoon"],
+    cover: "/feed/last-classroom.png",
+    scenes: ["教室", "校园", "课桌", "椅子", "黑板", "走廊", "classroom"],
+    moods: ["毕业", "怀旧", "告别", "青春", "空旷"],
+    keywords: ["classroom", "school", "piano", "bell", "youth", "memory"],
+    tags: ["教室", "毕业", "斜阳"],
+    reason: "适合教室、课桌、走廊、黄昏光线和告别感明显的空间。",
   },
   {
     id: "midnight-restaurant",
-    title: "Midnight Restaurant",
+    title: "夜晚餐桌",
+    subtitle: "midnight restaurant tape",
     file: "/audio/midnight-restaurant.mp3",
-    moods: ["餐桌", "暖灯", "深夜", "亲密"],
-    scenes: ["餐桌", "餐厅", "厨房", "晚餐", "restaurant"],
-    music_keywords: ["jazz", "table", "dinner", "old film"],
-    time_feelings: ["night", "深夜", "晚饭后"],
+    cover: "/feed/midnight-restaurant.png",
+    scenes: ["餐桌", "餐厅", "厨房", "晚餐", "酒杯", "暖灯", "restaurant"],
+    moods: ["亲密", "微醺", "温暖", "深夜", "电影感"],
+    keywords: ["restaurant", "dinner", "table", "jazz", "warm", "night"],
+    tags: ["餐桌", "暖灯", "夜晚"],
+    reason: "适合餐桌、暖色灯光、多人聚餐或夜晚电影感的空间记忆。",
   },
   {
     id: "night-walk-radio",
-    title: "Night Walk Radio",
+    title: "夜路电台",
+    subtitle: "night walk radio tape",
     file: "/audio/night-walk-radio.mp3",
-    moods: ["行走", "城市", "电台", "霓虹"],
-    scenes: ["街道", "街角", "车窗", "夜路"],
-    music_keywords: ["radio", "walk", "city pop", "night"],
-    time_feelings: ["night", "凌晨", "路上"],
+    cover: "/feed/midnight-restaurant.png",
+    scenes: ["街道", "街角", "车窗", "夜路", "霓虹", "城市", "street"],
+    moods: ["行走", "电台", "夜色", "潮湿", "城市"],
+    keywords: ["radio", "walk", "street", "city", "night", "neon"],
+    tags: ["夜路", "电台", "城市"],
+    reason: "适合街道、霓虹、车窗、夜行和城市流动感明显的画面。",
   },
   {
     id: "rain-window",
-    title: "Rain Window",
+    title: "雨窗",
+    subtitle: "rain window tape",
     file: "/audio/rain-window.mp3",
-    moods: ["雨", "潮湿", "安静", "思念"],
-    scenes: ["窗边", "雨后街角", "玻璃", "街道"],
-    music_keywords: ["rain", "window", "ambient", "piano"],
-    time_feelings: ["雨夜", "雨后", "夜晚"],
+    cover: "/feed/city-park-breathing.png",
+    scenes: ["窗边", "玻璃", "雨", "雨后", "街道", "水痕", "window"],
+    moods: ["潮湿", "安静", "思念", "灰蓝", "雨夜"],
+    keywords: ["rain", "window", "wet", "ambient", "piano", "quiet"],
+    tags: ["雨", "窗边", "灰蓝"],
+    reason: "适合雨水、玻璃、水痕、窗边和潮湿光线构成的空间。",
   },
   {
     id: "restorative-garden",
-    title: "Restorative Garden",
+    title: "恢复性花园",
+    subtitle: "restorative garden tape",
     file: "/audio/restorative-garden.mp3",
-    moods: ["治愈", "植物", "安静", "呼吸"],
-    scenes: ["花园", "庭院", "植物", "公园"],
-    music_keywords: ["garden", "restorative", "ambient", "nature"],
-    time_feelings: ["午后", "清晨", "spring"],
+    cover: "/feed/city-park-breathing.png",
+    scenes: ["花园", "植物", "庭院", "公园", "阳台", "树影", "garden"],
+    moods: ["治愈", "安静", "呼吸", "柔和", "自然"],
+    keywords: ["garden", "restorative", "ambient", "nature", "soft", "green"],
+    tags: ["植物", "呼吸", "安静"],
+    reason: "适合植物、树影、花园和低饱和自然光里的恢复性空间。",
   },
   {
     id: "spring-courtyard",
-    title: "Spring Courtyard",
+    title: "檐下风铃",
+    subtitle: "spring courtyard tape",
     file: "/audio/spring-courtyard.mp3",
-    moods: ["春日", "花影", "天井", "温柔"],
-    scenes: ["天井", "庭院", "花园", "旧墙"],
-    music_keywords: ["spring", "courtyard", "江南", "民谣"],
-    time_feelings: ["春天", "午后", "afternoon"],
+    cover: "/feed/spring-courtyard.png",
+    scenes: ["庭院", "花园", "天井", "春日", "树影", "花影", "旧墙"],
+    moods: ["安静", "柔和", "春日", "记忆", "午后"],
+    keywords: ["garden", "spring", "ambient", "soft", "nature", "courtyard"],
+    tags: ["春日", "庭院", "风铃"],
+    reason: "适合带有花园、树影和午后光线的空间记忆。",
   },
   {
     id: "summer-memory",
-    title: "Summer Memory",
+    title: "夏日旧相片",
+    subtitle: "summer memory tape",
     file: "/audio/summer-memory.mp3",
-    moods: ["夏日", "青春", "明亮", "旧照片"],
-    scenes: ["校园", "窗边", "街道", "房间"],
-    music_keywords: ["summer", "memory", "kpop", "city pop", "青春"],
-    time_feelings: ["夏天", "下午", "周末"],
+    cover: "/feed/last-classroom.png",
+    scenes: ["房间", "窗边", "街道", "校园", "阳光", "夏天"],
+    moods: ["明亮", "青春", "旧照片", "夏日", "轻盈"],
+    keywords: ["summer", "memory", "bright", "youth", "city", "afternoon"],
+    tags: ["夏日", "旧照片", "明亮"],
+    reason: "适合明亮日光、夏日色温、窗边和青春感较强的画面。",
   },
 ];
+
+export function getAtmosphereAudioById(id: string) {
+  return (
+    atmosphereAudioLibrary.find((track) => track.id === id) ??
+    getDefaultAtmosphereAudio()
+  );
+}
+
+export function getDefaultAtmosphereAudio() {
+  return atmosphereAudioLibrary.find((track) => track.id === "restorative-garden")!;
+}
 
 export function matchAtmosphereAudio(
   result: MoodResult,
   recommendation?: MusicMemoryMatch,
 ) {
   const query = buildAudioQuery(result, recommendation);
-
-  return atmosphereAudioLibrary
+  const scored = atmosphereAudioLibrary
     .map((track, index) => ({
       track,
       index,
       score: scoreTrack(track, query),
     }))
-    .sort((a, b) => b.score - a.score || a.index - b.index)[0].track;
+    .sort((a, b) => b.score - a.score || a.index - b.index);
+
+  const best = scored[0];
+  if (!best || best.score < 4) return getDefaultAtmosphereAudio();
+
+  return best.track;
 }
 
 function buildAudioQuery(
@@ -151,19 +199,21 @@ function buildAudioQuery(
 
 function scoreTrack(track: AtmosphereAudioTrack, query: string[]) {
   const haystack = [
-    track.title,
     track.id,
-    ...track.moods,
+    track.title,
+    track.subtitle,
+    track.reason,
     ...track.scenes,
-    ...track.music_keywords,
-    ...track.time_feelings,
+    ...track.moods,
+    ...track.keywords,
+    ...track.tags,
   ].flatMap(tokenize);
 
   let score = 0;
 
   for (const queryToken of query) {
     for (const trackToken of haystack) {
-      if (queryToken === trackToken) score += 5;
+      if (queryToken === trackToken) score += 6;
       else if (queryToken.includes(trackToken) || trackToken.includes(queryToken)) {
         score += 2;
       }
@@ -174,9 +224,14 @@ function scoreTrack(track: AtmosphereAudioTrack, query: string[]) {
 }
 
 function tokenize(value: string) {
-  return value
-    .toLowerCase()
-    .split(/[\s,，.。/、:：;；|·-]+/)
+  const normalized = value.toLowerCase();
+  const wordTokens = normalized
+    .split(/[\s,，.。/、:：;；|·()[\]{}"'!?！?_-]+/)
     .map((token) => token.trim())
     .filter((token) => token.length >= 2);
+  const cjkTokens = Array.from(normalized.matchAll(/[\u4e00-\u9fff]{2,}/g)).map(
+    ([token]) => token,
+  );
+
+  return Array.from(new Set([...wordTokens, ...cjkTokens]));
 }

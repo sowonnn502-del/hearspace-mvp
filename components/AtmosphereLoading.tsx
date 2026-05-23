@@ -5,18 +5,18 @@ import { useEffect, useState } from "react";
 import { FilmGrain, VignetteLayer, hearspaceEase } from "@/components/MotionPrimitives";
 
 const mainMessages = [
-  "Listening to the silence...",
-  "Developing the memory...",
-  "Tuning the midnight radio...",
-  "The space is beginning to speak...",
-  "Translating the atmosphere...",
+  "正在聆听这段空间...",
+  "正在聆听这段空间...",
+  "正在聆听这段空间...",
+  "正在聆听这段空间...",
+  "正在聆听这段空间...",
 ];
 
 const subMessages = [
-  "matching atmosphere",
-  "restoring emotional grain",
-  "finding music memory",
-  "building cinematic trace",
+  "正在识别光线、场景与情绪线索。",
+  "正在识别光线、场景与情绪线索。",
+  "正在识别光线、场景与情绪线索。",
+  "正在识别光线、场景与情绪线索。",
 ];
 
 type AtmosphereLoadingProps = {
