@@ -24,11 +24,17 @@ export type MusicRecommendation = {
 export type MoodResult = {
   scene_observation: SceneObservation;
   mood_title: string;
+  mood_subtitle: string;
   time_label: string;
   writing: string;
+  space_memory_text: string;
   space_personality: string;
+  visual_tone: string[];
+  music_query: string;
   music_keywords: string[];
+  music_memories: MusicRecommendation[];
   music_recommendations?: MusicRecommendation[];
+  share_card_text: string;
   visual_mood_tags: string[];
   debug_source: MoodDebugSource;
 };
@@ -63,11 +69,18 @@ export function isMoodResultCore(
       (evidence) => typeof evidence === "string",
     ) &&
     typeof candidate.mood_title === "string" &&
+    typeof candidate.mood_subtitle === "string" &&
     typeof candidate.time_label === "string" &&
     typeof candidate.writing === "string" &&
+    typeof candidate.space_memory_text === "string" &&
     typeof candidate.space_personality === "string" &&
+    Array.isArray(candidate.visual_tone) &&
+    candidate.visual_tone.every((tone) => typeof tone === "string") &&
+    typeof candidate.music_query === "string" &&
     Array.isArray(candidate.music_keywords) &&
     candidate.music_keywords.every((keyword) => typeof keyword === "string") &&
+    Array.isArray(candidate.music_memories) &&
+    candidate.music_memories.every(isMusicRecommendation) &&
     (
       candidate.music_recommendations === undefined ||
       (
@@ -75,6 +88,7 @@ export function isMoodResultCore(
         candidate.music_recommendations.every(isMusicRecommendation)
       )
     ) &&
+    typeof candidate.share_card_text === "string" &&
     Array.isArray(candidate.visual_mood_tags) &&
     candidate.visual_mood_tags.every((tag) => typeof tag === "string")
   );

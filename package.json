@@ -9,7 +9,10 @@
     "build": "next build",
     "rebuild": "npm run clean && npm run build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "music:enrich": "tsx scripts/enrich-music-library.ts",
+    "music:validate": "tsx scripts/validate-music-library.ts",
+    "music:build": "npm run music:enrich && npm run music:validate"
   },
   "dependencies": {
     "cheerio": "^1.2.0",
@@ -26,8 +29,10 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.18.0",
     "eslint-config-next": "^15.1.6",
+    "NeteaseCloudMusicApi": "^4.32.0",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.3"
   }
 }

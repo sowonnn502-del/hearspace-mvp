@@ -1,24 +1,25 @@
 "use client";
 
 import { toPng } from "html-to-image";
-import { forwardRef, useMemo, useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import { FilmGrain } from "@/components/MotionPrimitives";
-import { matchMusicByMood } from "@/lib/music-library";
+import type { MusicMemoryRecommendation } from "@/lib/music-library";
 import type { MoodResult } from "@/lib/mood-schema";
 
 type ShareMoodNoteProps = {
   result: MoodResult;
   imageUrl: string | null;
+  musicRecommendations: MusicMemoryRecommendation[];
 };
 
-export function ShareMoodNote({ result, imageUrl }: ShareMoodNoteProps) {
+export function ShareMoodNote({
+  result,
+  imageUrl,
+  musicRecommendations,
+}: ShareMoodNoteProps) {
   const noteRef = useRef<HTMLDivElement>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
-  const musicRecommendations = useMemo(
-    () => matchMusicByMood(result).slice(0, 3),
-    [result],
-  );
 
   async function downloadImage() {
     if (isExporting) return;
@@ -50,21 +51,24 @@ export function ShareMoodNote({ result, imageUrl }: ShareMoodNoteProps) {
   }
 
   return (
-    <section className="mx-auto mt-24 max-w-5xl sm:mt-32">
+    <section className="mt-24 max-w-5xl sm:mt-32">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-        <div>
+        <div className="max-w-xl">
           <p className="font-meta text-[10px] uppercase tracking-[0.34em] text-tide/58">
             Share Mood Note
           </p>
-          <h2 className="mt-4 font-serif text-4xl font-normal tracking-normal text-ink sm:text-5xl">
+          <h2 className="mt-4 font-serif text-3xl font-normal leading-tight tracking-normal text-ink sm:text-5xl">
             情绪便签
           </h2>
+          <p className="mt-4 text-base leading-7 text-ink/48">
+            把这段空间记忆保存成一张适合手机分享的竖版卡片。
+          </p>
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 sm:justify-end">
           <button
             type="button"
             onClick={() => setIsPreviewOpen((current) => !current)}
-            className="bg-ink px-5 py-3 font-meta text-sm text-paper transition duration-500 hover:bg-tide"
+            className="min-h-12 rounded-full bg-ink px-5 py-3 font-meta text-sm text-paper transition duration-500 hover:bg-tide"
           >
             Preview Mood Note
           </button>
@@ -72,7 +76,7 @@ export function ShareMoodNote({ result, imageUrl }: ShareMoodNoteProps) {
             type="button"
             onClick={downloadImage}
             disabled={isExporting}
-            className="border border-ink/16 px-5 py-3 font-meta text-sm text-ink/70 transition duration-500 hover:border-ink/34 hover:text-ink disabled:cursor-wait disabled:opacity-50"
+            className="min-h-12 rounded-full border border-ink/16 px-5 py-3 font-meta text-sm text-ink/70 transition duration-500 hover:border-ink/34 hover:text-ink disabled:cursor-wait disabled:opacity-50"
           >
             {isExporting ? "Rendering..." : "Download Image"}
           </button>
@@ -89,7 +93,7 @@ export function ShareMoodNote({ result, imageUrl }: ShareMoodNoteProps) {
           />
         </div>
       ) : (
-        <div className="mt-8 border-t border-ink/8 pt-5 font-meta text-sm leading-7 text-ink/42">
+        <div className="mt-8 border-t border-ink/8 pt-5 text-sm leading-7 text-ink/46">
           生成一张 9:16 竖版心情便签，适合保存到相册后分享到 Story、朋友圈或小红书。
         </div>
       )}
@@ -100,20 +104,20 @@ export function ShareMoodNote({ result, imageUrl }: ShareMoodNoteProps) {
 type MoodNoteCardProps = {
   result: MoodResult;
   imageUrl: string | null;
-  musicRecommendations: ReturnType<typeof matchMusicByMood>;
+  musicRecommendations: MusicMemoryRecommendation[];
 };
 
 const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
   ({ result, imageUrl, musicRecommendations }, ref) => (
     <div
       ref={ref}
-      className="relative aspect-[9/16] w-[min(86vw,420px)] shrink-0 overflow-hidden bg-paper text-ink shadow-[0_28px_90px_rgba(17,17,19,0.22)]"
+      className="relative aspect-[9/16] w-[min(86vw,420px)] shrink-0 overflow-hidden bg-paper text-ink shadow-[0_28px_90px_rgba(17,17,19,0.18)]"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(184,92,56,0.12),transparent_28%),linear-gradient(180deg,#f6f1e8,#ded7cb_72%,#c6cbc3)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#f6f1e8,#ded7cb_72%,#c6cbc3)]" />
       <FilmGrain className="opacity-[0.14]" />
 
-      <div className="relative grid h-full grid-rows-[58fr_42fr]">
-        <div className="relative min-h-0 overflow-hidden bg-ink shadow-[0_18px_52px_rgba(17,17,19,0.22)]">
+      <div className="relative grid h-full grid-rows-[56fr_44fr]">
+        <div className="relative m-4 mb-0 min-h-0 overflow-hidden rounded-[28px] bg-ink shadow-[0_18px_52px_rgba(17,17,19,0.18)]">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -130,24 +134,24 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
           </p>
         </div>
 
-        <div className="flex min-h-0 flex-col overflow-hidden p-5">
+        <div className="flex min-h-0 flex-col overflow-hidden px-6 pb-6 pt-5">
           <div className="min-h-0">
             <p className="font-meta text-[8px] uppercase tracking-[0.28em] text-tide/58">
               Mood Note
             </p>
-            <h3 className="mt-2 line-clamp-2 break-words font-serif text-[1.72rem] font-normal leading-[1.04] tracking-normal text-ink">
+            <h3 className="mt-2 line-clamp-2 break-words font-serif text-[1.86rem] font-normal leading-[1.06] tracking-normal text-ink">
               {result.mood_title}
             </h3>
-            <p className="mt-2 line-clamp-2 break-words font-serif text-[0.86rem] leading-[1.48] text-ink/68">
-              {result.writing}
+            <p className="mt-3 line-clamp-3 break-words font-serif text-[0.92rem] leading-[1.58] text-ink/68">
+              {result.share_card_text || result.space_memory_text || result.writing}
             </p>
           </div>
 
-          <div className="mt-3 min-h-0">
+          <div className="mt-4 min-h-0">
             <p className="font-meta text-[8px] uppercase tracking-[0.28em] text-tide/62">
               Music Memory
             </p>
-            <div className="mt-1.5 grid gap-0.5">
+            <div className="mt-2 grid gap-1">
               {musicRecommendations.map((recommendation, index) => {
                 const song = recommendation.song;
 
@@ -173,12 +177,14 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
             </div>
 
             <div className="mt-2 flex flex-wrap gap-x-2.5 gap-y-1 font-meta text-[7px] uppercase tracking-[0.18em] text-ink/32">
-              {result.visual_mood_tags.slice(0, 3).map((tag) => (
-                <span key={tag}>{tag}</span>
+              {(result.visual_tone.length > 0 ? result.visual_tone : result.visual_mood_tags)
+                .slice(0, 3)
+                .map((tag, tagIndex) => (
+                <span key={`${tag}-${tagIndex}`}>{tag}</span>
               ))}
             </div>
 
-            <div className="mt-2 flex items-center justify-between border-t border-ink/10 pt-2">
+            <div className="mt-3 flex items-center justify-between border-t border-ink/10 pt-3">
               <p className="font-serif text-[11px] text-ink/42">来自 HearSpace</p>
               <p className="font-meta text-[8px] uppercase tracking-[0.22em] text-ink/28">
                 Spatial Memory

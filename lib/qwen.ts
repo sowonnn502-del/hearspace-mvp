@@ -190,13 +190,14 @@ function safeParseMoodResult(content: unknown): ParsedMoodResult {
   const usedDefaults =
     parseFailed ||
     !requiredStatus.mood_title ||
-    !requiredStatus.writing ||
-    !requiredStatus.music_keywords ||
+    !requiredStatus.space_memory_text ||
+    !requiredStatus.music_query ||
     normalized.time_label.trim().length === 0 ||
+    normalized.mood_subtitle.trim().length === 0 ||
     normalized.space_personality.trim().length === 0 ||
-    !normalized.music_recommendations ||
-    normalized.music_recommendations.length === 0 ||
-    normalized.visual_mood_tags.length === 0;
+    normalized.music_memories.length === 0 ||
+    normalized.visual_tone.length === 0 ||
+    normalized.share_card_text.trim().length === 0;
 
   console.log("[HearSpace AI] Parsed Qwen mood keys:", Object.keys(moodRecord));
   console.log("[HearSpace AI] Required mood core status:", requiredStatus);
@@ -228,29 +229,58 @@ function normalizeMoodResult(value: unknown): MoodResultCore {
     atmosphere_evidence: toStringArray(getFirstValue(rawSceneObservation, ["atmosphere_evidence", "atmosphereEvidence"])),
   };
 
+  const visualTone = toStringArray(getFirstValue(record, ["visual_tone", "visualTone", "visual_mood_tags", "visualMoodTags", "mood_tags", "tags"]));
+  const musicQuery = toStringValue(getFirstValue(record, ["music_query", "musicQuery", "music_search", "musicSearch"]));
   const musicKeywords = toStringArray(getFirstValue(record, ["music_keywords", "musicKeywords", "music", "keywords"]));
+  const musicMemories = normalizeMusicRecommendations(
+    getFirstValue(record, [
+      "music_memories",
+      "musicMemories",
+      "music_recommendations",
+      "musicRecommendations",
+      "recommendations",
+    ]),
+  );
   const musicRecommendations = normalizeMusicRecommendations(
     getFirstValue(record, [
       "music_recommendations",
       "musicRecommendations",
+      "music_memories",
+      "musicMemories",
       "music_memory",
       "musicMemory",
       "recommendations",
     ]),
   );
-  const visualMoodTags = toStringArray(getFirstValue(record, ["visual_mood_tags", "visualMoodTags", "mood_tags", "tags"]));
+  const visualMoodTags = toStringArray(getFirstValue(record, ["visual_mood_tags", "visualMoodTags", "visual_tone", "visualTone", "mood_tags", "tags"]));
   const timeLabel = toStringValue(getFirstValue(record, ["time_label", "timeLabel", "time"]));
   const spacePersonality =
     toStringValue(getFirstValue(record, ["space_personality", "spacePersonality", "personality"]));
+  const spaceMemoryText = toStringValue(
+    getFirstValue(record, [
+      "space_memory_text",
+      "spaceMemoryText",
+      "writing",
+      "diary",
+      "description",
+      "caption",
+    ]),
+  );
 
   return {
     scene_observation: sceneObservation,
     mood_title: toStringValue(getFirstValue(record, ["mood_title", "moodTitle", "title"])),
+    mood_subtitle: toStringValue(getFirstValue(record, ["mood_subtitle", "moodSubtitle", "subtitle"])),
     time_label: timeLabel,
-    writing: toStringValue(getFirstValue(record, ["writing", "diary", "description", "caption"])),
+    writing: toStringValue(getFirstValue(record, ["writing", "diary", "description", "caption", "space_memory_text", "spaceMemoryText"])),
+    space_memory_text: spaceMemoryText,
     space_personality: spacePersonality,
+    visual_tone: visualTone,
+    music_query: musicQuery,
     music_keywords: musicKeywords,
+    music_memories: musicMemories,
     music_recommendations: musicRecommendations,
+    share_card_text: toStringValue(getFirstValue(record, ["share_card_text", "shareCardText", "share_text", "shareText"])),
     visual_mood_tags: visualMoodTags,
   };
 }
@@ -259,17 +289,36 @@ function completeMoodDefaults(value: MoodResultCore): MoodResultCore {
   const sceneObservation = value.scene_observation;
   const primaryScene = sceneObservation.primary_scene.trim();
   const moodTitle = value.mood_title.trim() || createMoodTitle(sceneObservation);
-  const writing = value.writing.trim() || createWriting(sceneObservation);
+  const spaceMemoryText =
+    value.space_memory_text.trim() || value.writing.trim() || createWriting(sceneObservation);
+  const writing = value.writing.trim() || spaceMemoryText;
+  const visualTone =
+    value.visual_tone.length > 0
+      ? value.visual_tone.slice(0, 4)
+      : value.visual_mood_tags.length > 0
+        ? value.visual_mood_tags.slice(0, 4)
+        : createVisualTone(sceneObservation);
+  const musicQuery =
+    value.music_query.trim() ||
+    createMusicQuery(value.music_keywords, sceneObservation, visualTone);
   const musicKeywords =
     value.music_keywords.length > 0
       ? value.music_keywords
-      : createMusicKeywords(sceneObservation);
+      : splitMusicQuery(musicQuery);
   const musicRecommendations =
     value.music_recommendations && value.music_recommendations.length > 0
       ? value.music_recommendations
-      : createMusicRecommendations(musicKeywords, sceneObservation, value.visual_mood_tags);
+      : value.music_memories;
+  const musicMemories =
+    value.music_memories.length > 0
+      ? value.music_memories.slice(0, 3)
+      : createMusicRecommendations(musicKeywords, sceneObservation, visualTone).slice(0, 3);
   const visualMoodTags =
-    value.visual_mood_tags.length > 0 ? value.visual_mood_tags : ["安静", "电影感"];
+    value.visual_mood_tags.length > 0 ? value.visual_mood_tags : visualTone;
+  const moodSubtitle =
+    value.mood_subtitle.trim() || createMoodSubtitle(sceneObservation, visualTone);
+  const shareCardText =
+    value.share_card_text.trim() || createShareCardText(spaceMemoryText, moodSubtitle);
 
   return {
     scene_observation: {
@@ -282,12 +331,21 @@ function completeMoodDefaults(value: MoodResultCore): MoodResultCore {
       atmosphere_evidence: sceneObservation.atmosphere_evidence,
     },
     mood_title: moodTitle,
+    mood_subtitle: moodSubtitle,
     time_label: value.time_label.trim() || "此刻",
     writing,
+    space_memory_text: spaceMemoryText,
     space_personality:
-      value.space_personality.trim() || "像一个安静保存光线的地方。",
+      value.space_personality.trim() || createSpacePersonality(sceneObservation),
+    visual_tone: visualTone,
+    music_query: musicQuery,
     music_keywords: musicKeywords,
-    music_recommendations: musicRecommendations,
+    music_memories: musicMemories,
+    music_recommendations:
+      musicRecommendations && musicRecommendations.length > 0
+        ? musicRecommendations.slice(0, 3)
+        : musicMemories,
+    share_card_text: shareCardText,
     visual_mood_tags: visualMoodTags,
   };
 }
@@ -353,10 +411,26 @@ function extractLooseMoodFields(content: unknown): Record<string, unknown> {
     ]),
     writing: extractLooseField(text, [
       "writing",
+      "space_memory_text",
+      "spaceMemoryText",
       "diary",
       "description",
       "文案",
       "日记",
+      "空间记忆",
+    ]),
+    mood_subtitle: extractLooseField(text, [
+      "mood_subtitle",
+      "moodSubtitle",
+      "subtitle",
+      "副标题",
+    ]),
+    space_memory_text: extractLooseField(text, [
+      "space_memory_text",
+      "spaceMemoryText",
+      "writing",
+      "空间记忆",
+      "正文",
     ]),
     space_personality: extractLooseField(text, [
       "space_personality",
@@ -364,16 +438,36 @@ function extractLooseMoodFields(content: unknown): Record<string, unknown> {
       "personality",
       "空间人格",
     ]),
+    visual_tone: extractLooseListField(text, [
+      "visual_tone",
+      "visualTone",
+      "visual_mood_tags",
+      "视觉氛围",
+    ]),
+    music_query: extractLooseField(text, [
+      "music_query",
+      "musicQuery",
+      "网易云",
+      "音乐搜索",
+    ]),
     music_keywords: extractLooseListField(text, [
       "music_keywords",
       "musicKeywords",
+      "music_query",
       "music",
       "keywords",
       "音乐",
     ]),
+    share_card_text: extractLooseField(text, [
+      "share_card_text",
+      "shareCardText",
+      "分享文案",
+      "分享卡片",
+    ]),
     visual_mood_tags: extractLooseListField(text, [
       "visual_mood_tags",
       "visualMoodTags",
+      "visual_tone",
       "tags",
       "标签",
     ]),
@@ -481,9 +575,17 @@ function hasMoodLikeKeys(value: Record<string, unknown>) {
   return [
     "mood_title",
     "moodTitle",
+    "mood_subtitle",
+    "moodSubtitle",
     "writing",
+    "space_memory_text",
+    "spaceMemoryText",
+    "music_query",
+    "musicQuery",
     "music_keywords",
     "musicKeywords",
+    "visual_tone",
+    "visualTone",
     "scene_observation",
     "sceneObservation",
   ].some((key) => key in value);
@@ -548,8 +650,10 @@ function extractJsonText(text: string) {
 function getRequiredMoodCoreStatus(value: MoodResultCore) {
   return {
     mood_title: value.mood_title.trim().length > 0,
-    writing: value.writing.trim().length > 0,
-    music_keywords: value.music_keywords.length > 0,
+    mood_subtitle: value.mood_subtitle.trim().length > 0,
+    space_memory_text: value.space_memory_text.trim().length > 0,
+    music_query: value.music_query.trim().length > 0,
+    share_card_text: value.share_card_text.trim().length > 0,
   };
 }
 
@@ -632,10 +736,10 @@ function createWriting(sceneObservation: MoodResultCore["scene_observation"]) {
   const light = sceneObservation.lighting || sceneObservation.color_tone;
 
   if (light) {
-    return `${scene}把${light}轻轻留住。\n像一段没有说出口的电影片尾。`;
+    return `${scene}把这层光轻轻留住。画面没有急着解释什么，只让颜色、材质和空气慢慢靠近，像一段被保存下来的日常。`;
   }
 
-  return `${scene}安静地停在画面里。\n像某个被晚风保存下来的片刻。`;
+  return `${scene}安静地停在画面里。没有多余的声音，只剩空间本身慢慢展开，像某个被轻轻记住的片刻。`;
 }
 
 function createMusicKeywords(sceneObservation: MoodResultCore["scene_observation"]) {
@@ -656,7 +760,7 @@ function createMusicKeywords(sceneObservation: MoodResultCore["scene_observation
     evidence.includes("庭") ||
     evidence.includes("园")
   ) {
-    return ["garden ambient", "soft piano", "spring afternoon"];
+    return ["春日", "花园", "温柔", "华语"];
   }
 
   if (
@@ -666,10 +770,76 @@ function createMusicKeywords(sceneObservation: MoodResultCore["scene_observation
     evidence.includes("街") ||
     evidence.includes("夜")
   ) {
-    return ["city pop", "soft cinematic", "slow ambient"];
+    return ["深夜", "城市", "独立音乐"];
   }
 
-  return ["soft piano", "slow ambient", "pastel memory"];
+  return ["安静", "空间", "温柔", "华语"];
+}
+
+function createMoodSubtitle(
+  sceneObservation: MoodResultCore["scene_observation"],
+  visualTone: string[],
+) {
+  const tone = visualTone[0] || sceneObservation.lighting || "空气";
+  const scene = primarySceneToChinese(sceneObservation.primary_scene);
+
+  return `${tone}停在${scene}里，时间慢了下来。`;
+}
+
+function createSpacePersonality(sceneObservation: MoodResultCore["scene_observation"]) {
+  const scene = primarySceneToChinese(sceneObservation.primary_scene);
+
+  return `${scene}像一个安静保存光线的地方。`;
+}
+
+function createVisualTone(sceneObservation: MoodResultCore["scene_observation"]) {
+  const tones = [
+    sceneObservation.lighting,
+    sceneObservation.color_tone,
+    ...sceneObservation.atmosphere_evidence,
+  ]
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  return (tones.length > 0 ? tones : ["柔光", "安静空气"]).slice(0, 4);
+}
+
+function createMusicQuery(
+  musicKeywords: string[],
+  sceneObservation: MoodResultCore["scene_observation"],
+  visualTone: string[],
+) {
+  if (musicKeywords.length > 0) {
+    return musicKeywords.slice(0, 4).join(" ");
+  }
+
+  const scene = primarySceneToChinese(sceneObservation.primary_scene);
+  const tone = visualTone[0] || "温柔";
+
+  return `${tone} ${scene} 华语`;
+}
+
+function splitMusicQuery(musicQuery: string) {
+  return musicQuery
+    .split(/\s+/)
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .slice(0, 5);
+}
+
+function createShareCardText(spaceMemoryText: string, moodSubtitle: string) {
+  const source = (spaceMemoryText || moodSubtitle).replace(/\s+/g, "");
+  const firstSentence = source.split(/[。！？!?]/)[0];
+
+  if (firstSentence.length >= 20 && firstSentence.length <= 40) {
+    return `${firstSentence}。`;
+  }
+
+  if (firstSentence.length > 40) {
+    return `${firstSentence.slice(0, 38)}。`;
+  }
+
+  return moodSubtitle || "这一刻安静下来，像被空间轻轻记住。";
 }
 
 function createMusicRecommendations(
@@ -698,10 +868,10 @@ function createMusicReason(
     sceneObservation.atmosphere_evidence[0];
 
   if (evidence) {
-    return `${keyword}适合${scene}里这层${evidence}，像给画面留下一枚安静的记忆锚点。`;
+    return `适合${scene}里这层安静。`;
   }
 
-  return `${keyword}适合${scene}的气质，让空间不只是被看见，也像被轻轻记住。`;
+  return `像给${scene}留下一点余温。`;
 }
 
 function primarySceneToChinese(primaryScene: string) {

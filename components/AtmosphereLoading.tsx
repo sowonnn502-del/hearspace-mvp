@@ -6,17 +6,16 @@ import { FilmGrain, VignetteLayer, hearspaceEase } from "@/components/MotionPrim
 
 const mainMessages = [
   "正在聆听这段空间...",
-  "正在聆听这段空间...",
-  "正在聆听这段空间...",
-  "正在聆听这段空间...",
-  "正在聆听这段空间...",
+  "正在识别光线与情绪...",
+  "音乐记忆正在靠近...",
+  "正在为你寻找最贴近此刻的旋律...",
 ];
 
 const subMessages = [
   "正在识别光线、场景与情绪线索。",
-  "正在识别光线、场景与情绪线索。",
-  "正在识别光线、场景与情绪线索。",
-  "正在识别光线、场景与情绪线索。",
+  "空间的颜色正在慢慢浮出来。",
+  "先写下这张照片里的真实细节。",
+  "音乐会稍后抵达，不急。",
 ];
 
 type AtmosphereLoadingProps = {
@@ -122,7 +121,7 @@ export function AtmosphereLoading({
 
         <motion.p
           key={mainMessages[messageIndex]}
-          className="mt-11 max-w-xl font-serif text-[clamp(2rem,9vw,4.6rem)] font-normal leading-[1.05] tracking-normal text-paper"
+          className="mt-10 max-w-xl font-serif text-[clamp(1.9rem,8vw,4.2rem)] font-normal leading-[1.12] tracking-normal text-paper"
           initial={reduceMotion ? false : { opacity: 0, y: 18, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, y: -12, filter: "blur(8px)" }}
@@ -133,7 +132,7 @@ export function AtmosphereLoading({
 
         <motion.p
           key={subMessages[subMessageIndex]}
-          className="mt-6 font-meta text-[10px] uppercase tracking-[0.32em] text-paper/48 sm:text-xs"
+          className="mt-6 max-w-md text-sm leading-7 text-paper/54 sm:text-base"
           initial={reduceMotion ? false : { opacity: 0, filter: "blur(6px)" }}
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: reduceMotion ? 0 : 1.1, ease: hearspaceEase, delay: 0.18 }}

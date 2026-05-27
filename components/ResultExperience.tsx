@@ -1,20 +1,23 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { FilmFrame, MotionText, ScrollReveal } from "@/components/MotionPrimitives";
 import { MoodResultPanel } from "@/components/MoodResultPanel";
 import { ShareMoodNote } from "@/components/ShareMoodNote";
-import { matchAtmosphereAudio, type AtmosphereAudioTrack } from "@/lib/audio-library";
 import { mockMoodResult } from "@/lib/mockMood";
+import {
+  matchMusicByMood,
+  type MusicMemoryRecommendation,
+} from "@/lib/music-library";
 import { isMoodResult, type MoodResult } from "@/lib/mood-schema";
 
 export function ResultExperience() {
   const [result, setResult] = useState<MoodResult>(mockMoodResult);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [isMusicMemoryReady, setIsMusicMemoryReady] = useState(false);
-  const defaultAudioTrack = useMemo(() => matchAtmosphereAudio(result), [result]);
-  const [audioTrack, setAudioTrack] =
-    useState<AtmosphereAudioTrack>(defaultAudioTrack);
+  const [isMusicLoading, setIsMusicLoading] = useState(false);
+  const [musicRecommendations, setMusicRecommendations] = useState<
+    MusicMemoryRecommendation[]
+  >(() => matchMusicByMood(mockMoodResult));
 
   useEffect(() => {
     const storedResult = sessionStorage.getItem("hearspace:mood-result");
@@ -33,21 +36,54 @@ export function ResultExperience() {
   }, []);
 
   useEffect(() => {
-    setAudioTrack(defaultAudioTrack);
-    setIsMusicMemoryReady(false);
-    const timer = window.setTimeout(() => setIsMusicMemoryReady(true), 1400);
-    return () => window.clearTimeout(timer);
-  }, [defaultAudioTrack]);
+    let isCancelled = false;
+    const fallbackRecommendations = matchMusicByMood(result);
+
+    setMusicRecommendations(fallbackRecommendations);
+    setIsMusicLoading(true);
+
+    async function enrichMusicRecommendations() {
+      try {
+        const response = await fetch("/api/music/recommendations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(result),
+        });
+
+        if (!response.ok) return;
+
+        const data = (await response.json()) as {
+          recommendations?: MusicMemoryRecommendation[];
+        };
+
+        if (!isCancelled && data.recommendations?.length) {
+          setMusicRecommendations(data.recommendations);
+        }
+      } catch (error) {
+        console.warn("[HearSpace Music] Recommendation enrichment failed:", error);
+      } finally {
+        if (!isCancelled) setIsMusicLoading(false);
+      }
+    }
+
+    void enrichMusicRecommendations();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [result]);
 
   return (
-    <section className="mx-auto max-w-7xl overflow-hidden pb-28 pt-10 sm:pb-32 sm:pt-16">
+    <section className="mx-auto max-w-7xl overflow-hidden pb-24 pt-6 sm:pb-32 sm:pt-12">
       <FilmFrame
         src={imageUrl}
         alt="Uploaded atmosphere"
-        className="mx-auto aspect-[4/5] max-h-[780px] min-h-[560px] max-w-6xl sm:aspect-[16/7] sm:min-h-[540px] lg:aspect-[16/6.5] lg:min-h-[600px]"
+        className="mx-auto aspect-[4/5] max-h-[740px] min-h-[500px] max-w-6xl sm:aspect-[16/8] sm:min-h-[500px] lg:aspect-[16/7] lg:min-h-[560px]"
       >
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.72),rgba(0,0,0,0.18)_46%,transparent_72%)]" />
-        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 sm:px-12 sm:pb-12 lg:px-20 lg:pb-16">
+        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 sm:px-10 sm:pb-12 lg:px-16">
           <MotionText
             delay={0.78}
             duration={1.45}
@@ -62,24 +98,38 @@ export function ResultExperience() {
             duration={2}
             y={20}
             blur={7}
-            className="mt-5 max-w-4xl break-words text-balance font-serif text-[clamp(2.75rem,14vw,5.6rem)] font-medium leading-[0.96] tracking-normal text-paper [text-shadow:0_12px_42px_rgba(0,0,0,0.58)] sm:text-[clamp(4rem,8vw,7.2rem)]"
+            className="mt-4 max-w-4xl break-words text-balance font-serif text-[clamp(2.5rem,12vw,5.25rem)] font-medium leading-[1] tracking-normal text-paper [text-shadow:0_12px_42px_rgba(0,0,0,0.58)] sm:text-[clamp(3.75rem,7vw,6.6rem)]"
           >
             {result.mood_title}
           </MotionText>
+          {result.mood_subtitle ? (
+            <MotionText
+              delay={1.36}
+              duration={1.8}
+              y={16}
+              blur={6}
+              className="mt-5 max-w-xl break-words font-serif text-lg leading-8 tracking-normal text-paper/84 [text-shadow:0_8px_28px_rgba(0,0,0,0.58)] sm:text-2xl"
+            >
+              {result.mood_subtitle}
+            </MotionText>
+          ) : null}
         </div>
       </FilmFrame>
 
-      <div className="mx-auto mt-20 max-w-6xl sm:mt-32 lg:mt-36">
+      <div className="mx-auto mt-16 max-w-6xl px-5 sm:mt-28 sm:px-8 lg:mt-32">
         <ScrollReveal delay={0.25} y={34} duration={1.8} amount={0.14}>
           <MoodResultPanel
             result={result}
-            audioTrack={audioTrack}
-            isMusicMemoryReady={isMusicMemoryReady}
-            onSelectAudioTrack={setAudioTrack}
+            musicRecommendations={musicRecommendations}
+            isMusicLoading={isMusicLoading}
           />
         </ScrollReveal>
         <ScrollReveal delay={0.1} y={28} duration={1.4} amount={0.16}>
-          <ShareMoodNote result={result} imageUrl={imageUrl} />
+          <ShareMoodNote
+            result={result}
+            imageUrl={imageUrl}
+            musicRecommendations={musicRecommendations}
+          />
         </ScrollReveal>
       </div>
     </section>

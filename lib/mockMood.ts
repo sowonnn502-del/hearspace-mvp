@@ -14,30 +14,60 @@ export const mockMoodResult: MoodResult = {
       "quiet classroom arrangement",
     ],
   },
-  mood_title: "The Last Class",
-  time_label: "Late afternoon, 5:12 PM",
-  writing: "Some classrooms never say goodbye. They keep the chalk dust, the slant of window light, and the soft pause after everyone has gone.",
+  mood_title: "最后一课",
+  mood_subtitle: "光停在课桌上，像一句没说完的话。",
+  time_label: "午后",
+  space_memory_text:
+    "教室已经安静下来。窗边的光落在桌椅之间，空气里还有一点刚散场的停顿，像某个普通下午被轻轻夹进了回忆里。",
+  writing:
+    "教室已经安静下来。窗边的光落在桌椅之间，空气里还有一点刚散场的停顿，像某个普通下午被轻轻夹进了回忆里。",
   space_personality:
-    "A reflective, tender space with a quiet memory. It feels like someone who saves small goodbyes in the corners and lets the light speak first.",
-  music_keywords: ["soft piano", "tape warmth", "distant bell", "slow ambient"],
-  music_recommendations: [
+    "像一个安静保存光线和告别的地方。",
+  visual_tone: ["窗边柔光", "旧课桌", "安静空气", "蓝色阴影"],
+  music_query: "校园 午后 青春 回忆 民谣",
+  music_keywords: ["校园", "午后", "青春", "回忆", "民谣"],
+  music_memories: [
     {
-      title: "soft piano",
-      reason: "A quiet piano direction keeps the room's late light and unfinished silence close.",
-      mood: "quiet memory",
+      title: "晴天",
+      artist: "周杰伦",
+      reason: "像风吹过旧教室。",
+      mood: "校园回忆",
     },
     {
-      title: "tape warmth",
-      reason: "A little analog haze suits the classroom's stored afternoon feeling.",
-      mood: "film nostalgia",
+      title: "知足",
+      artist: "五月天",
+      reason: "适合放学后的安静。",
+      mood: "温柔告别",
     },
     {
-      title: "slow ambient",
-      reason: "Slow ambient leaves enough empty space for the scene to breathe.",
-      mood: "soft pause",
+      title: "那些年",
+      artist: "胡夏",
+      reason: "有一种夏天结束前的停顿。",
+      mood: "青春",
     },
   ],
-  visual_mood_tags: ["window light", "warm dust", "empty seats", "blue shadow"],
+  music_recommendations: [
+    {
+      title: "晴天",
+      artist: "周杰伦",
+      reason: "像风吹过旧教室。",
+      mood: "校园回忆",
+    },
+    {
+      title: "知足",
+      artist: "五月天",
+      reason: "适合放学后的安静。",
+      mood: "温柔告别",
+    },
+    {
+      title: "那些年",
+      artist: "胡夏",
+      reason: "有一种夏天结束前的停顿。",
+      mood: "青春",
+    },
+  ],
+  share_card_text: "光停在课桌之间，像那天还没有真正结束。",
+  visual_mood_tags: ["窗边柔光", "旧课桌", "安静空气", "蓝色阴影"],
   debug_source: "mock_no_key",
 };
 
