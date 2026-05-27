@@ -2,17 +2,14 @@
 
 import { motion } from "framer-motion";
 import { AtmospherePlayer } from "@/components/AtmospherePlayer";
+import { MusicCard } from "@/components/MusicCard";
 import {
   MotionText,
   ScrollReveal,
   hearspaceEase,
 } from "@/components/MotionPrimitives";
 import { matchAtmosphereAudio, type AtmosphereAudioTrack } from "@/lib/audio-library";
-import {
-  getMusicMemoryRecommendations,
-  type MusicMemoryMatch,
-} from "@/lib/music-matcher";
-import { createMusicSearchLinks } from "@/lib/music-search";
+import { matchMusicByMood } from "@/lib/music-library";
 import type { MoodResult } from "@/lib/mood-schema";
 
 type MoodResultPanelProps = {
@@ -22,20 +19,13 @@ type MoodResultPanelProps = {
   onSelectAudioTrack?: (track: AtmosphereAudioTrack) => void;
 };
 
-type MusicMemoryCardProps = {
-  recommendation: MusicMemoryMatch;
-  index: number;
-  result: MoodResult;
-  onSelectAudioTrack?: (track: AtmosphereAudioTrack) => void;
-};
-
 export function MoodResultPanel({
   result,
   audioTrack,
   isMusicMemoryReady = true,
   onSelectAudioTrack,
 }: MoodResultPanelProps) {
-  const musicRecommendations = getMusicMemoryRecommendations(result);
+  const musicRecommendations = matchMusicByMood(result);
 
   return (
     <div className="relative">
@@ -88,15 +78,41 @@ export function MoodResultPanel({
               </p>
             </div>
             <div className="mx-auto mt-5 grid max-w-5xl gap-3">
-              {musicRecommendations.map((recommendation, index) => (
-                <MusicMemoryCard
-                  key={`${recommendation.title}-${index}`}
-                  recommendation={recommendation}
-                  index={index}
-                  result={result}
-                  onSelectAudioTrack={onSelectAudioTrack}
-                />
-              ))}
+              {musicRecommendations.map((recommendation, index) => {
+                const song = recommendation.song;
+                const emotions = getRecommendationLabels(
+                  song.emotions,
+                  getRecommendationField(song, "tags"),
+                  getRecommendationField(song, "mood"),
+                  getRecommendationField(song, "keywords"),
+                );
+                const atmosphere = getRecommendationLabels(
+                  getRecommendationField(song, "atmosphere"),
+                  recommendation.matchedSignals,
+                );
+
+                return (
+                  <MusicCard
+                    key={`${song.neteaseKeyword || song.title || "song"}-${index}`}
+                    song={{
+                      ...song,
+                      atmosphere,
+                      memoryScenes: recommendation.matchedSignals,
+                    }}
+                    index={index}
+                    onUseTape={() =>
+                      onSelectAudioTrack?.(
+                        matchAtmosphereAudio(result, {
+                          title: song.title || "",
+                          artist: song.artist || "",
+                          mood: emotions.join(" / "),
+                          reason: recommendation.reason || atmosphere.join(" / "),
+                        }),
+                      )
+                    }
+                  />
+                );
+              })}
             </div>
           </motion.div>
         ) : (
@@ -111,6 +127,29 @@ export function MoodResultPanel({
       ) : null}
     </div>
   );
+}
+
+function getRecommendationLabels(...values: unknown[]) {
+  for (const value of values) {
+    if (Array.isArray(value)) {
+      return value
+        .filter((item): item is string => typeof item === "string")
+        .map((item) => item.trim())
+        .filter(Boolean);
+    }
+
+    if (typeof value === "string" && value.trim()) {
+      return [value.trim()];
+    }
+  }
+
+  return [];
+}
+
+function getRecommendationField(value: unknown, key: string) {
+  return value && typeof value === "object"
+    ? (value as Record<string, unknown>)[key]
+    : undefined;
 }
 
 function MusicMemoryLoading() {
@@ -143,104 +182,5 @@ function MusicMemoryLoading() {
         </div>
       </div>
     </motion.div>
-  );
-}
-
-export function MusicMemoryCard({
-  recommendation,
-  index,
-  result,
-  onSelectAudioTrack,
-}: MusicMemoryCardProps) {
-  const matchedTrack = matchAtmosphereAudio(result, recommendation);
-  const searchLinks = createMusicSearchLinks({
-    title: recommendation.title,
-    artist: recommendation.artist,
-    source: recommendation.source,
-    mood: recommendation.mood,
-    keywords: recommendation.keywords,
-  });
-
-  return (
-    <motion.article
-      className="group relative min-w-0 overflow-hidden bg-ink/[0.055] px-5 py-5 text-ink shadow-[0_16px_48px_rgba(17,17,19,0.06)] sm:px-6 sm:py-6"
-      initial={{ opacity: 0, y: 18, filter: "blur(5px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.42 }}
-      transition={{
-        duration: 1.2,
-        ease: hearspaceEase,
-        delay: index * 0.16,
-      }}
-    >
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-ink/16" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(17,17,19,0.035)_1px,transparent_1px)] bg-[length:26px_100%] opacity-50" />
-
-      <div className="relative grid min-w-0 items-center gap-6 sm:grid-cols-[5rem_1fr]">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-ink/[0.07] shadow-inner">
-          <div className="h-7 w-7 rounded-full border border-ink/12 bg-paper/40" />
-        </div>
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-baseline justify-between gap-3">
-            <p className="font-meta text-[10px] uppercase tracking-[0.28em] text-ink/36">
-              Memory {String(index + 1).padStart(2, "0")}
-            </p>
-            <p className="font-meta text-[10px] uppercase tracking-[0.22em] text-ink/34">
-              {recommendation.mood}
-            </p>
-          </div>
-          <h3 className="mt-3 break-words font-sans text-2xl font-semibold leading-tight tracking-[-0.03em] text-ink/82">
-            {recommendation.title}
-          </h3>
-          {recommendation.artist ? (
-            <p className="mt-1 text-sm text-ink/48">{recommendation.artist}</p>
-          ) : null}
-          {recommendation.source ? (
-            <p className="mt-2 font-meta text-[10px] uppercase tracking-[0.18em] text-ink/34">
-              {recommendation.source}
-            </p>
-          ) : null}
-          <p className="mt-4 max-w-3xl break-words text-sm leading-7 text-ink/58">
-            {recommendation.reason}
-          </p>
-          <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 font-meta text-[10px] uppercase tracking-[0.18em] text-ink/32">
-            {recommendation.scene_tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => onSelectAudioTrack?.(matchedTrack)}
-              className="rounded-full bg-ink px-3 py-2 font-meta text-[10px] uppercase tracking-[0.18em] text-paper transition duration-500 hover:bg-tide"
-            >
-              Use tape
-            </button>
-            <MusicSearchLink href={searchLinks.youtubeUrl}>YouTube</MusicSearchLink>
-            <MusicSearchLink href={searchLinks.neteaseUrl}>网易云</MusicSearchLink>
-            <MusicSearchLink href={searchLinks.spotifyUrl}>Spotify</MusicSearchLink>
-          </div>
-        </div>
-      </div>
-    </motion.article>
-  );
-}
-
-function MusicSearchLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: string;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="rounded-full bg-ink/[0.06] px-3 py-2 font-meta text-[10px] uppercase tracking-[0.18em] text-ink/48 transition duration-500 hover:bg-ink/[0.1] hover:text-ink"
-    >
-      {children}
-    </a>
   );
 }

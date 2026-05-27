@@ -99,7 +99,7 @@ HearSpace 记录的是：
 
 ---
 
-### Spotify / Apple Music
+### 音乐 App
 
 问题：
 
@@ -108,7 +108,7 @@ HearSpace 记录的是：
 
 例如：
 
-Spotify 不知道用户此刻：
+传统音乐 App 不知道用户此刻：
 
 * 正在凌晨机场
 * 正在雨夜街头
@@ -175,7 +175,7 @@ HearSpace 的核心差异：
 * 小红书
 * Instagram
 * Threads
-* Spotify
+* 网易云音乐
 * TikTok
 
 ---
@@ -393,14 +393,10 @@ AI 根据空间氛围：
 
 自动匹配：
 
-* ambient
-* lofi
-* city pop
-* cinematic
-* piano
-* environmental sound
-* rain texture
-* slow electronic
+* 中文空间记忆类型
+* 真实歌曲对象
+* 本地 atmosphere tape
+* 网易云继续聆听入口
 
 ---
 
@@ -408,12 +404,15 @@ AI 根据空间氛围：
 
 不自研音乐生成。
 
-优先：
+当前版本：
 
-* Spotify API
-* Apple Music API
-* 版权音乐库
-* 音乐 embedding 匹配
+* 不接 Spotify
+* 不接 Apple Music
+* 不接网易云非官方 API
+* 使用 curated music-library 真实歌曲库
+* 使用 space-memory-taxonomy 判断中文空间记忆类型
+* 使用 tag overlap scoring 返回 Top 3 songs
+* 通过网易云搜索页打开真实歌曲名 + artist
 
 ---
 
@@ -421,11 +420,15 @@ AI 根据空间氛围：
 
 形成：
 
-# “哇时刻”
+# “空间 → 情绪 → 音乐记忆”闭环
 
 用户上传图片后：
 
-AI 自动播放“刚好适合这个空间”的音乐。
+HearSpace 先生成空间情绪，再匹配本地 atmosphere tape，并推荐 3 首真实歌曲作为 Music Memory。
+
+用户可以点击：
+
+> 在网易云继续聆听 →
 
 ---
 
@@ -1393,21 +1396,53 @@ HearSpace 文案必须像：
 
 音乐不是背景音，而是记忆锚点。
 
-第一版音乐匹配优先级：
+第一版音乐匹配采用“中文空间记忆 → 真实歌曲对象”架构。
 
-1. 华语青春 OST
-2. 华语城市感歌曲
-3. Ambient / Piano / Cinematic
-4. City Pop / Jazzhop
-5. 东方氛围电子
+系统先判断空间记忆类型：
+
+1. 校园 / 教室 / 青春
+2. 公园 / 草地 / 恢复性空间
+3. 深夜城市 / 餐厅 / 微醺
+4. 雨后 / 窗边 / 独处
+5. 庭院 / 园林 / 水面 / 东方空间
+6. 花园 / 少女 / 柔光 / 梦幻
+
+再从 curated music-library 中匹配真实歌曲对象：
+
+```ts
+{
+  id: string
+  title: string
+  artist: string
+  album?: string
+  neteaseKeyword: string
+  coverImage?: string
+  memoryScenes: string[]
+  emotions: string[]
+  atmosphere: string[]
+}
+```
 
 匹配逻辑：
 
-* 校园 / 教室 / 青春感 → 华语青春 OST、钢琴、慢速弦乐
-* 雨夜 / 街道 / 霓虹 → 华语 city pop、jazzhop、slow electronic
-* 机场 / 高铁 / 窗边 → ambient、cinematic、漂浮电子
-* 公园 / 海边 / 黄昏 → piano、acoustic、soft ambient
-* 深圳 / 科技园 / 夜景 → electronic drift、urban ambient
+* scene_observation / writing / visual_mood_tags / music_keywords → 中文空间记忆分类
+* category triggers + emotions → song memoryScenes / emotions / atmosphere
+* tag overlap scoring → Top 3 songs
+* 网易云搜索只使用 song.neteaseKeyword，例如“晴天 周杰伦”
+
+Fallback：
+
+* 校园不明确 → 华语青春 OST
+* 公园不明确 → 华语轻民谣 / city pop
+* 夜晚不明确 → 郭顶 / 陈奕迅 / 陶喆方向
+* 花园不明确 → 陈绮贞 / 房东的猫 / soft pop
+* 东方园林不明确 → 林海 / 陈致逸 / 古琴方向
+
+未来扩展：
+
+* TODO: embedding retrieval
+* TODO: playlist generation
+* TODO: 网易云歌单同步
 
 ---
 
@@ -1419,7 +1454,7 @@ HearSpace 文案必须像：
 * mood_title
 * time_label
 * writing
-* music_keywords
+* Music Memory 真实歌曲：title / artist / emotion labels
 * space_personality
 * visual_mood_tags
 

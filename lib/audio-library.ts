@@ -1,5 +1,14 @@
 import type { MoodResult } from "@/lib/mood-schema";
-import type { MusicMemoryMatch } from "@/lib/music-matcher";
+
+type MusicAudioHint = {
+  title?: string;
+  artist?: string;
+  source?: string;
+  mood?: string;
+  reason?: string;
+  keywords?: string[];
+  scene_tags?: string[];
+};
 
 export type AtmosphereAudioTrack = {
   id: string;
@@ -150,7 +159,7 @@ export function getDefaultAtmosphereAudio() {
 
 export function matchAtmosphereAudio(
   result: MoodResult,
-  recommendation?: MusicMemoryMatch,
+  recommendation?: MusicAudioHint,
 ) {
   const query = buildAudioQuery(result, recommendation);
   const scored = atmosphereAudioLibrary
@@ -169,7 +178,7 @@ export function matchAtmosphereAudio(
 
 function buildAudioQuery(
   result: MoodResult,
-  recommendation?: MusicMemoryMatch,
+  recommendation?: MusicAudioHint,
 ) {
   const scene = result.scene_observation;
 

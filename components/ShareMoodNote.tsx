@@ -3,7 +3,7 @@
 import { toPng } from "html-to-image";
 import { forwardRef, useMemo, useRef, useState } from "react";
 import { FilmGrain } from "@/components/MotionPrimitives";
-import { getMusicMemoryRecommendations } from "@/lib/music-matcher";
+import { matchMusicByMood } from "@/lib/music-library";
 import type { MoodResult } from "@/lib/mood-schema";
 
 type ShareMoodNoteProps = {
@@ -16,7 +16,7 @@ export function ShareMoodNote({ result, imageUrl }: ShareMoodNoteProps) {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const musicRecommendations = useMemo(
-    () => getMusicMemoryRecommendations(result).slice(0, 3),
+    () => matchMusicByMood(result).slice(0, 3),
     [result],
   );
 
@@ -100,7 +100,7 @@ export function ShareMoodNote({ result, imageUrl }: ShareMoodNoteProps) {
 type MoodNoteCardProps = {
   result: MoodResult;
   imageUrl: string | null;
-  musicRecommendations: ReturnType<typeof getMusicMemoryRecommendations>;
+  musicRecommendations: ReturnType<typeof matchMusicByMood>;
 };
 
 const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
@@ -148,24 +148,28 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
               Music Memory
             </p>
             <div className="mt-1.5 grid gap-0.5">
-              {musicRecommendations.map((recommendation, index) => (
-                <div
-                  key={`${recommendation.title}-${index}`}
-                  className="grid min-w-0 grid-cols-[1.5rem_1fr] items-baseline gap-2"
-                >
-                  <span className="font-meta text-[8px] text-ink/32">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="min-w-0">
-                    <p className="truncate font-sans text-[11px] font-medium leading-4 text-ink/78">
-                      {recommendation.title}
-                    </p>
-                    <p className="truncate font-meta text-[7px] uppercase leading-3 tracking-[0.14em] text-ink/34">
-                      {recommendation.mood}
-                    </p>
+              {musicRecommendations.map((recommendation, index) => {
+                const song = recommendation.song;
+
+                return (
+                  <div
+                    key={`${song.title}-${index}`}
+                    className="grid min-w-0 grid-cols-[1.5rem_1fr] items-baseline gap-2"
+                  >
+                    <span className="font-meta text-[8px] text-ink/32">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="truncate font-sans text-[11px] font-medium leading-4 text-ink/78">
+                        {song.title}
+                      </p>
+                      <p className="truncate font-meta text-[7px] uppercase leading-3 tracking-[0.14em] text-ink/34">
+                        {song.artist}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="mt-2 flex flex-wrap gap-x-2.5 gap-y-1 font-meta text-[7px] uppercase tracking-[0.18em] text-ink/32">
