@@ -1,4 +1,4 @@
-import type { MoodResult } from "@/lib/mood-schema";
+import type { MoodResult, MusicRecommendation } from "@/lib/mood-schema";
 import { generatedMusicLibrary } from "@/lib/music-library.generated";
 import type {
   MusicArchetype,
@@ -54,22 +54,45 @@ export type MusicMemoryRecommendation = {
 export const MUSIC_COVER_PLACEHOLDER = "/music-cover-placeholder.jpg";
 export const curatedMusicLibrary = generatedMusicLibrary;
 
+export function getEmbeddedMusicRecommendations(
+  result: MoodResult,
+): MusicMemoryRecommendation[] {
+  if (result.debug_source === "mock_no_key" || result.debug_source === "mock_api_error") {
+    return [];
+  }
+
+  const embedded = result.music_recommendations?.length
+    ? result.music_recommendations
+    : result.music_memories;
+
+  if (!embedded.length) return [];
+
+  const context = extractVisualGrounding(result);
+  const routedTypes = routeSpaceMemoryType(context);
+  const primaryType = routedTypes[0] ?? "unknown_soft_memory";
+
+  return embedded
+    .filter((recommendation) => recommendation.title.trim())
+    .slice(0, 3)
+    .map((recommendation, index) =>
+      toEmbeddedMusicRecommendation(recommendation, context, primaryType, index),
+    );
+}
+
 export function matchMusicByMemory(result: MoodResult): MusicMemoryRecommendation[] {
   const context = extractVisualGrounding(result);
   const routedTypes = routeSpaceMemoryType(context);
   const semanticContext = buildSemanticContext(context, routedTypes);
-  const scored = curatedMusicLibrary
-    .filter((songItem) => shouldConsiderSong(songItem, routedTypes, context))
+  const candidates = getCandidateSongs(routedTypes, context);
+  const scored = candidates
     .map((songItem, index) => ({
       ...scoreSong(songItem, context, semanticContext, routedTypes[0]),
       index,
+      tieBreak: contextualTieBreak(songItem, context),
     }))
-    .sort((a, b) => b.score - a.score || a.index - b.index);
+    .sort((a, b) => b.score - a.score || b.tieBreak - a.tieBreak || a.index - b.index);
 
-  const recommendations = scored
-    .filter((item) => item.score > -4)
-    .slice(0, 3)
-    .map(({ index: _index, ...item }) => item);
+  const recommendations = pickDiverseRecommendations(scored.filter((item) => item.score > -4));
 
   if (recommendations.length >= 3) return recommendations;
 
@@ -77,6 +100,77 @@ export function matchMusicByMemory(result: MoodResult): MusicMemoryRecommendatio
 }
 
 export const matchMusicByMood = matchMusicByMemory;
+
+function toEmbeddedMusicRecommendation(
+  recommendation: MusicRecommendation,
+  context: NormalizedMusicContext,
+  spaceMemoryType: SpaceMemoryType,
+  index: number,
+): MusicMemoryRecommendation {
+  const title = recommendation.title.trim();
+  const artist = recommendation.artist?.trim() ?? "";
+  const librarySong = findLibrarySong(title, artist);
+  const song: MusicSong =
+    librarySong ??
+    ({
+      id: `embedded-${slugify([title, artist].filter(Boolean).join("-") || String(index))}`,
+      title,
+      artist,
+      neteaseKeyword: [title, artist].filter(Boolean).join(" "),
+      coverUrl: MUSIC_COVER_PLACEHOLDER,
+      memoryTypes: [spaceMemoryType],
+      scenes: [],
+      visibleObjects: [],
+      emotions: uniqueStrings([
+        recommendation.mood,
+        ...context.emotionalTone.slice(0, 3),
+      ]),
+      timeFeelings: context.timeFeeling,
+      colorFeelings: context.colorFeeling,
+      culturalSignals: context.culturalSignals,
+      avoidWhen: [],
+      season: "all",
+      pace: "medium",
+      lightTone: "neutral",
+      narrative: "",
+      archetype: "unknown_soft_memory",
+      description: recommendation.reason,
+    } satisfies MusicSong);
+
+  return {
+    song,
+    score: 20 - index,
+    reason: recommendation.reason,
+    matchedSignals: uniqueStrings([
+      recommendation.mood,
+      spaceMemoryType,
+      ...context.emotionalTone,
+    ]).slice(0, 5),
+    spaceMemoryType,
+  };
+}
+
+function findLibrarySong(title: string, artist: string) {
+  const normalizedTitle = normalizeForSongLookup(title);
+  const normalizedArtist = normalizeForSongLookup(artist);
+
+  return curatedMusicLibrary.find((song) => {
+    if (normalizeForSongLookup(song.title) !== normalizedTitle) return false;
+    if (!normalizedArtist) return true;
+    return normalizeForSongLookup(song.artist).includes(normalizedArtist);
+  });
+}
+
+function normalizeForSongLookup(value: string) {
+  return value.toLowerCase().replace(/\s+/g, "");
+}
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fff]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 type SemanticContext = {
   memoryTypes: SpaceMemoryType[];
@@ -113,6 +207,22 @@ function shouldConsiderSong(
   }
 
   return songItem.memoryTypes.some((type) => routedTypes.includes(type));
+}
+
+function getCandidateSongs(
+  routedTypes: SpaceMemoryType[],
+  context: NormalizedMusicContext,
+) {
+  const primaryType = routedTypes[0];
+  const allCandidates = curatedMusicLibrary.filter((songItem) =>
+    shouldConsiderSong(songItem, routedTypes, context),
+  );
+  const primaryCandidates =
+    primaryType && primaryType !== "unknown_soft_memory"
+      ? allCandidates.filter((songItem) => songItem.memoryTypes.includes(primaryType))
+      : [];
+
+  return primaryCandidates.length >= 3 ? primaryCandidates : allCandidates;
 }
 
 function scoreSong(
@@ -231,6 +341,50 @@ function fillFallback(
         spaceMemoryType: "unknown_soft_memory" as SpaceMemoryType,
       })),
   ];
+}
+
+type ScoredMusicRecommendation = MusicMemoryRecommendation & {
+  index: number;
+  tieBreak: number;
+};
+
+function pickDiverseRecommendations(scored: ScoredMusicRecommendation[]) {
+  const selected: ScoredMusicRecommendation[] = [];
+  const selectedIds = new Set<string>();
+  const selectedArtists = new Set<string>();
+
+  for (const item of scored) {
+    if (selectedIds.has(item.song.id)) continue;
+    if (selectedArtists.has(item.song.artist) && selected.length < 2) continue;
+
+    selected.push(item);
+    selectedIds.add(item.song.id);
+    selectedArtists.add(item.song.artist);
+
+    if (selected.length === 3) break;
+  }
+
+  for (const item of scored) {
+    if (selected.length === 3) break;
+    if (selectedIds.has(item.song.id)) continue;
+
+    selected.push(item);
+    selectedIds.add(item.song.id);
+  }
+
+  return selected.map(({ index: _index, tieBreak: _tieBreak, ...item }) => item);
+}
+
+function contextualTieBreak(songItem: MusicSong, context: NormalizedMusicContext) {
+  const signature = contextTokens(context).join("|") || "hearspace";
+  const value = `${signature}:${songItem.id}:${songItem.title}:${songItem.artist}`;
+  let hash = 0;
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+  }
+
+  return (hash % 1000) / 1000;
 }
 
 function inferSeason(context: NormalizedMusicContext): MusicSeason {

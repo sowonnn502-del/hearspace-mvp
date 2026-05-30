@@ -1,5 +1,6 @@
 import type { MoodResult } from "@/lib/mood-schema";
 import {
+  getEmbeddedMusicRecommendations,
   matchMusicByMemory,
   MUSIC_COVER_PLACEHOLDER,
   type MusicMemoryRecommendation,
@@ -38,17 +39,38 @@ const FINAL_COUNT = 3;
 export async function searchMusicByMood(
   result: MoodResult,
 ): Promise<MusicMemoryRecommendation[]> {
+  const embeddedRecommendations = getEmbeddedMusicRecommendations(result);
   const context = extractVisualGrounding(result);
   const memoryTypes = routeSpaceMemoryType(context);
   const queries = buildSearchQueries(context, memoryTypes);
 
-  if (!queries.length) {
-    return matchMusicByMemory(result);
+  // Build targeted search queries for embedded songs so we can fetch
+  // their real NetEase cover art (the local library has no cover URLs).
+  const embeddedLookupQueries = embeddedRecommendations
+    .filter((rec) => !rec.song.coverUrl || rec.song.coverUrl === MUSIC_COVER_PLACEHOLDER)
+    .map((rec) => `${rec.song.title} ${rec.song.artist.split(" / ")[0]}`)
+    .slice(0, FINAL_COUNT);
+
+  const allQueries = [...new Set([...embeddedLookupQueries, ...queries])].slice(
+    0,
+    MAX_SEARCH_QUERIES + FINAL_COUNT,
+  );
+
+  if (!allQueries.length) {
+    return fillWithFallbackRecommendations(result, embeddedRecommendations);
   }
 
   try {
-    const candidates = await searchNeteaseMultiQuery(queries);
-    if (!candidates.length) return matchMusicByMemory(result);
+    const candidates = await searchNeteaseMultiQuery(allQueries);
+    if (!candidates.length) {
+      return fillWithFallbackRecommendations(result, embeddedRecommendations);
+    }
+
+    // Enrich embedded recommendations with real cover URLs from NetEase results.
+    const enrichedEmbedded = enrichCoversFromCandidates(
+      embeddedRecommendations,
+      candidates,
+    );
 
     const recommendations = await curateTopPicks(
       candidates,
@@ -56,13 +78,87 @@ export async function searchMusicByMood(
       memoryTypes[0],
     );
 
-    return recommendations.length >= FINAL_COUNT
-      ? recommendations
-      : [...recommendations, ...matchMusicByMemory(result)].slice(0, FINAL_COUNT);
+    return mergeRecommendations(
+      enrichedEmbedded,
+      recommendations,
+      matchMusicByMemory(result),
+    );
   } catch (error) {
     console.warn("[HearSpace Music] Dynamic search failed, using fallback:", error);
-    return matchMusicByMemory(result);
+    return fillWithFallbackRecommendations(result, embeddedRecommendations);
   }
+}
+
+/** Copy coverUrl / songUrl from NetEase search results onto embedded songs that lack them. */
+function enrichCoversFromCandidates(
+  recommendations: MusicMemoryRecommendation[],
+  candidates: DynamicSong[],
+): MusicMemoryRecommendation[] {
+  return recommendations.map((rec) => {
+    if (rec.song.coverUrl && rec.song.coverUrl !== MUSIC_COVER_PLACEHOLDER) {
+      return rec;
+    }
+
+    const recTitle = rec.song.title.toLowerCase().replace(/\s+/g, "");
+    const recArtist = rec.song.artist.toLowerCase().replace(/\s+/g, "");
+
+    const match = candidates.find((c) => {
+      const cTitle = c.title.toLowerCase().replace(/\s+/g, "");
+      const cArtist = c.artist.toLowerCase().replace(/\s+/g, "");
+      return (
+        (cTitle.includes(recTitle) || recTitle.includes(cTitle)) &&
+        (cArtist.includes(recArtist) || recArtist.includes(cArtist))
+      );
+    });
+
+    if (match) {
+      return {
+        ...rec,
+        song: {
+          ...rec.song,
+          coverUrl: match.coverUrl,
+          songUrl: match.songUrl,
+          neteaseSongId: match.songId,
+          songId: match.songId,
+        },
+      };
+    }
+
+    return rec;
+  });
+}
+
+function fillWithFallbackRecommendations(
+  result: MoodResult,
+  primary: MusicMemoryRecommendation[],
+) {
+  return mergeRecommendations(primary, matchMusicByMemory(result));
+}
+
+function mergeRecommendations(
+  ...groups: MusicMemoryRecommendation[][]
+): MusicMemoryRecommendation[] {
+  const merged: MusicMemoryRecommendation[] = [];
+  const seen = new Set<string>();
+
+  for (const group of groups) {
+    for (const recommendation of group) {
+      const song = recommendation.song;
+      const key = [
+        song.songId || song.neteaseSongId || "",
+        song.title.toLowerCase().replace(/\s+/g, ""),
+        song.artist.toLowerCase().replace(/\s+/g, ""),
+      ].join(":");
+
+      if (seen.has(key)) continue;
+      seen.add(key);
+      merged.push(recommendation);
+
+      if (merged.length >= FINAL_COUNT) return merged;
+    }
+  }
+
+  return merged;
 }
 
 function buildSearchQueries(
@@ -103,10 +199,30 @@ function buildSearchQueries(
   return [...new Set(queries)].slice(0, MAX_SEARCH_QUERIES);
 }
 
+const NETEASE_QUERY_TIMEOUT_MS = 8_000;
+const NETEASE_GLOBAL_TIMEOUT_MS = 15_000;
+
+function promiseWithTimeout<T>(promise: Promise<T>, ms: number): Promise<T | null> {
+  return Promise.race([
+    promise,
+    new Promise<null>((resolve) => setTimeout(() => resolve(null), ms)),
+  ]);
+}
+
+async function importWithTimeout(modulePath: string, ms: number) {
+  try {
+    return await promiseWithTimeout(import(modulePath), ms);
+  } catch {
+    return null;
+  }
+}
+
 async function searchNeteaseMultiQuery(
   queries: string[],
 ): Promise<DynamicSong[]> {
-  const mod = await import("NeteaseCloudMusicApi");
+  const mod = await importWithTimeout("NeteaseCloudMusicApi", 5_000);
+  if (!mod) return [];
+
   const cloudsearch =
     mod.cloudsearch ??
     (mod as { default?: { cloudsearch?: typeof mod.cloudsearch } }).default
@@ -114,23 +230,33 @@ async function searchNeteaseMultiQuery(
 
   if (typeof cloudsearch !== "function") return [];
 
-  const results = await Promise.all(
-    queries.map(async (keyword) => {
-      try {
-        const result = (await cloudsearch({
-          keywords: keyword,
-          limit: CANDIDATES_PER_QUERY,
-          type: 1,
-        })) as { body?: { result?: { songs?: NeteaseSearchSong[] } } };
+  const results = await promiseWithTimeout(
+    Promise.all(
+      queries.map(async (keyword) => {
+        try {
+          const result = await promiseWithTimeout(
+            cloudsearch({
+              keywords: keyword,
+              limit: CANDIDATES_PER_QUERY,
+              type: 1,
+            }) as Promise<{ body?: { result?: { songs?: NeteaseSearchSong[] } } }>,
+            NETEASE_QUERY_TIMEOUT_MS,
+          );
 
-        return (result.body?.result?.songs ?? []).map(normalizeDynamicSong).filter(
-          (s): s is DynamicSong => s !== null,
-        );
-      } catch {
-        return [];
-      }
-    }),
+          if (!result) return [];
+
+          return (result.body?.result?.songs ?? []).map(normalizeDynamicSong).filter(
+            (s): s is DynamicSong => s !== null,
+          );
+        } catch {
+          return [];
+        }
+      }),
+    ),
+    NETEASE_GLOBAL_TIMEOUT_MS,
   );
+
+  if (!results) return [];
 
   const seen = new Set<string>();
   const merged: DynamicSong[] = [];
@@ -158,7 +284,10 @@ function normalizeDynamicSong(song: NeteaseSearchSong): DynamicSong | null {
 
   let coverUrl = song.al?.picUrl || "";
   if (coverUrl.startsWith("//")) coverUrl = `https:${coverUrl}`;
-  coverUrl = coverUrl.replace(/^http:\/\//, "https://") || MUSIC_COVER_PLACEHOLDER;
+  coverUrl = coverUrl.replace(/^http:\/\//, "https://");
+  // Strip Netease thumbnail param (?param=130y130) to get the original-resolution image.
+  coverUrl = coverUrl.replace(/[?&]param=\d+y\d+(&|$)/, "").replace(/[?&]$/, "");
+  coverUrl = coverUrl || MUSIC_COVER_PLACEHOLDER;
 
   return {
     songId,

@@ -6,6 +6,7 @@ import { MoodResultPanel } from "@/components/MoodResultPanel";
 import { ShareMoodNote } from "@/components/ShareMoodNote";
 import { mockMoodResult } from "@/lib/mockMood";
 import {
+  getEmbeddedMusicRecommendations,
   matchMusicByMood,
   type MusicMemoryRecommendation,
 } from "@/lib/music-library";
@@ -17,7 +18,7 @@ export function ResultExperience() {
   const [isMusicLoading, setIsMusicLoading] = useState(false);
   const [musicRecommendations, setMusicRecommendations] = useState<
     MusicMemoryRecommendation[]
-  >(() => matchMusicByMood(mockMoodResult));
+  >(() => getInitialMusicRecommendations(mockMoodResult));
 
   useEffect(() => {
     const storedResult = sessionStorage.getItem("hearspace:mood-result");
@@ -37,7 +38,7 @@ export function ResultExperience() {
 
   useEffect(() => {
     let isCancelled = false;
-    const fallbackRecommendations = matchMusicByMood(result);
+    const fallbackRecommendations = getInitialMusicRecommendations(result);
 
     setMusicRecommendations(fallbackRecommendations);
     setIsMusicLoading(true);
@@ -134,4 +135,23 @@ export function ResultExperience() {
       </div>
     </section>
   );
+}
+
+function getInitialMusicRecommendations(result: MoodResult) {
+  const embeddedRecommendations = getEmbeddedMusicRecommendations(result);
+  if (embeddedRecommendations.length >= 3) return embeddedRecommendations;
+
+  const seen = new Set(
+    embeddedRecommendations.map((item) =>
+      `${item.song.title}:${item.song.artist}`.toLowerCase(),
+    ),
+  );
+  const fallback = matchMusicByMood(result).filter((item) => {
+    const key = `${item.song.title}:${item.song.artist}`.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  return [...embeddedRecommendations, ...fallback].slice(0, 3);
 }
