@@ -189,6 +189,283 @@ const profiles: Array<{
   },
 ];
 
+const songOverrides: Array<{
+  test: RegExp;
+  value: Partial<ClassifiedMusicMemory>;
+}> = [
+  {
+    test: /晴天/,
+    value: {
+      scenes: ["教室", "窗边", "校园"],
+      emotions: ["青春", "晴朗", "遗憾", "夏天"],
+      timeFeelings: ["夏天", "午后"],
+      lightTone: "bright",
+      description: "像夏天教室窗边的一束光，明亮里藏着一点没说出口的遗憾。",
+    },
+  },
+  {
+    test: /知足/,
+    value: {
+      scenes: ["操场", "校园", "傍晚"],
+      emotions: ["告别", "温暖", "释然", "怀念"],
+      timeFeelings: ["傍晚", "毕业季"],
+      lightTone: "warm",
+      description: "像操场边最后一次慢慢走远，把告别说得很轻。",
+    },
+  },
+  {
+    test: /遇见/,
+    value: {
+      scenes: ["窗边", "街道", "校园"],
+      emotions: ["期待", "温柔", "错过", "清亮"],
+      timeFeelings: ["午后", "雨后"],
+      lightTone: "soft",
+      description: "像窗边忽然吹进来的风，温柔地提醒你某个相遇。",
+    },
+  },
+  {
+    test: /那些年/,
+    value: {
+      scenes: ["教室", "课桌", "操场"],
+      emotions: ["回望", "青春", "遗憾", "热烈"],
+      timeFeelings: ["夏天", "下课后"],
+      description: "像课桌上还没擦掉的字，把很多年后的回头留住。",
+    },
+  },
+  {
+    test: /蒲公英的约定/,
+    value: {
+      scenes: ["校园", "树荫", "操场"],
+      emotions: ["约定", "童年", "怀旧", "柔软"],
+      timeFeelings: ["午后", "夏天"],
+      lightTone: "soft",
+      description: "像树荫下的一个约定，被风吹散，又一直没有消失。",
+    },
+  },
+  {
+    test: /奇妙能力歌/,
+    value: {
+      scenes: ["公园", "草地", "散步"],
+      emotions: ["自由", "松弛", "轻盈", "恢复"],
+      description: "像在草地上走慢一点，心情忽然有了重新呼吸的地方。",
+    },
+  },
+  {
+    test: /云烟成雨/,
+    value: {
+      scenes: ["花园", "树荫", "雨后"],
+      emotions: ["柔软", "思念", "清新", "安静"],
+      timeFeelings: ["春天", "雨后"],
+      lightTone: "soft",
+      description: "像雨后植物上的一点水光，安静地把思念放轻。",
+    },
+  },
+  {
+    test: /夏日漱石/,
+    value: {
+      scenes: ["海边", "公园", "阳光"],
+      emotions: ["明亮", "自由", "开阔", "夏天"],
+      timeFeelings: ["夏天", "午后"],
+      lightTone: "bright",
+      description: "像盛夏路上的亮光，把空间一下子推得很远。",
+    },
+  },
+  {
+    test: /春风十里/,
+    value: {
+      scenes: ["草地", "城市绿地", "晚风"],
+      emotions: ["温柔", "松弛", "心动", "春天"],
+      timeFeelings: ["春天", "傍晚"],
+      lightTone: "warm",
+      description: "像傍晚的草地和风，适合把话说慢一点。",
+    },
+  },
+  {
+    test: /水星记/,
+    value: {
+      scenes: ["夜路", "窗边", "深夜城市"],
+      emotions: ["克制", "遥远", "孤独", "城市"],
+      timeFeelings: ["深夜"],
+      lightTone: "dark",
+      description: "像深夜城市里隔着一段距离的光，靠近又安静。",
+    },
+  },
+  {
+    test: /普通朋友/,
+    value: {
+      scenes: ["餐厅", "街角", "暖灯"],
+      emotions: ["暧昧", "克制", "微醺", "城市"],
+      lightTone: "warm",
+      description: "像餐桌旁没有说破的话，灯光把情绪留在半空。",
+    },
+  },
+  {
+    test: /好久不见/,
+    value: {
+      scenes: ["街道", "夜路", "雨后"],
+      emotions: ["重逢", "怀念", "克制", "失落"],
+      timeFeelings: ["夜晚", "雨后"],
+      lightTone: "cool",
+      description: "像雨后的街道，很多话走到嘴边又慢慢停下。",
+    },
+  },
+  {
+    test: /Under Lover/,
+    value: {
+      scenes: ["霓虹", "车窗", "深夜城市"],
+      emotions: ["复古", "微醺", "摇晃", "暧昧"],
+      timeFeelings: ["深夜"],
+      pace: "medium",
+      description: "像车窗外晃过的霓虹，城市在夜里变得柔软。",
+    },
+  },
+  {
+    test: /滞留锋/,
+    value: {
+      scenes: ["街角", "夜路", "湿润空气"],
+      emotions: ["停留", "低回", "冷感", "城市"],
+      timeFeelings: ["雨后", "深夜"],
+      lightTone: "cool",
+      description: "像潮湿街角里迟迟没有散去的空气，情绪也停了一会儿。",
+    },
+  },
+  {
+    test: /阴天/,
+    value: {
+      scenes: ["窗边", "房间", "灰天"],
+      emotions: ["低落", "独处", "安静", "思念"],
+      timeFeelings: ["阴天", "午后"],
+      lightTone: "cool",
+      description: "像阴天房间里没有开灯，心事被灰色光线轻轻包住。",
+    },
+  },
+  {
+    test: /爱情转移/,
+    value: {
+      scenes: ["出租车", "夜路", "街道"],
+      emotions: ["漂泊", "告别", "成熟", "克制"],
+      timeFeelings: ["夜晚"],
+      description: "像夜路上移动的车窗，把一段关系慢慢带远。",
+    },
+  },
+  {
+    test: /雨下一整晚/,
+    value: {
+      scenes: ["窗边", "雨夜", "房间"],
+      emotions: ["思念", "湿润", "独处", "旧梦"],
+      timeFeelings: ["雨夜", "深夜"],
+      description: "像一整晚的雨贴着窗户，把回忆敲得很轻。",
+    },
+  },
+  {
+    test: /琵琶语/,
+    value: {
+      scenes: ["庭院", "水面", "亭台"],
+      emotions: ["留白", "清冷", "古典", "安静"],
+      description: "像水面旁的一小段留白，声音落下去以后还在回响。",
+    },
+  },
+  {
+    test: /风居住的街道/,
+    value: {
+      scenes: ["街道", "庭院", "风"],
+      emotions: ["流动", "怀念", "清冷", "温柔"],
+      description: "像一条有风经过的安静街道，把旧时光吹得很慢。",
+    },
+  },
+  {
+    test: /繁花/,
+    value: {
+      scenes: ["花影", "庭院", "水面"],
+      emotions: ["繁盛", "留白", "电影感", "静美"],
+      lightTone: "warm",
+      description: "像花影和水光在同一个画面里停住，热闹却不喧哗。",
+    },
+  },
+  {
+    test: /旅行的意义/,
+    value: {
+      scenes: ["花园", "旅途", "街道"],
+      emotions: ["自由", "轻盈", "告别", "明亮"],
+      timeFeelings: ["春天", "午后"],
+      description: "像带着花香出门的午后，心里有一点想去远方。",
+    },
+  },
+  {
+    test: /小情歌/,
+    value: {
+      scenes: ["花园", "校园", "阳光"],
+      emotions: ["喜欢", "清澈", "青春", "温柔"],
+      lightTone: "bright",
+      description: "像阳光落在花园和课本之间，喜欢被唱得很干净。",
+    },
+  },
+  {
+    test: /玫瑰少年/,
+    value: {
+      scenes: ["花园", "写真", "舞台光"],
+      emotions: ["明亮", "勇敢", "盛放", "梦幻"],
+      colorFeelings: ["粉色", "明亮", "高饱和"],
+      description: "像玫瑰开得很认真，柔软里也有清楚的力量。",
+    },
+  },
+  {
+    test: /慢慢喜欢你/,
+    value: {
+      scenes: ["房间", "花园", "窗边"],
+      emotions: ["喜欢", "温暖", "日常", "柔软"],
+      lightTone: "warm",
+      description: "像窗边慢慢亮起来的日常，把喜欢说得不急不慢。",
+    },
+  },
+  {
+    test: /平凡的一天/,
+    value: {
+      scenes: ["房间", "厨房", "街道"],
+      emotions: ["平静", "生活感", "温暖", "松弛"],
+      description: "像一天里最普通的光，落在桌面上也很值得被记住。",
+    },
+  },
+  {
+    test: /生活倒影/,
+    value: {
+      scenes: ["房间", "窗边", "水光"],
+      emotions: ["柔软", "自省", "安静", "生活感"],
+      lightTone: "soft",
+      description: "像房间里一小片倒影，把生活照得轻而安静。",
+    },
+  },
+  {
+    test: /想去海边/,
+    value: {
+      scenes: ["海边", "旅途", "夏天"],
+      emotions: ["开阔", "自由", "明亮", "出走"],
+      timeFeelings: ["夏天", "午后"],
+      description: "像突然想去海边的那个下午，空气一下子变宽了。",
+    },
+  },
+  {
+    test: /Merry Christmas Mr\.? Lawrence/,
+    value: {
+      scenes: ["雪光", "房间", "回忆"],
+      emotions: ["清冷", "怀念", "克制", "电影感"],
+      season: "winter",
+      lightTone: "cool",
+      description: "像冬天里很安静的一束光，回忆被放得很远。",
+    },
+  },
+  {
+    test: /One Summer'?s Day/,
+    value: {
+      scenes: ["夏天", "天空", "旅途"],
+      emotions: ["明亮", "童年", "梦境", "开阔"],
+      season: "summer",
+      lightTone: "bright",
+      description: "像夏天忽然变得很大，天空和记忆一起铺开。",
+    },
+  },
+];
+
 export function classifyMusicMemory(input: ClassifyInput): ClassifiedMusicMemory {
   const text = [
     input.title,
@@ -200,8 +477,7 @@ export function classifyMusicMemory(input: ClassifyInput): ClassifiedMusicMemory
     .filter(Boolean)
     .join(" ");
   const matched = profiles.find((profile) => profile.test.test(text));
-
-  return matched?.value ?? {
+  const base = matched?.value ?? {
     memoryTypes: ["unknown_soft_memory"],
     scenes: ["空间", "日常"],
     visibleObjects: ["光", "空气"],
@@ -217,6 +493,9 @@ export function classifyMusicMemory(input: ClassifyInput): ClassifiedMusicMemory
     archetype: "unknown_soft_memory",
     description: "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
   };
+  const override = songOverrides.find((item) => item.test.test(text));
+
+  return mergeClassification(base, override?.value);
 }
 
 export async function classifyMusicMemoryWithQwen(
@@ -330,6 +609,46 @@ function normalizeStringArray(value: unknown, fallback: string[]) {
     .filter(Boolean);
 
   return normalized.length ? normalized : fallback;
+}
+
+function mergeClassification(
+  base: ClassifiedMusicMemory,
+  override?: Partial<ClassifiedMusicMemory>,
+): ClassifiedMusicMemory {
+  if (!override) {
+    return cloneClassification(base);
+  }
+
+  return {
+    memoryTypes: override.memoryTypes ?? [...base.memoryTypes],
+    scenes: override.scenes ?? [...base.scenes],
+    visibleObjects: override.visibleObjects ?? [...base.visibleObjects],
+    emotions: override.emotions ?? [...base.emotions],
+    timeFeelings: override.timeFeelings ?? [...base.timeFeelings],
+    colorFeelings: override.colorFeelings ?? [...base.colorFeelings],
+    culturalSignals: override.culturalSignals ?? [...base.culturalSignals],
+    avoidWhen: override.avoidWhen ?? [...base.avoidWhen],
+    season: override.season ?? base.season,
+    pace: override.pace ?? base.pace,
+    lightTone: override.lightTone ?? base.lightTone,
+    narrative: override.narrative ?? base.narrative,
+    archetype: override.archetype ?? base.archetype,
+    description: override.description ?? base.description,
+  };
+}
+
+function cloneClassification(value: ClassifiedMusicMemory): ClassifiedMusicMemory {
+  return {
+    ...value,
+    memoryTypes: [...value.memoryTypes],
+    scenes: [...value.scenes],
+    visibleObjects: [...value.visibleObjects],
+    emotions: [...value.emotions],
+    timeFeelings: [...value.timeFeelings],
+    colorFeelings: [...value.colorFeelings],
+    culturalSignals: [...value.culturalSignals],
+    avoidWhen: [...value.avoidWhen],
+  };
 }
 
 function normalizeEnum<T extends string>(

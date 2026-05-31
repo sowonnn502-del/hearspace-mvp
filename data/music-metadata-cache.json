@@ -1,31 +1,176 @@
 {
-  "晴天 周杰伦": null,
-  "知足 五月天": null,
-  "遇见 孙燕姿": null,
-  "那些年 胡夏": null,
-  "蒲公英的约定 周杰伦": null,
-  "奇妙能力歌 陈粒": null,
-  "云烟成雨 房东的猫": null,
-  "夏日漱石 橘子海": null,
-  "春风十里 鹿先森乐队": null,
-  "水星记 郭顶": null,
-  "普通朋友 陶喆": null,
-  "好久不见 陈奕迅": null,
+  "晴天 周杰伦": {
+    "songId": "3339230677",
+    "title": "晴天",
+    "artist": "周杰伦- / A-LNK",
+    "coverUrl": "https://p3.music.126.net/rM6PP_YrU0HjFes4jggIOw==/109951172445882513.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3339230677"
+  },
+  "知足 五月天": {
+    "songId": "385965",
+    "title": "知足",
+    "artist": "五月天",
+    "coverUrl": "https://p3.music.126.net/pLn35sx61-IXRYfCbfPnCA==/109951171415600711.jpg",
+    "songUrl": "https://music.163.com/#/song?id=385965"
+  },
+  "遇见 孙燕姿": {
+    "songId": "454828887",
+    "title": "遇见",
+    "artist": "孙燕姿",
+    "coverUrl": "https://p4.music.126.net/KZ0VfIoFYsxpjz9sTQuLVQ==/17687843556430013.jpg",
+    "songUrl": "https://music.163.com/#/song?id=454828887"
+  },
+  "那些年 胡夏": {
+    "songId": "97357",
+    "title": "那些年",
+    "artist": "胡夏",
+    "coverUrl": "https://p3.music.126.net/GyH5RG2HUo78PJ161NCY8A==/109951165966760453.jpg",
+    "songUrl": "https://music.163.com/#/song?id=97357"
+  },
+  "蒲公英的约定 周杰伦": {
+    "songId": "3344477355",
+    "title": "蒲公英的约定",
+    "artist": "Montagem / 周杰伦、",
+    "coverUrl": "https://p3.music.126.net/8AeJLjbGKnp1gxwMycnDsQ==/109951172661339989.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3344477355"
+  },
+  "奇妙能力歌 陈粒": {
+    "songId": "30431366",
+    "title": "奇妙能力歌",
+    "artist": "陈粒",
+    "coverUrl": "https://p3.music.126.net/VuJFMbXzpAProbJPoXLv7g==/7721870161993398.jpg",
+    "songUrl": "https://music.163.com/#/song?id=30431366"
+  },
+  "云烟成雨 房东的猫": {
+    "songId": "513360721",
+    "title": "云烟成雨",
+    "artist": "房东的猫",
+    "coverUrl": "https://p4.music.126.net/DSTg1dR7yKsyGq4IK3NL8A==/109951163046050093.jpg",
+    "songUrl": "https://music.163.com/#/song?id=513360721"
+  },
+  "夏日漱石 橘子海": {
+    "songId": "3362244830",
+    "title": "夏日漱石(Summer Cozy Rock)",
+    "artist": "橘子海",
+    "coverUrl": "https://p4.music.126.net/O2rMXOb98szo-IC9EqgPBQ==/109951172931892582.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3362244830"
+  },
+  "春风十里 鹿先森乐队": {
+    "songId": "38576323",
+    "title": "春风十里",
+    "artist": "鹿先森乐队",
+    "coverUrl": "https://p3.music.126.net/hYjA4Th6CAdkWI_sm32juw==/109951163669459549.jpg",
+    "songUrl": "https://music.163.com/#/song?id=38576323"
+  },
+  "水星记 郭顶": {
+    "songId": "441491828",
+    "title": "水星记",
+    "artist": "郭顶",
+    "coverUrl": "https://p3.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg",
+    "songUrl": "https://music.163.com/#/song?id=441491828"
+  },
+  "普通朋友 陶喆": {
+    "songId": "150623",
+    "title": "普通朋友",
+    "artist": "陶喆",
+    "coverUrl": "https://p3.music.126.net/tMQXBMTy8pGjGggX1j0YNQ==/109951169389595068.jpg",
+    "songUrl": "https://music.163.com/#/song?id=150623"
+  },
+  "好久不见 陈奕迅": {
+    "songId": "65538",
+    "title": "好久不见",
+    "artist": "陈奕迅",
+    "coverUrl": "https://p4.music.126.net/o_OjL_NZNoeog9fIjBXAyw==/18782957139233959.jpg",
+    "songUrl": "https://music.163.com/#/song?id=65538"
+  },
   "Under Lover 落日飞车": null,
-  "滞留锋 deca joins": null,
-  "阴天 莫文蔚": null,
-  "爱情转移 陈奕迅": null,
-  "雨下一整晚 周杰伦": null,
-  "琵琶语 林海": null,
+  "滞留锋 deca joins": {
+    "songId": "483378334",
+    "title": "浴室",
+    "artist": "deca joins",
+    "album": "浴室",
+    "coverUrl": "https://p3.music.126.net/byjfkEIOWI_RmxSKEWTPyw==/18910500486297525.jpg",
+    "songUrl": "https://music.163.com/#/song?id=483378334"
+  },
+  "阴天 莫文蔚": {
+    "songId": "108640",
+    "title": "阴天",
+    "artist": "莫文蔚",
+    "coverUrl": "https://p3.music.126.net/DjFHDgJxYgByciKsCH3Tlg==/109951169614579889.jpg",
+    "songUrl": "https://music.163.com/#/song?id=108640"
+  },
+  "爱情转移 陈奕迅": {
+    "songId": "65536",
+    "title": "爱情转移",
+    "artist": "陈奕迅",
+    "coverUrl": "https://p4.music.126.net/o_OjL_NZNoeog9fIjBXAyw==/18782957139233959.jpg",
+    "songUrl": "https://music.163.com/#/song?id=65536"
+  },
+  "雨下一整晚 周杰伦": {
+    "songId": "3340801430",
+    "title": "雨下一整晚(伤感版)",
+    "artist": "ALen / 周杰伦、",
+    "coverUrl": "https://p4.music.126.net/sP5L--4FT_EHpsW6hwSZxg==/109951172496999853.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3340801430"
+  },
+  "琵琶语 林海": {
+    "songId": "30431472",
+    "title": "琵琶语",
+    "artist": "林海",
+    "coverUrl": "https://p3.music.126.net/F7l1O5-EU5kOr4HMvbyojw==/7719671138752962.jpg",
+    "songUrl": "https://music.163.com/#/song?id=30431472"
+  },
   "风居住的街道 矶村由纪子": null,
-  "繁花 陈致逸": null,
-  "旅行的意义 陈绮贞": null,
-  "小情歌 苏打绿": null,
+  "繁花 陈致逸": {
+    "songId": "482415265",
+    "title": "繁花之年 (2017陌上节音乐)",
+    "artist": "陈致逸",
+    "coverUrl": "https://p3.music.126.net/DK-W8xxHAeQhFaGoHef7Gg==/109951172175189657.jpg",
+    "songUrl": "https://music.163.com/#/song?id=482415265"
+  },
+  "旅行的意义 陈绮贞": {
+    "songId": "209228",
+    "title": "旅行的意义",
+    "artist": "陈绮贞",
+    "coverUrl": "https://p4.music.126.net/NbGB1_vTJ6jX4B2r_I-EvA==/109951172349668373.jpg",
+    "songUrl": "https://music.163.com/#/song?id=209228"
+  },
+  "小情歌 苏打绿": {
+    "songId": "1952285469",
+    "title": "小情歌 (苏打绿版)",
+    "artist": "苏打绿",
+    "coverUrl": "https://p3.music.126.net/jCqK50L1bmtUXJ6c-6L5Og==/109951169158810091.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1952285469"
+  },
   "玫瑰少年 蔡依林": null,
-  "慢慢喜欢你 莫文蔚": null,
-  "想去海边 夏日入侵企画": null,
-  "平凡的一天 毛不易": null,
-  "生活倒影 苏运莹": null,
+  "慢慢喜欢你 莫文蔚": {
+    "songId": "541687281",
+    "title": "慢慢喜欢你",
+    "artist": "莫文蔚",
+    "coverUrl": "https://p3.music.126.net/VYZejIv5M-K4RsHKkyXQFQ==/109951165958895028.jpg",
+    "songUrl": "https://music.163.com/#/song?id=541687281"
+  },
+  "想去海边 夏日入侵企画": {
+    "songId": "1413863166",
+    "title": "想去海边",
+    "artist": "夏日入侵企画",
+    "coverUrl": "https://p4.music.126.net/sLWN-iePq4ESOMPER0IWgQ==/109951164602081973.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1413863166"
+  },
+  "平凡的一天 毛不易": {
+    "songId": "569214247",
+    "title": "平凡的一天",
+    "artist": "毛不易",
+    "coverUrl": "https://p4.music.126.net/vmCcDvD1H04e9gm97xsCqg==/109951163350929740.jpg",
+    "songUrl": "https://music.163.com/#/song?id=569214247"
+  },
+  "生活倒影 苏运莹": {
+    "songId": "1306112195",
+    "title": "生活倒影",
+    "artist": "苏运莹",
+    "coverUrl": "https://p3.music.126.net/ZAGSQxIY3Xcx3eslDRdSuQ==/109951163722875135.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1306112195"
+  },
   "Merry Christmas Mr. Lawrence Ryuichi Sakamoto": null,
   "One Summer's Day Joe Hisaishi": null
 }

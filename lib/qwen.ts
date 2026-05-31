@@ -22,7 +22,7 @@ type DashScopeMessageContent =
 
 const DASH_SCOPE_COMPATIBLE_URL =
   "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions";
-const DEFAULT_QWEN_VL_MODEL = "qwen-vl-plus-latest";
+const DEFAULT_QWEN_VL_MODEL = "qwen3-vl-plus";
 
 export class QwenMoodError extends Error {
   constructor(

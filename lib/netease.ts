@@ -15,7 +15,7 @@ type NeteaseCloudSearchSong = {
   name?: string;
   ar?: Array<{ name?: string }>;
   artists?: Array<{ name?: string }>;
-  al?: { picUrl?: string };
+  al?: { name?: string; picUrl?: string };
   album?: { name?: string; picUrl?: string };
 };
 
@@ -27,23 +27,33 @@ type NeteaseCloudSearchResponse = {
 
 const DEFAULT_NETEASE_API_BASE_URL =
   "https://netease-cloud-music-api.vercel.app";
+const SEARCH_LIMIT = 8;
+const REQUEST_TIMEOUT_MS = 5_000;
+const warnedKeywords = new Set<string>();
 
 async function tryHttpApi(keyword: string): Promise<NeteaseSongMetadata | null> {
   const apiBaseUrl = getNeteaseApiBaseUrl();
   const url = new URL("/cloudsearch", apiBaseUrl);
   url.searchParams.set("keywords", keyword);
-  url.searchParams.set("limit", "1");
+  url.searchParams.set("limit", String(SEARCH_LIMIT));
   url.searchParams.set("type", "1");
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
-  const response = await fetch(url, {
-    next: { revalidate: 60 * 60 * 24 },
-  });
+  try {
+    const response = await fetch(url, {
+      next: { revalidate: 60 * 60 * 24 },
+      signal: controller.signal,
+    });
 
-  if (!response.ok) throw new Error("Netease metadata request failed.");
+    if (!response.ok) throw new Error("Netease metadata request failed.");
 
-  const data = (await response.json()) as NeteaseCloudSearchResponse;
-  const firstSong = data.result?.songs?.[0];
-  return firstSong ? normalizeNeteaseSong(firstSong) : null;
+    const data = (await response.json()) as NeteaseCloudSearchResponse;
+    const bestSong = selectBestSong(data.result?.songs ?? [], keyword);
+    return bestSong ? normalizeNeteaseSong(bestSong) : null;
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 async function tryPackageApi(keyword: string): Promise<NeteaseSongMetadata | null> {
@@ -54,11 +64,14 @@ async function tryPackageApi(keyword: string): Promise<NeteaseSongMetadata | nul
 
     if (typeof cloudsearch !== "function") return null;
 
-    const result = (await cloudsearch({ keywords: keyword, limit: 1, type: 1 })) as {
+    const result = (await Promise.race([
+      cloudsearch({ keywords: keyword, limit: SEARCH_LIMIT, type: 1 }),
+      timeout(REQUEST_TIMEOUT_MS, null),
+    ])) as {
       body?: { result?: { songs?: NeteaseCloudSearchSong[] } };
-    };
-    const firstSong = result.body?.result?.songs?.[0];
-    return firstSong ? normalizeNeteaseSong(firstSong) : null;
+    } | null;
+    const bestSong = selectBestSong(result?.body?.result?.songs ?? [], keyword);
+    return bestSong ? normalizeNeteaseSong(bestSong) : null;
   } catch {
     return null;
   }
@@ -90,7 +103,7 @@ export async function searchNeteaseSong(
     return metadata;
   }
 
-  console.warn("[HearSpace Music] Netease metadata lookup failed for:", normalizedKeyword);
+  warnLookupFailed(normalizedKeyword);
   setMusicCache(cacheKey, null, 1000 * 60 * 10);
   return null;
 }
@@ -101,7 +114,7 @@ function normalizeNeteaseSong(
   const songId = song.id ? String(song.id) : "";
   const title = song.name?.trim() || "";
   const artist = getArtists(song).join(" / ");
-  const album = song.album?.name?.trim();
+  const album = song.al?.name?.trim() || song.album?.name?.trim();
   const coverUrl = normalizeCoverUrl(song.al?.picUrl || song.album?.picUrl);
 
   if (!songId || !title) return null;
@@ -120,6 +133,64 @@ function getArtists(song: NeteaseCloudSearchSong) {
   return (song.ar || song.artists || [])
     .map((artist) => artist.name?.trim())
     .filter((artist): artist is string => Boolean(artist));
+}
+
+function selectBestSong(songs: NeteaseCloudSearchSong[], keyword: string) {
+  if (!songs.length) return null;
+
+  const [titleToken = "", ...artistTokens] = keyword.split(/\s+/).filter(Boolean);
+  const expectedTitle = normalizeSearchText(titleToken);
+  const expectedArtist = normalizeSearchText(artistTokens.join(""));
+
+  const bestSong = [...songs].sort((a, b) => {
+    return scoreSearchSong(b, expectedTitle, expectedArtist) -
+      scoreSearchSong(a, expectedTitle, expectedArtist);
+  })[0];
+  const bestArtist = normalizeSearchText(getArtists(bestSong).join(""));
+
+  if (expectedArtist && !bestArtist.includes(expectedArtist)) {
+    return null;
+  }
+
+  return bestSong;
+}
+
+function scoreSearchSong(
+  song: NeteaseCloudSearchSong,
+  expectedTitle: string,
+  expectedArtist: string,
+) {
+  const title = normalizeSearchText(song.name ?? "");
+  const artist = normalizeSearchText(getArtists(song).join(""));
+  let score = 0;
+
+  if (expectedTitle && title === expectedTitle) score += 8;
+  else if (expectedTitle && (title.includes(expectedTitle) || expectedTitle.includes(title))) {
+    score += 4;
+  }
+
+  if (expectedArtist && artist.includes(expectedArtist)) score += 7;
+  if (song.al?.picUrl || song.album?.picUrl) score += 1;
+  if (song.al?.name || song.album?.name) score += 1;
+
+  return score;
+}
+
+function normalizeSearchText(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^\p{Letter}\p{Number}]+/gu, "");
+}
+
+function timeout<T>(ms: number, fallback: T) {
+  return new Promise<T>((resolve) => setTimeout(() => resolve(fallback), ms));
+}
+
+function warnLookupFailed(keyword: string) {
+  if (warnedKeywords.has(keyword)) return;
+
+  warnedKeywords.add(keyword);
+  console.warn("[HearSpace Music] Netease metadata lookup failed for:", keyword);
 }
 
 function normalizeCoverUrl(url?: string) {

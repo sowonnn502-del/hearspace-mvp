@@ -8,16 +8,22 @@ type PageShellProps = {
 export function PageShell({ children }: PageShellProps) {
   return (
     <main className="min-h-screen px-5 py-5 font-sans text-ink sm:px-8">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between">
-        <Link href="/" className="font-meta text-[13px] font-medium uppercase tracking-[0.22em] text-ink/82 transition hover:text-ink">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-5">
+        <Link
+          href="/"
+          className="truncate font-meta text-[13px] font-medium uppercase tracking-[0.22em] text-ink/82 transition hover:text-ink"
+        >
           HEARSPACE
         </Link>
-        <div className="flex items-center gap-5 font-meta text-[13px] text-ink/58">
+        <div className="flex shrink-0 items-center gap-5 font-meta text-[13px] text-ink/58">
+          <Link href="/" className="transition hover:text-ink">
+            首页
+          </Link>
           <Link href="/capture" className="transition hover:text-ink">
-            Capture
+            聆听
           </Link>
           <Link href="/archive" className="transition hover:text-ink">
-            Archive
+            分析
           </Link>
         </div>
       </nav>

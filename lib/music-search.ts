@@ -199,64 +199,51 @@ function buildSearchQueries(
   return [...new Set(queries)].slice(0, MAX_SEARCH_QUERIES);
 }
 
-const NETEASE_QUERY_TIMEOUT_MS = 8_000;
-const NETEASE_GLOBAL_TIMEOUT_MS = 15_000;
+const NETEASE_GLOBAL_TIMEOUT_MS = 12_000;
 
-function promiseWithTimeout<T>(promise: Promise<T>, ms: number): Promise<T | null> {
-  return Promise.race([
-    promise,
-    new Promise<null>((resolve) => setTimeout(() => resolve(null), ms)),
-  ]);
-}
-
-async function importWithTimeout(modulePath: string, ms: number) {
-  try {
-    return await promiseWithTimeout(import(modulePath), ms);
-  } catch {
-    return null;
-  }
+function timeout<T>(ms: number, fallback: T): Promise<T> {
+  return new Promise((resolve) => setTimeout(() => resolve(fallback), ms));
 }
 
 async function searchNeteaseMultiQuery(
   queries: string[],
 ): Promise<DynamicSong[]> {
-  const mod = await importWithTimeout("NeteaseCloudMusicApi", 5_000);
-  if (!mod) return [];
+  let mod: Record<string, unknown> | null = null;
+  try {
+    mod = (await import("NeteaseCloudMusicApi")) as unknown as Record<string, unknown>;
+  } catch {
+    return [];
+  }
 
   const cloudsearch =
-    mod.cloudsearch ??
-    (mod as { default?: { cloudsearch?: typeof mod.cloudsearch } }).default
-      ?.cloudsearch;
+    (mod.cloudsearch as ((q: Record<string, unknown>) => Promise<unknown>) | undefined) ??
+    (
+      (mod as unknown as { default?: Record<string, unknown> }).default
+        ?.cloudsearch as ((q: Record<string, unknown>) => Promise<unknown>) | undefined
+    );
 
   if (typeof cloudsearch !== "function") return [];
 
-  const results = await promiseWithTimeout(
-    Promise.all(
-      queries.map(async (keyword) => {
-        try {
-          const result = await promiseWithTimeout(
-            cloudsearch({
-              keywords: keyword,
-              limit: CANDIDATES_PER_QUERY,
-              type: 1,
-            }) as Promise<{ body?: { result?: { songs?: NeteaseSearchSong[] } } }>,
-            NETEASE_QUERY_TIMEOUT_MS,
-          );
+  const searchOne = async (keyword: string): Promise<DynamicSong[]> => {
+    try {
+      const result = (await cloudsearch({
+        keywords: keyword,
+        limit: CANDIDATES_PER_QUERY,
+        type: 1,
+      })) as { body?: { result?: { songs?: NeteaseSearchSong[] } } };
 
-          if (!result) return [];
+      return (result.body?.result?.songs ?? []).map(normalizeDynamicSong).filter(
+        (s): s is DynamicSong => s !== null,
+      );
+    } catch {
+      return [];
+    }
+  };
 
-          return (result.body?.result?.songs ?? []).map(normalizeDynamicSong).filter(
-            (s): s is DynamicSong => s !== null,
-          );
-        } catch {
-          return [];
-        }
-      }),
-    ),
-    NETEASE_GLOBAL_TIMEOUT_MS,
-  );
-
-  if (!results) return [];
+  const results = await Promise.race([
+    Promise.all(queries.map(searchOne)),
+    timeout(NETEASE_GLOBAL_TIMEOUT_MS, [] as DynamicSong[][]),
+  ]);
 
   const seen = new Set<string>();
   const merged: DynamicSong[] = [];
@@ -285,8 +272,6 @@ function normalizeDynamicSong(song: NeteaseSearchSong): DynamicSong | null {
   let coverUrl = song.al?.picUrl || "";
   if (coverUrl.startsWith("//")) coverUrl = `https:${coverUrl}`;
   coverUrl = coverUrl.replace(/^http:\/\//, "https://");
-  // Strip Netease thumbnail param (?param=130y130) to get the original-resolution image.
-  coverUrl = coverUrl.replace(/[?&]param=\d+y\d+(&|$)/, "").replace(/[?&]$/, "");
   coverUrl = coverUrl || MUSIC_COVER_PLACEHOLDER;
 
   return {

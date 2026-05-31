@@ -111,13 +111,24 @@ function getPlaylistNames(keyword: string) {
 }
 
 async function lookupMetadata(seedSong: SeedSong, cache: MetadataCache) {
-  if (seedSong.neteaseKeyword in cache) {
+  const cached = cache[seedSong.neteaseKeyword];
+
+  if (cached && metadataMatchesSeed(cached, seedSong)) {
+    return cached;
+  }
+
+  if (cached === null && process.env.MUSIC_RETRY_FAILED_METADATA === "false") {
     return cache[seedSong.neteaseKeyword];
   }
 
   const metadata = await searchNeteaseSong(seedSong.neteaseKeyword);
-  cache[seedSong.neteaseKeyword] = metadata;
-  return metadata;
+  if (metadata) {
+    cache[seedSong.neteaseKeyword] = metadata;
+    return metadata;
+  }
+
+  cache[seedSong.neteaseKeyword] = null;
+  return null;
 }
 
 async function readMetadataCache(): Promise<MetadataCache> {
@@ -155,6 +166,24 @@ function slugify(value: string) {
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function metadataMatchesSeed(metadata: NeteaseSongMetadata, seedSong: SeedSong) {
+  const metadataTitle = normalizeLookupText(metadata.title);
+  const metadataArtist = normalizeLookupText(metadata.artist);
+  const seedTitle = normalizeLookupText(seedSong.title);
+  const seedArtist = normalizeLookupText(seedSong.artist);
+
+  return (
+    (!seedTitle || metadataTitle.includes(seedTitle) || seedTitle.includes(metadataTitle)) &&
+    (!seedArtist || metadataArtist.includes(seedArtist))
+  );
+}
+
+function normalizeLookupText(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^\p{Letter}\p{Number}]+/gu, "");
 }
 
 main().catch((error) => {

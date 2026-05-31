@@ -104,20 +104,20 @@ export function AtmospherePlayer({
           className={`flex shrink-0 items-center justify-center rounded-full border border-paper/22 bg-paper/8 text-paper shadow-inner transition duration-500 hover:border-paper/40 hover:bg-paper/12 ${
             compact ? "h-16 w-16" : "h-20 w-20"
           }`}
-          aria-label={isPlaying ? "Pause atmosphere audio" : "Play atmosphere audio"}
+          aria-label={isPlaying ? "暂停氛围音频" : "播放氛围音频"}
         >
           <span className="font-meta text-[10px] uppercase tracking-[0.22em]">
-            {isPlaying ? "Pause" : "Tap"}
+            {isPlaying ? "暂停" : "播放"}
           </span>
         </button>
 
         <div className="min-w-0">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <p className="font-meta text-[10px] uppercase tracking-[0.3em] text-paper/46">
-              Atmosphere Tape
+              氛围磁带
             </p>
             <p className="font-meta text-[10px] uppercase tracking-[0.2em] text-paper/34">
-              Loop on
+              循环播放
             </p>
           </div>
 
@@ -125,7 +125,7 @@ export function AtmospherePlayer({
             {track.title}
           </h3>
           <p className="mt-2 font-meta text-[10px] uppercase tracking-[0.22em] text-paper/42">
-            {isPlaying ? "Now playing" : "Tap to listen"} / {track.subtitle}
+            {isPlaying ? "正在播放" : "点击试听"} / {track.subtitle}
           </p>
 
           <div className="mt-5 flex h-10 items-end gap-1.5 overflow-hidden" aria-hidden="true">

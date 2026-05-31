@@ -111,7 +111,7 @@ export function HomeMoodFeed() {
         <aside className="relative min-w-0 py-2 lg:py-8">
           <MotionText delay={0.35} className="max-w-[520px]">
             <p className="font-meta text-[11px] uppercase tracking-[0.28em] text-ink/58">
-              SPACE MEMORY RADIO
+              空间记忆电台
             </p>
             <p className="mt-7 break-words font-sans text-[clamp(28px,9vw,40px)] font-semibold leading-[1.12] tracking-[-0.035em] text-ink lg:text-[clamp(32px,3.2vw,44px)]">
               把这一瞬间，
@@ -119,7 +119,7 @@ export function HomeMoodFeed() {
               留在记忆里
             </p>
             <p className="mt-7 font-meta text-[18px] font-normal leading-[1.5] tracking-[-0.02em] text-ink/[0.72]">
-              Turn atmosphere into memory.
+              把空间里的光、声音和停顿，变成可以反复回看的心情。
             </p>
             <AnimatePresence mode="wait">
               <motion.p
@@ -169,7 +169,7 @@ export function HomeMoodFeed() {
               type="button"
               onClick={showPrevious}
               className="flex h-11 w-11 items-center justify-center rounded-full bg-ink/[0.04] text-lg text-ink/52 transition hover:bg-ink/[0.08] hover:text-ink"
-              aria-label="Previous mood"
+              aria-label="上一段空间记忆"
             >
               ↑
             </button>
@@ -177,7 +177,7 @@ export function HomeMoodFeed() {
               type="button"
               onClick={showNext}
               className="flex h-11 w-11 items-center justify-center rounded-full bg-ink/[0.04] text-lg text-ink/52 transition hover:bg-ink/[0.08] hover:text-ink"
-              aria-label="Next mood"
+              aria-label="下一段空间记忆"
             >
               ↓
             </button>
@@ -191,7 +191,7 @@ export function HomeMoodFeed() {
             href="/capture"
             className="mt-10 inline-flex w-full items-center justify-center rounded-full bg-ink px-6 py-3 font-meta text-sm text-paper shadow-[0_18px_54px_rgba(17,17,19,0.14)] transition duration-500 hover:bg-tide sm:mt-12 sm:w-auto"
           >
-            Capture a Space
+            上传我的空间照片
           </Link>
         </aside>
       </div>

@@ -87,14 +87,34 @@ const GARDEN_PORTRAIT_SIGNALS = [
 
 export function extractVisualGrounding(result: MoodResult): NormalizedMusicContext {
   const scene = result.scene_observation;
+
+  // Guard against incomplete result data (e.g. mock results or partial API responses).
+  if (!scene) {
+    return {
+      sceneType: "",
+      visibleObjects: [],
+      timeFeeling: [],
+      colorFeeling: [],
+      activity: "",
+      emotionalTone: uniqueStrings([
+        ...(result.visual_tone ?? []),
+        ...(result.visual_mood_tags ?? []),
+        ...(result.music_keywords ?? []),
+        result.music_query,
+      ]),
+      culturalSignals: [],
+      forbiddenAssumptions: [],
+    };
+  }
+
   const factualEvidence = uniqueStrings([
     scene.primary_scene,
     scene.human_activity,
     scene.lighting,
     scene.color_tone,
     scene.camera_style,
-    ...scene.visible_objects,
-    ...scene.atmosphere_evidence,
+    ...(scene.visible_objects ?? []),
+    ...(scene.atmosphere_evidence ?? []),
   ]);
   const editorialHints = uniqueStrings([
     result.mood_title,

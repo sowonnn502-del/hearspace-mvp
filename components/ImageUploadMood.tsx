@@ -68,7 +68,10 @@ export function ImageUploadMood() {
       });
 
       if (!response.ok) {
-        throw new Error("Mood generation failed.");
+        const payload = (await response.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        throw new Error(payload?.error || "Mood generation failed.");
       }
 
       const payload = await response.json();
@@ -78,11 +81,10 @@ export function ImageUploadMood() {
       }
 
       if (
-        process.env.NODE_ENV === "production" &&
-        (payload.result.debug_source === "mock_api_error" ||
-          payload.result.debug_source === "mock_no_key")
+        payload.result.debug_source === "mock_api_error" ||
+        payload.result.debug_source === "mock_no_key"
       ) {
-        throw new Error("Mood generation used fallback result.");
+        throw new Error("图片分析服务还没有接入，不能使用默认示例结果。");
       }
 
       const imageDataUrl = await fileToDataUrl(imageFile);
@@ -91,8 +93,12 @@ export function ImageUploadMood() {
       setIsDissolvingLoading(true);
       await sleep(760);
       router.push("/result");
-    } catch {
-      setErrorMessage("这段空间暂时还没有被听见，请稍后再试。");
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "这段空间暂时还没有被听见，请稍后再试。",
+      );
       setIsListening(false);
       setIsDissolvingLoading(false);
     }
@@ -139,16 +145,16 @@ export function ImageUploadMood() {
               <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(17,17,19,0.38),transparent_46%,rgba(246,241,232,0.08))]" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,transparent_0%,rgba(17,17,19,0.18)_60%,rgba(17,17,19,0.45)_100%)]" />
               <div className="relative rounded-full bg-paper/72 px-4 py-2 font-meta text-[10px] uppercase tracking-[0.24em] text-ink/62 backdrop-blur-md">
-                Replace Image
+                重新选择照片
               </div>
             </>
           ) : (
             <div className="max-w-sm">
               <p className="font-meta text-[10px] uppercase tracking-[0.3em] text-ink/36">
-                Drop Photo
+                上传空间照片
               </p>
               <p className="mt-5 font-serif text-3xl font-normal leading-tight text-ink/72 sm:text-4xl">
-                A room, a window, a quiet corner.
+                房间、窗边、街角，或任何想被记住的一刻。
               </p>
             </div>
           )}
@@ -166,7 +172,7 @@ export function ImageUploadMood() {
           onClick={generateMood}
           className="rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper transition duration-500 hover:-translate-y-0.5 hover:bg-tide disabled:cursor-not-allowed disabled:bg-ink/24 disabled:text-paper/70 disabled:hover:translate-y-0"
         >
-          Generate Mood
+          生成空间情绪
         </button>
       </div>
     </>

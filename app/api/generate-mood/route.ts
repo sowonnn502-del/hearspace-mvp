@@ -6,6 +6,7 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const image = formData.get("image");
   const hasDashScopeApiKey = Boolean(process.env.DASHSCOPE_API_KEY);
+  const allowMockFallback = process.env.HEARSPACE_ALLOW_MOCK === "true";
   const qwenVlModel = getQwenVlModel();
 
   console.log(`[HearSpace AI] DASHSCOPE_API_KEY loaded: ${hasDashScopeApiKey}`);
@@ -21,6 +22,16 @@ export async function POST(request: Request) {
   if (!hasDashScopeApiKey) {
     console.log("[HearSpace AI] Fallback reason: mock_no_key");
 
+    if (!allowMockFallback) {
+      return NextResponse.json(
+        {
+          error:
+            "图片分析服务还没有接入：缺少 DASHSCOPE_API_KEY，无法生成基于图片的结果。",
+        },
+        { status: 503 },
+      );
+    }
+
     return NextResponse.json({
       result: createMockMoodResult("mock_no_key"),
     });
@@ -35,6 +46,16 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error(error);
     console.log("[HearSpace AI] Fallback reason: mock_api_error");
+
+    if (!allowMockFallback) {
+      return NextResponse.json(
+        {
+          error:
+            "图片分析服务调用失败，请检查 DASHSCOPE_API_KEY、QWEN_VL_MODEL 和网络配置。",
+        },
+        { status: 502 },
+      );
+    }
 
     return NextResponse.json({
       result: createMockMoodResult("mock_api_error"),

@@ -34,6 +34,7 @@ export function MusicCard({ song, index, reason }: MusicCardProps) {
     emotions.join(" / ");
   const albumCover = getText(song.coverUrl) || MUSIC_COVER_PLACEHOLDER;
   const [imageSrc, setImageSrc] = useState(albumCover);
+  const [imageFailed, setImageFailed] = useState(false);
   const neteaseUrl = getNeteaseUrl(song);
   const displayLabels = Array.from(new Set([...emotions, ...memoryScenes]))
     .filter(Boolean)
@@ -41,6 +42,7 @@ export function MusicCard({ song, index, reason }: MusicCardProps) {
 
   useEffect(() => {
     setImageSrc(albumCover);
+    setImageFailed(false);
   }, [albumCover]);
 
   return (
@@ -56,13 +58,26 @@ export function MusicCard({ song, index, reason }: MusicCardProps) {
       }}
     >
       <div className="relative grid min-w-0 gap-5 md:grid-cols-[12.5rem_1fr] md:gap-7">
-        <div className="relative aspect-[1/1] min-h-0 overflow-hidden rounded-[28px] bg-paper/70 shadow-[0_18px_48px_rgba(17,17,19,0.08)]">
-          <img
-            src={imageSrc}
-            alt=""
-            onError={() => setImageSrc(MUSIC_COVER_PLACEHOLDER)}
-            className="absolute inset-0 h-full w-full object-cover opacity-[0.96] saturate-[0.92] transition duration-[1800ms] ease-out group-hover:scale-[1.025]"
-          />
+        <div
+          className="relative aspect-[1/1] min-h-0 overflow-hidden rounded-[28px] bg-paper/70 bg-cover bg-center shadow-[0_18px_48px_rgba(17,17,19,0.08)]"
+          style={{ backgroundImage: `url(${MUSIC_COVER_PLACEHOLDER})` }}
+        >
+          {!imageFailed ? (
+            <img
+              key={imageSrc}
+              src={imageSrc}
+              alt=""
+              onError={() => {
+                if (imageSrc !== MUSIC_COVER_PLACEHOLDER) {
+                  setImageSrc(MUSIC_COVER_PLACEHOLDER);
+                  return;
+                }
+
+                setImageFailed(true);
+              }}
+              className="absolute inset-0 h-full w-full object-cover opacity-[0.96] saturate-[0.92] transition duration-[1800ms] ease-out group-hover:scale-[1.025]"
+            />
+          ) : null}
           <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(17,17,19,0.38),transparent_48%)]" />
           <p className="absolute bottom-4 left-4 font-meta text-[10px] uppercase tracking-[0.24em] text-paper/78">
             {String(index + 1).padStart(2, "0")}
@@ -95,18 +110,18 @@ export function MusicCard({ song, index, reason }: MusicCardProps) {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-col gap-4 sm:mt-auto sm:flex-row sm:items-end sm:justify-start">
+          <div className="mt-6 flex flex-col gap-4 md:mt-auto md:items-end">
             <a
               href={neteaseUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/netease inline-flex min-h-12 max-w-full flex-col justify-center gap-1 rounded-full bg-ink px-5 py-3 text-left text-paper transition duration-500 hover:bg-tide"
+              className="group/netease inline-flex min-h-12 max-w-full flex-col justify-center gap-1 self-start rounded-full border border-white/45 bg-white/28 px-5 py-3 text-left text-ink/78 shadow-[inset_0_1px_0_rgba(255,255,255,0.64),0_14px_40px_rgba(17,17,19,0.08)] backdrop-blur-2xl transition duration-500 hover:-translate-y-0.5 hover:border-white/70 hover:bg-white/42 hover:text-ink md:self-end md:text-right"
               aria-label={`在网易云继续聆听 ${neteaseKeyword || title || "这首歌"}`}
             >
-              <span className="font-serif text-base leading-6 text-paper transition duration-500">
+              <span className="font-serif text-base leading-6 text-ink/82 transition duration-500 group-hover/netease:text-ink">
                 在网易云继续聆听 →
               </span>
-              <span className="truncate font-meta text-[9px] uppercase tracking-[0.18em] text-paper/48">
+              <span className="truncate font-meta text-[9px] uppercase tracking-[0.18em] text-ink/40">
                 {neteaseKeyword}
               </span>
             </a>
