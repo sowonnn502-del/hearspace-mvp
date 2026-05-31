@@ -104,7 +104,7 @@ export function ShareMoodNote({
 
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed -left-[10000px] top-0 h-[960px] w-[540px] overflow-hidden"
+        className="pointer-events-none fixed left-0 top-0 h-[960px] w-[540px] -translate-x-[120vw] overflow-hidden"
       >
         <MoodNoteCard
           ref={exportRef}
@@ -184,16 +184,8 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
       <FilmGrain className="opacity-[0.14]" />
 
       <div className="relative grid h-full grid-rows-[56fr_44fr]">
-        <div className="relative m-[4.2%] mb-0 min-h-0 overflow-hidden rounded-[6.5%] bg-ink shadow-[0_18px_52px_rgba(17,17,19,0.18)]">
-          {imageUrl ? (
-            <img
-              src={imageUrl}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover object-[center_45%]"
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(246,241,232,0.18),rgba(184,92,56,0.34),rgba(49,90,102,0.72))]" />
-          )}
+        <div className="relative m-[4.2%] mb-0 min-h-0 overflow-hidden rounded-[6.5%] bg-[linear-gradient(135deg,#ece4d7,#b8a99a_44%,#6d766f)] shadow-[0_18px_52px_rgba(17,17,19,0.18)]">
+          <ExportSafeMoodImage imageUrl={imageUrl} />
           <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(17,17,19,0.52),transparent_48%),radial-gradient(circle_at_50%_38%,transparent_0%,rgba(17,17,19,0.12)_48%,rgba(17,17,19,0.58)_100%)]" />
           <FilmGrain className="opacity-[0.18]" />
           <p className="absolute bottom-[5.5%] left-[5.5%] right-[5.5%] break-words font-meta text-[11px] uppercase leading-[1.35] tracking-[0.24em] text-paper/76">
@@ -267,6 +259,32 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
 
 MoodNoteCard.displayName = "MoodNoteCard";
 
+function ExportSafeMoodImage({ imageUrl }: { imageUrl: string | null }) {
+  const [hasImageError, setHasImageError] = useState(false);
+  const safeImageUrl = imageUrl && !hasImageError ? imageUrl : null;
+
+  return (
+    <>
+      {safeImageUrl ? (
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${safeImageUrl})` }}
+        />
+      ) : (
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(246,241,232,0.34),rgba(184,92,56,0.28),rgba(49,90,102,0.64))]" />
+      )}
+      {safeImageUrl ? (
+        <img
+          src={safeImageUrl}
+          alt=""
+          onError={() => setHasImageError(true)}
+          className="absolute inset-0 h-full w-full object-cover object-[center_45%]"
+        />
+      ) : null}
+    </>
+  );
+}
+
 async function waitForExportAssets(node: HTMLElement) {
   await new Promise<void>((resolve) => {
     requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
@@ -279,7 +297,9 @@ async function waitForExportAssets(node: HTMLElement) {
   await Promise.all(
     Array.from(node.querySelectorAll("img")).map((image) => {
       if (image.complete && image.naturalWidth > 0) return Promise.resolve();
-      return image.decode().catch(() => undefined);
+      return image.decode().catch(() => {
+        image.dispatchEvent(new Event("error"));
+      });
     }),
   );
 }

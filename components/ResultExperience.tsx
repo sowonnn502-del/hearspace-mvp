@@ -83,14 +83,15 @@ export function ResultExperience() {
         alt="Uploaded atmosphere"
         className="mx-auto aspect-[4/5] max-h-[740px] min-h-[500px] max-w-6xl sm:aspect-[16/8] sm:min-h-[500px] lg:aspect-[16/7] lg:min-h-[560px]"
       >
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.72),rgba(0,0,0,0.18)_46%,transparent_72%)]" />
-        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 sm:px-10 sm:pb-12 lg:px-16">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.88),rgba(0,0,0,0.44)_42%,rgba(0,0,0,0.12)_70%,transparent_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[9] h-[44%] bg-[linear-gradient(to_top,rgba(0,0,0,0.72),rgba(0,0,0,0.32)_58%,transparent)]" />
+        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-7 sm:px-10 sm:pb-11 lg:px-16">
           <MotionText
             delay={0.78}
             duration={1.45}
             y={14}
             blur={4}
-            className="font-meta text-[9px] uppercase tracking-[0.34em] text-paper/68 [text-shadow:0_2px_18px_rgba(0,0,0,0.72)] sm:text-[10px]"
+            className="font-meta text-[8px] uppercase tracking-[0.32em] !text-white/72 [text-shadow:0_2px_18px_rgba(0,0,0,0.92)] sm:text-[9px]"
           >
             {result.time_label}
           </MotionText>
@@ -99,7 +100,7 @@ export function ResultExperience() {
             duration={2}
             y={20}
             blur={7}
-            className="mt-4 max-w-4xl break-words text-balance font-serif text-[clamp(2.5rem,12vw,5.25rem)] font-medium leading-[1] tracking-normal text-paper [text-shadow:0_12px_42px_rgba(0,0,0,0.58)] sm:text-[clamp(3.75rem,7vw,6.6rem)]"
+            className="mt-3 max-w-4xl break-words text-balance font-serif text-[clamp(2rem,9.5vw,4rem)] font-medium leading-[1.02] tracking-normal !text-white [text-shadow:0_12px_42px_rgba(0,0,0,0.86)] sm:mt-4 sm:text-[clamp(3rem,5.6vw,5.2rem)]"
           >
             {result.mood_title}
           </MotionText>
@@ -109,7 +110,7 @@ export function ResultExperience() {
               duration={1.8}
               y={16}
               blur={6}
-              className="mt-5 max-w-xl break-words font-serif text-lg leading-8 tracking-normal text-paper/84 [text-shadow:0_8px_28px_rgba(0,0,0,0.58)] sm:text-2xl"
+              className="mt-3 max-w-xl break-words font-serif text-sm leading-6 tracking-normal !text-white/86 [text-shadow:0_8px_28px_rgba(0,0,0,0.9)] sm:mt-4 sm:text-lg sm:leading-7"
             >
               {result.mood_subtitle}
             </MotionText>
