@@ -23,7 +23,7 @@ export function PageShell({ children }: PageShellProps) {
             聆听
           </Link>
           <Link href="/archive" className="transition hover:text-ink">
-            分析
+            档案
           </Link>
         </div>
       </nav>

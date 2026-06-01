@@ -351,13 +351,6 @@ function toRecommendation(
     ...context.emotionalTone.slice(0, 2),
   ].slice(0, 5);
 
-  const reasons = [
-    `${song.title}的质感很贴近画面里的氛围。`,
-    `${song.artist}的声音适合这段空间的情绪。`,
-    `这首歌的呼吸感和画面的节奏很合拍。`,
-    `像为这段记忆配的背景音乐。`,
-  ];
-
   return {
     song: {
       id: `dynamic-${song.songId}`,
@@ -385,10 +378,28 @@ function toRecommendation(
       description: "",
     } satisfies MusicSong,
     score: 10,
-    reason: reasons[index % reasons.length],
+    reason: createDynamicReason(context, index),
     matchedSignals,
     spaceMemoryType,
   };
+}
+
+function createDynamicReason(context: NormalizedMusicContext, index: number) {
+  const visualSignals = [
+    ...context.colorFeeling,
+    ...context.timeFeeling,
+    ...context.visibleObjects.filter((value) => /[\u4e00-\u9fff]/.test(value)),
+  ]
+    .filter(Boolean)
+    .slice(0, 2);
+  const visualPhrase = visualSignals.length
+    ? visualSignals.join("与")
+    : "这段空间的光线和气息";
+  const emotion =
+    context.emotionalTone.find((value) => /[\u4e00-\u9fff]/.test(value)) ||
+    ["慢下来、沉浸当下", "温柔停留", "把记忆继续展开"][index % 3];
+
+  return `因为画面中的${visualPhrase}，这首歌更接近一种${emotion}的情绪体验。`;
 }
 
 async function qwenCurate(

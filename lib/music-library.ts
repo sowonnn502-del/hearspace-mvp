@@ -80,6 +80,11 @@ export function getEmbeddedMusicRecommendations(
 }
 
 export function matchMusicByMemory(result: MoodResult): MusicMemoryRecommendation[] {
+  return getMusicRecommendationPool(result).slice(0, 3);
+}
+
+export function getMusicRecommendationPool(result: MoodResult): MusicMemoryRecommendation[] {
+  const embeddedRecommendations = getEmbeddedMusicRecommendations(result);
   const context = extractVisualGrounding(result);
   const routedTypes = routeSpaceMemoryType(context);
   const semanticContext = buildSemanticContext(context, routedTypes);
@@ -93,10 +98,13 @@ export function matchMusicByMemory(result: MoodResult): MusicMemoryRecommendatio
     .sort((a, b) => b.score - a.score || b.tieBreak - a.tieBreak || a.index - b.index);
 
   const recommendations = pickDiverseRecommendations(scored.filter((item) => item.score > -4));
+  const fallback = fillFallback(recommendations, routedTypes[0], semanticContext);
 
-  if (recommendations.length >= 3) return recommendations;
-
-  return fillFallback(recommendations, routedTypes[0], semanticContext).slice(0, 3);
+  return mergeUniqueRecommendations([
+    ...embeddedRecommendations,
+    ...recommendations,
+    ...fallback,
+  ]);
 }
 
 export const matchMusicByMood = matchMusicByMemory;
@@ -140,7 +148,11 @@ function toEmbeddedMusicRecommendation(
   return {
     song,
     score: 20 - index,
-    reason: recommendation.reason,
+    reason: createReason(song, context, [
+      recommendation.mood,
+      ...context.colorFeeling,
+      ...context.timeFeeling,
+    ]),
     matchedSignals: uniqueStrings([
       recommendation.mood,
       spaceMemoryType,
@@ -297,11 +309,18 @@ function createReason(
   context: NormalizedMusicContext,
   matchedSignals: string[],
 ) {
-  const signals = matchedSignals.length
-    ? matchedSignals.slice(0, 3).join("、")
-    : context.sceneType || "这段空间";
+  const visualSignals = uniqueStrings([
+    ...context.colorFeeling,
+    ...context.timeFeeling,
+    ...context.visibleObjects.filter(hasCjkText),
+    ...matchedSignals.filter(hasCjkText),
+  ]).slice(0, 2);
+  const visualPhrase = visualSignals.length
+    ? visualSignals.join("与")
+    : "这段空间的光线和气息";
+  const emotion = pickEmotionPhrase(songItem, context);
 
-  return `${songItem.description} 它更贴近画面里的${signals}，不是单纯按关键词凑出来的歌。`;
+  return `因为画面中的${visualPhrase}，这首歌更接近一种${emotion}的情绪体验。`;
 }
 
 function fillFallback(
@@ -373,6 +392,48 @@ function pickDiverseRecommendations(scored: ScoredMusicRecommendation[]) {
   }
 
   return selected.map(({ index: _index, tieBreak: _tieBreak, ...item }) => item);
+}
+
+function mergeUniqueRecommendations(recommendations: MusicMemoryRecommendation[]) {
+  const merged: MusicMemoryRecommendation[] = [];
+  const seen = new Set<string>();
+
+  for (const recommendation of recommendations) {
+    const key = getSongIdentity(recommendation.song);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push(recommendation);
+  }
+
+  return merged;
+}
+
+function getSongIdentity(songItem: MusicSong) {
+  return [
+    songItem.songId || songItem.neteaseSongId || songItem.id,
+    normalizeForSongLookup(songItem.title),
+    normalizeForSongLookup(songItem.artist),
+  ]
+    .filter(Boolean)
+    .join(":");
+}
+
+function hasCjkText(value: string) {
+  return /[\u4e00-\u9fff]/.test(value);
+}
+
+function pickEmotionPhrase(songItem: MusicSong, context: NormalizedMusicContext) {
+  const candidates = uniqueStrings([
+    ...songItem.emotions.filter(hasCjkText),
+    ...context.emotionalTone.filter(hasCjkText),
+  ]);
+  const primary = candidates[0];
+
+  if (primary) return `${primary}、慢下来并沉浸当下`;
+  if (songItem.pace === "slow") return "慢下来、沉浸当下";
+  if (songItem.pace === "upbeat") return "明亮、轻盈";
+
+  return "贴近当下、可以继续停留";
 }
 
 function contextualTieBreak(songItem: MusicSong, context: NormalizedMusicContext) {

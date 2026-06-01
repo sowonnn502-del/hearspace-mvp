@@ -21,11 +21,22 @@ type MusicCardProps = {
   song: FlexibleMusicTrack;
   index: number;
   reason?: string;
+  onReplace?: () => void;
 };
 
-export function MusicCard({ song, index, reason }: MusicCardProps) {
+type LikedTrackRecord = {
+  trackId: string;
+  title: string;
+  artist: string;
+  timestamp: string;
+};
+
+const LIKED_TRACKS_STORAGE_KEY = "likedTracks";
+
+export function MusicCard({ song, index, reason, onReplace }: MusicCardProps) {
   const title = getText(song.title);
   const artist = getText(song.artist);
+  const trackId = getTrackId(song, title, artist);
   const emotions = getLabels(song.emotions, song.tags, song.mood, song.keywords);
   const memoryScenes = getLabels(song.memoryScenes);
   const neteaseKeyword =
@@ -35,6 +46,7 @@ export function MusicCard({ song, index, reason }: MusicCardProps) {
   const albumCover = getText(song.coverUrl) || MUSIC_COVER_PLACEHOLDER;
   const [imageSrc, setImageSrc] = useState(albumCover);
   const [imageFailed, setImageFailed] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const neteaseUrl = getNeteaseUrl(song);
   const displayLabels = Array.from(new Set([...emotions, ...memoryScenes]))
     .filter(Boolean)
@@ -45,11 +57,16 @@ export function MusicCard({ song, index, reason }: MusicCardProps) {
     setImageFailed(false);
   }, [albumCover]);
 
+  useEffect(() => {
+    setIsLiked(readLikedTracks().some((track) => track.trackId === trackId));
+  }, [trackId]);
+
   return (
     <motion.article
       className="group relative min-w-0 overflow-hidden border-t border-ink/10 py-6 text-ink transition duration-700 first:border-t-0 sm:py-7"
       initial={{ opacity: 0, y: 18, filter: "blur(5px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      exit={{ opacity: 0, y: -10, filter: "blur(6px)" }}
       viewport={{ once: true, amount: 0.38 }}
       transition={{
         duration: 1.2,
@@ -99,9 +116,14 @@ export function MusicCard({ song, index, reason }: MusicCardProps) {
           </h3>
           {artist ? <p className="mt-2 text-base leading-7 text-ink/56">{artist}</p> : null}
           {reason ? (
-            <p className="mt-4 max-w-2xl break-words text-[15px] leading-[1.72] text-ink/62">
-              {reason}
-            </p>
+            <div className="mt-4 max-w-2xl">
+              <p className="font-meta text-[10px] uppercase tracking-[0.22em] text-tide/50">
+                为什么推荐给你
+              </p>
+              <p className="mt-2 break-words text-[15px] leading-[1.72] text-ink/62">
+                {reason}
+              </p>
+            </div>
           ) : null}
 
           <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 font-meta text-[10px] uppercase tracking-[0.18em] text-ink/32">
@@ -111,6 +133,45 @@ export function MusicCard({ song, index, reason }: MusicCardProps) {
           </div>
 
           <div className="mt-6 flex flex-col gap-4 md:mt-auto md:items-end">
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row md:self-end">
+              <button
+                type="button"
+                onClick={() => {
+                  const nextLikedTracks = upsertLikedTrack({
+                    trackId,
+                    title,
+                    artist,
+                    timestamp: new Date().toISOString(),
+                  });
+                  window.localStorage.setItem(
+                    LIKED_TRACKS_STORAGE_KEY,
+                    JSON.stringify(nextLikedTracks),
+                  );
+                  setIsLiked(true);
+                }}
+                className={`min-h-11 rounded-full border px-5 py-2.5 font-meta text-[11px] uppercase tracking-[0.18em] transition duration-300 ${
+                  isLiked
+                    ? "border-tide/30 bg-tide/12 text-tide"
+                    : "border-ink/12 bg-white/28 text-ink/56 hover:border-ink/24 hover:bg-white/44 hover:text-ink"
+                }`}
+                aria-pressed={isLiked}
+              >
+                {isLiked ? "已喜欢" : "喜欢"}
+              </button>
+              <button
+                type="button"
+                onClick={onReplace}
+                disabled={!onReplace}
+                className="min-h-11 rounded-full border border-ink/12 bg-white/28 px-5 py-2.5 font-meta text-[11px] uppercase tracking-[0.18em] text-ink/56 transition duration-300 hover:border-ink/24 hover:bg-white/44 hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                换一首
+              </button>
+            </div>
+            {isLiked ? (
+              <p className="w-full font-serif text-sm leading-6 text-tide/70 sm:w-auto md:text-right">
+                已记录你的偏好
+              </p>
+            ) : null}
             <a
               href={neteaseUrl}
               target="_blank"
@@ -151,4 +212,49 @@ function getLabels(...values: unknown[]) {
 
 function getText(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function getTrackId(song: FlexibleMusicTrack, title: string, artist: string) {
+  return (
+    getText(song.songId) ||
+    getText(song.neteaseSongId) ||
+    getText(song.id) ||
+    [title, artist].filter(Boolean).join(":").toLowerCase()
+  );
+}
+
+function readLikedTracks(): LikedTrackRecord[] {
+  if (typeof window === "undefined") return [];
+
+  try {
+    const parsed = JSON.parse(
+      window.localStorage.getItem(LIKED_TRACKS_STORAGE_KEY) || "[]",
+    );
+
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed.filter(isLikedTrackRecord);
+  } catch {
+    return [];
+  }
+}
+
+function upsertLikedTrack(track: LikedTrackRecord) {
+  const existing = readLikedTracks();
+  const withoutCurrent = existing.filter((item) => item.trackId !== track.trackId);
+
+  return [track, ...withoutCurrent];
+}
+
+function isLikedTrackRecord(value: unknown): value is LikedTrackRecord {
+  if (!value || typeof value !== "object") return false;
+
+  const record = value as Record<string, unknown>;
+
+  return (
+    typeof record.trackId === "string" &&
+    typeof record.title === "string" &&
+    typeof record.artist === "string" &&
+    typeof record.timestamp === "string"
+  );
 }

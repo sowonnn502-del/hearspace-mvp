@@ -7,10 +7,15 @@ import { ShareMoodNote } from "@/components/ShareMoodNote";
 import { mockMoodResult } from "@/lib/mockMood";
 import {
   getEmbeddedMusicRecommendations,
+  getMusicRecommendationPool,
   matchMusicByMood,
   type MusicMemoryRecommendation,
 } from "@/lib/music-library";
 import { isMoodResult, type MoodResult } from "@/lib/mood-schema";
+import {
+  createArchiveItem,
+  saveArchiveItem,
+} from "@/lib/space-memory-archive";
 
 export function ResultExperience() {
   const [result, setResult] = useState<MoodResult>(mockMoodResult);
@@ -19,6 +24,10 @@ export function ResultExperience() {
   const [musicRecommendations, setMusicRecommendations] = useState<
     MusicMemoryRecommendation[]
   >(() => getInitialMusicRecommendations(mockMoodResult));
+  const [musicPool, setMusicPool] = useState<MusicMemoryRecommendation[]>(() =>
+    getMusicRecommendationPool(mockMoodResult),
+  );
+  const [saveMessage, setSaveMessage] = useState("");
 
   useEffect(() => {
     const storedResult = sessionStorage.getItem("hearspace:mood-result");
@@ -39,8 +48,10 @@ export function ResultExperience() {
   useEffect(() => {
     let isCancelled = false;
     const fallbackRecommendations = getInitialMusicRecommendations(result);
+    const fallbackPool = getMusicRecommendationPool(result);
 
     setMusicRecommendations(fallbackRecommendations);
+    setMusicPool(mergeMusicRecommendations(fallbackRecommendations, fallbackPool));
     setIsMusicLoading(true);
 
     async function enrichMusicRecommendations() {
@@ -60,7 +71,11 @@ export function ResultExperience() {
         };
 
         if (!isCancelled && data.recommendations?.length) {
-          setMusicRecommendations(data.recommendations);
+          const enrichedRecommendations = data.recommendations.slice(0, 3);
+          setMusicRecommendations(enrichedRecommendations);
+          setMusicPool(
+            mergeMusicRecommendations(enrichedRecommendations, fallbackPool),
+          );
         }
       } catch (error) {
         console.warn("[HearSpace Music] Recommendation enrichment failed:", error);
@@ -110,9 +125,9 @@ export function ResultExperience() {
               duration={1.8}
               y={16}
               blur={6}
-              className="mt-3 max-w-xl break-words font-serif text-sm leading-6 tracking-normal !text-white/86 [text-shadow:0_8px_28px_rgba(0,0,0,0.9)] sm:mt-4 sm:text-lg sm:leading-7"
+              className="mt-3 max-w-xl break-words font-serif text-sm leading-6 tracking-normal !text-white [text-shadow:0_8px_28px_rgba(0,0,0,0.9)] sm:mt-4 sm:text-lg sm:leading-7"
             >
-              {result.mood_subtitle}
+              <span className="!text-white">{result.mood_subtitle}</span>
             </MotionText>
           ) : null}
         </div>
@@ -124,6 +139,7 @@ export function ResultExperience() {
             result={result}
             musicRecommendations={musicRecommendations}
             isMusicLoading={isMusicLoading}
+            onReplaceTrack={handleReplaceTrack}
           />
         </ScrollReveal>
         <ScrollReveal delay={0.1} y={28} duration={1.4} amount={0.16}>
@@ -133,9 +149,44 @@ export function ResultExperience() {
             musicRecommendations={musicRecommendations}
           />
         </ScrollReveal>
+        <ScrollReveal delay={0.08} y={24} duration={1.2} amount={0.18}>
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-4 text-center sm:mt-14">
+            <button
+              type="button"
+              onClick={handleSaveMemory}
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-ink px-7 py-3 font-meta text-sm text-paper shadow-[0_18px_54px_rgba(17,17,19,0.14)] transition duration-500 hover:-translate-y-0.5 hover:bg-tide sm:w-auto"
+            >
+              保存这段记忆
+            </button>
+            {saveMessage ? (
+              <p className="font-serif text-sm leading-6 text-ink/52">{saveMessage}</p>
+            ) : null}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
+
+  function handleSaveMemory() {
+    const item = createArchiveItem(result, imageUrl, musicRecommendations);
+    saveArchiveItem(item);
+    setSaveMessage("已保存到我的空间记忆。");
+  }
+
+  function handleReplaceTrack(index: number) {
+    setMusicRecommendations((currentRecommendations) => {
+      const currentKeys = new Set(currentRecommendations.map(getRecommendationKey));
+      const replacement = musicPool.find(
+        (recommendation) => !currentKeys.has(getRecommendationKey(recommendation)),
+      );
+
+      if (!replacement) return currentRecommendations;
+
+      return currentRecommendations.map((recommendation, recommendationIndex) =>
+        recommendationIndex === index ? replacement : recommendation,
+      );
+    });
+  }
 }
 
 function getInitialMusicRecommendations(result: MoodResult) {
@@ -155,4 +206,33 @@ function getInitialMusicRecommendations(result: MoodResult) {
   });
 
   return [...embeddedRecommendations, ...fallback].slice(0, 3);
+}
+
+function mergeMusicRecommendations(
+  ...groups: MusicMemoryRecommendation[][]
+): MusicMemoryRecommendation[] {
+  const merged: MusicMemoryRecommendation[] = [];
+  const seen = new Set<string>();
+
+  for (const group of groups) {
+    for (const recommendation of group) {
+      const key = getRecommendationKey(recommendation);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      merged.push(recommendation);
+    }
+  }
+
+  return merged;
+}
+
+function getRecommendationKey(recommendation: MusicMemoryRecommendation) {
+  const song = recommendation.song;
+  return [
+    song.songId || song.neteaseSongId || song.id,
+    song.title.toLowerCase().replace(/\s+/g, ""),
+    song.artist.toLowerCase().replace(/\s+/g, ""),
+  ]
+    .filter(Boolean)
+    .join(":");
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { MusicCard } from "@/components/MusicCard";
 import {
   MotionText,
@@ -14,12 +14,14 @@ type MoodResultPanelProps = {
   result: MoodResult;
   musicRecommendations: MusicMemoryRecommendation[];
   isMusicLoading?: boolean;
+  onReplaceTrack?: (index: number) => void;
 };
 
 export function MoodResultPanel({
   result,
   musicRecommendations,
   isMusicLoading = false,
+  onReplaceTrack,
 }: MoodResultPanelProps) {
   return (
     <div className="relative">
@@ -72,26 +74,29 @@ export function MoodResultPanel({
             ) : null}
           </div>
           <div className="mt-6 grid max-w-5xl gap-6 sm:gap-7">
-            {musicRecommendations.slice(0, 3).map((recommendation, index) => {
-              const song = recommendation.song;
-              const atmosphere = getRecommendationLabels(
-                getRecommendationField(song, "atmosphere"),
-                recommendation.matchedSignals,
-              );
+            <AnimatePresence initial={false} mode="sync">
+              {musicRecommendations.slice(0, 3).map((recommendation, index) => {
+                const song = recommendation.song;
+                const atmosphere = getRecommendationLabels(
+                  getRecommendationField(song, "atmosphere"),
+                  recommendation.matchedSignals,
+                );
 
-              return (
-                <MusicCard
-                  key={`${song.neteaseKeyword || song.title || "song"}-${index}`}
-                  song={{
-                    ...song,
-                    atmosphere,
-                    memoryScenes: recommendation.matchedSignals,
-                  }}
-                  index={index}
-                  reason={recommendation.reason}
-                />
-              );
-            })}
+                return (
+                  <MusicCard
+                    key={`${getRecommendationIdentity(recommendation)}-${index}`}
+                    song={{
+                      ...song,
+                      atmosphere,
+                      memoryScenes: recommendation.matchedSignals,
+                    }}
+                    index={index}
+                    reason={recommendation.reason}
+                    onReplace={onReplaceTrack ? () => onReplaceTrack(index) : undefined}
+                  />
+                );
+              })}
+            </AnimatePresence>
           </div>
         </motion.div>
       </ScrollReveal>
@@ -126,4 +131,15 @@ function getRecommendationField(value: unknown, key: string) {
   return value && typeof value === "object"
     ? (value as Record<string, unknown>)[key]
     : undefined;
+}
+
+function getRecommendationIdentity(recommendation: MusicMemoryRecommendation) {
+  const song = recommendation.song;
+  return [
+    song.songId || song.neteaseSongId || song.id,
+    song.title.toLowerCase().replace(/\s+/g, ""),
+    song.artist.toLowerCase().replace(/\s+/g, ""),
+  ]
+    .filter(Boolean)
+    .join(":");
 }
