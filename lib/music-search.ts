@@ -15,6 +15,7 @@ import {
   extractVisualGrounding,
   type NormalizedMusicContext,
 } from "@/lib/visual-grounding";
+import { buildMusicKnowledgeTags } from "@/lib/taxonomy";
 
 type NeteaseSearchSong = {
   id?: number | string;
@@ -350,6 +351,16 @@ function toRecommendation(
     spaceMemoryType,
     ...context.emotionalTone.slice(0, 2),
   ].slice(0, 5);
+  const knowledgeTags = buildMusicKnowledgeTags({
+    memoryTypes: [spaceMemoryType],
+    scenes: [context.sceneType, ...context.visibleObjects],
+    emotions: context.emotionalTone,
+    timeFeelings: context.timeFeeling,
+    colorFeelings: context.colorFeeling,
+    title: song.title,
+    artist: song.artist,
+    description: createDynamicReason(context, index),
+  });
 
   return {
     song: {
@@ -362,6 +373,9 @@ function toRecommendation(
       coverUrl: song.coverUrl,
       songUrl: song.songUrl,
       album: song.album,
+      ...knowledgeTags,
+      recommendationReason: createDynamicReason(context, index),
+      confidence: 0.62,
       emotions: context.emotionalTone.slice(0, 4),
       memoryTypes: [spaceMemoryType],
       scenes: [],

@@ -5,8 +5,28 @@ import type {
   MusicPace,
   MusicSeason,
 } from "../lib/music-taxonomy";
+import {
+  buildMusicKnowledgeTags,
+  type AtmosphereTag,
+  type EmotionTag,
+  type MemoryTag,
+  type SceneTag,
+  type SeasonTag,
+  type SpaceTag,
+  type VisualTag,
+} from "../lib/taxonomy";
 
 export type ClassifiedMusicMemory = {
+  spaceTags: SpaceTag[];
+  sceneTags: SceneTag[];
+  emotionTags: EmotionTag[];
+  memoryTags: MemoryTag[];
+  visualTags: VisualTag[];
+  seasonTags: SeasonTag[];
+  atmosphereTags: AtmosphereTag[];
+  similarSpaces: SceneTag[];
+  recommendationReason: string;
+  confidence: number;
   memoryTypes: SpaceMemoryType[];
   scenes: string[];
   visibleObjects: string[];
@@ -23,6 +43,20 @@ export type ClassifiedMusicMemory = {
   description: string;
 };
 
+type ClassifiedMusicMemoryCore = Omit<
+  ClassifiedMusicMemory,
+  | "spaceTags"
+  | "sceneTags"
+  | "emotionTags"
+  | "memoryTags"
+  | "visualTags"
+  | "seasonTags"
+  | "atmosphereTags"
+  | "similarSpaces"
+  | "recommendationReason"
+  | "confidence"
+>;
+
 type ClassifyInput = {
   title: string;
   artist: string;
@@ -33,7 +67,7 @@ type ClassifyInput = {
 
 const profiles: Array<{
   test: RegExp;
-  value: ClassifiedMusicMemory;
+  value: ClassifiedMusicMemoryCore;
 }> = [
   {
     test: /校园|青春|教室|晴天|知足|遇见|那些年|蒲公英/,
@@ -191,7 +225,7 @@ const profiles: Array<{
 
 const songOverrides: Array<{
   test: RegExp;
-  value: Partial<ClassifiedMusicMemory>;
+  value: Partial<ClassifiedMusicMemoryCore>;
 }> = [
   {
     test: /晴天/,
@@ -494,14 +528,18 @@ export function classifyMusicMemory(input: ClassifyInput): ClassifiedMusicMemory
     description: "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
   };
   const override = songOverrides.find((item) => item.test.test(text));
+  const core = mergeClassification(base, override?.value);
 
-  return mergeClassification(base, override?.value);
+  return addKnowledgeTags(core, input);
 }
 
 export async function classifyMusicMemoryWithQwen(
   input: ClassifyInput,
 ): Promise<ClassifiedMusicMemory> {
-  if (process.env.MUSIC_USE_QWEN_CLASSIFIER !== "true") {
+  if (
+    process.env.USE_QWEN_CLASSIFIER !== "true" &&
+    process.env.MUSIC_USE_QWEN_CLASSIFIER !== "true"
+  ) {
     return classifyMusicMemory(input);
   }
 
@@ -562,7 +600,13 @@ function buildQwenPrompt(input: ClassifyInput) {
     `playlistNames: ${(input.playlistNames ?? []).join(" / ")}`,
     "",
     "输出 JSON 字段：",
-    "memoryTypes, scenes, visibleObjects, emotions, timeFeelings, colorFeelings, culturalSignals, avoidWhen, season, pace, lightTone, narrative, archetype, description",
+    "spaceTags, sceneTags, emotionTags, memoryTags, visualTags, seasonTags, atmosphereTags, similarSpaces, recommendationReason, confidence, memoryTypes, scenes, visibleObjects, emotions, timeFeelings, colorFeelings, culturalSignals, avoidWhen, season, pace, lightTone, narrative, archetype, description",
+    "spaceTags 只能从 Natural Space, Urban Space, Residential Space, Transit Space, Campus Space, Travel Space, Commercial Space, Solitude Space 中选择。",
+    "sceneTags 只能从 Classroom, Corridor, Playground, Library, Garden, Park, Lakeside, Forest, Night Street, Convenience Store, Subway, Rooftop, Room, Window, Kitchen, Balcony, Train Window, Airport Waiting, Road Trip Sunset, Cafe, Restaurant, Mall, Hotel, After School 中选择。",
+    "emotionTags 只能从 Youth, Warm, Nostalgic, Lonely, Healing, Dreamy, Quiet, Free, Tender, Melancholy, Romantic, Restorative, Bittersweet, Light 中选择。",
+    "memoryTags 只能从 Graduation, First Love, After School, City Walk, Night Walk, Rainy Window, Daily Ritual, Long Trip, Waiting, Farewell, Old Photo, Private Room, Soft Bloom 中选择。",
+    "visualTags 只能从 Rainy, Sunset, Warm Light, Golden Hour, Soft Focus, Film Look, Green Shadow, Neon, Blue Hour, Low Light, Window Light, Water Reflection, Pink Bloom, Muted Color 中选择。",
+    "seasonTags 只能从 Spring, Summer, Autumn, Winter, Rain Season, All Season 中选择。",
     "memoryTypes 只能从 campus_youth, city_park_restorative, night_city_dining, rain_window_solitude, chinese_garden_water, flower_dream_portrait, daily_life_home, travel_landscape, unknown_soft_memory 中选择。",
     "season 只能是 spring/summer/autumn/winter/all。",
     "pace 只能是 slow/medium/upbeat。",
@@ -580,6 +624,7 @@ function normalizeClassifiedMusicMemory(
   const record = value as Partial<ClassifiedMusicMemory>;
 
   return {
+    ...normalizeKnowledgeTags(record, fallback),
     memoryTypes: normalizeStringArray(record.memoryTypes, fallback.memoryTypes) as SpaceMemoryType[],
     scenes: normalizeStringArray(record.scenes, fallback.scenes),
     visibleObjects: normalizeStringArray(record.visibleObjects, fallback.visibleObjects),
@@ -600,6 +645,30 @@ function normalizeClassifiedMusicMemory(
   };
 }
 
+function normalizeKnowledgeTags(
+  record: Partial<ClassifiedMusicMemory>,
+  fallback: ClassifiedMusicMemory,
+) {
+  return {
+    spaceTags: normalizeStringArray(record.spaceTags, fallback.spaceTags) as SpaceTag[],
+    sceneTags: normalizeStringArray(record.sceneTags, fallback.sceneTags) as SceneTag[],
+    emotionTags: normalizeStringArray(record.emotionTags, fallback.emotionTags) as EmotionTag[],
+    memoryTags: normalizeStringArray(record.memoryTags, fallback.memoryTags) as MemoryTag[],
+    visualTags: normalizeStringArray(record.visualTags, fallback.visualTags) as VisualTag[],
+    seasonTags: normalizeStringArray(record.seasonTags, fallback.seasonTags) as SeasonTag[],
+    atmosphereTags: normalizeStringArray(record.atmosphereTags, fallback.atmosphereTags) as AtmosphereTag[],
+    similarSpaces: normalizeStringArray(record.similarSpaces, fallback.similarSpaces) as SceneTag[],
+    recommendationReason:
+      typeof record.recommendationReason === "string" && record.recommendationReason.trim()
+        ? record.recommendationReason.trim()
+        : fallback.recommendationReason,
+    confidence:
+      typeof record.confidence === "number" && Number.isFinite(record.confidence)
+        ? Math.max(0, Math.min(1, record.confidence))
+        : fallback.confidence,
+  };
+}
+
 function normalizeStringArray(value: unknown, fallback: string[]) {
   if (!Array.isArray(value)) return fallback;
 
@@ -612,9 +681,9 @@ function normalizeStringArray(value: unknown, fallback: string[]) {
 }
 
 function mergeClassification(
-  base: ClassifiedMusicMemory,
-  override?: Partial<ClassifiedMusicMemory>,
-): ClassifiedMusicMemory {
+  base: ClassifiedMusicMemoryCore,
+  override?: Partial<ClassifiedMusicMemoryCore>,
+): ClassifiedMusicMemoryCore {
   if (!override) {
     return cloneClassification(base);
   }
@@ -637,7 +706,7 @@ function mergeClassification(
   };
 }
 
-function cloneClassification(value: ClassifiedMusicMemory): ClassifiedMusicMemory {
+function cloneClassification(value: ClassifiedMusicMemoryCore): ClassifiedMusicMemoryCore {
   return {
     ...value,
     memoryTypes: [...value.memoryTypes],
@@ -648,6 +717,31 @@ function cloneClassification(value: ClassifiedMusicMemory): ClassifiedMusicMemor
     colorFeelings: [...value.colorFeelings],
     culturalSignals: [...value.culturalSignals],
     avoidWhen: [...value.avoidWhen],
+  };
+}
+
+function addKnowledgeTags(
+  core: ClassifiedMusicMemoryCore,
+  input: ClassifyInput,
+): ClassifiedMusicMemory {
+  const knowledge = buildMusicKnowledgeTags({
+    memoryTypes: core.memoryTypes,
+    scenes: core.scenes,
+    emotions: core.emotions,
+    visibleObjects: core.visibleObjects,
+    timeFeelings: core.timeFeelings,
+    colorFeelings: core.colorFeelings,
+    culturalSignals: core.culturalSignals,
+    title: input.title,
+    artist: input.artist,
+    description: core.description,
+  });
+
+  return {
+    ...knowledge,
+    recommendationReason: core.description,
+    confidence: core.memoryTypes.includes("unknown_soft_memory") ? 0.58 : 0.82,
+    ...core,
   };
 }
 

@@ -10,6 +10,7 @@ import type { MoodResult } from "@/lib/mood-schema";
 import {
   deleteArchiveItem,
   findArchiveItem,
+  readArchiveItems,
   type SpaceMemoryArchiveItem,
 } from "@/lib/space-memory-archive";
 
@@ -20,10 +21,13 @@ type ArchiveMemoryDetailProps = {
 export function ArchiveMemoryDetail({ id }: ArchiveMemoryDetailProps) {
   const router = useRouter();
   const [item, setItem] = useState<SpaceMemoryArchiveItem | null>(null);
+  const [similarItems, setSimilarItems] = useState<SpaceMemoryArchiveItem[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setItem(findArchiveItem(id));
+    const nextItem = findArchiveItem(id);
+    setItem(nextItem);
+    setSimilarItems(nextItem ? findSimilarMemories(nextItem, readArchiveItems()) : []);
     setIsLoaded(true);
   }, [id]);
 
@@ -93,6 +97,11 @@ export function ArchiveMemoryDetail({ id }: ArchiveMemoryDetailProps) {
           <p className="mt-5 break-words font-serif text-xl leading-8 text-ink/58 sm:text-2xl sm:leading-9">
             {item.moodSubtitle}
           </p>
+        ) : null}
+        {item.userNote ? (
+          <blockquote className="mt-8 border-l border-tide/28 pl-5 font-serif text-lg leading-8 text-tide/68">
+            “{item.userNote}”
+          </blockquote>
         ) : null}
 
         <div className="mt-8 flex flex-wrap gap-2">
@@ -164,6 +173,42 @@ export function ArchiveMemoryDetail({ id }: ArchiveMemoryDetailProps) {
             ))}
           </div>
         </section>
+
+        {similarItems.length ? (
+          <section className="mt-20">
+            <p className="font-meta text-[10px] uppercase tracking-[0.3em] text-tide/58">
+              Similar Memories
+            </p>
+            <h2 className="mt-4 font-serif text-3xl leading-tight text-ink sm:text-5xl">
+              和它相似的空间
+            </h2>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2">
+              {similarItems.map((similarItem) => (
+                <Link
+                  key={similarItem.id}
+                  href={`/archive/${similarItem.id}`}
+                  className="group grid min-w-0 grid-cols-[7rem_1fr] gap-4 overflow-hidden rounded-[8px] bg-white/30 p-3 shadow-[0_16px_54px_rgba(17,17,19,0.06)] ring-1 ring-ink/[0.05] transition duration-500 hover:-translate-y-0.5 hover:bg-white/44"
+                >
+                  <MemoryImage
+                    item={similarItem}
+                    className="aspect-[4/5] rounded-[6px]"
+                  />
+                  <div className="min-w-0 py-1">
+                    <p className="font-meta text-[10px] uppercase tracking-[0.2em] text-ink/32">
+                      {formatShortDate(similarItem.createdAt)}
+                    </p>
+                    <h3 className="mt-2 line-clamp-2 break-words font-serif text-2xl leading-tight text-ink">
+                      {similarItem.moodTitle}
+                    </h3>
+                    <p className="mt-2 line-clamp-2 break-words text-sm leading-6 text-ink/50">
+                      {similarItem.memoryText}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
     </article>
   );
@@ -202,4 +247,66 @@ function formatDateTime(value: string) {
   if (Number.isNaN(date.getTime())) return "";
 
   return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")} / ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+}
+
+function formatShortDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+
+  return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function findSimilarMemories(
+  current: SpaceMemoryArchiveItem,
+  allItems: SpaceMemoryArchiveItem[],
+) {
+  return allItems
+    .filter((item) => item.id !== current.id)
+    .map((item) => ({
+      item,
+      score: scoreSimilarMemory(current, item),
+    }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score || Date.parse(b.item.createdAt) - Date.parse(a.item.createdAt))
+    .slice(0, 4)
+    .map(({ item }) => item);
+}
+
+function scoreSimilarMemory(
+  current: SpaceMemoryArchiveItem,
+  candidate: SpaceMemoryArchiveItem,
+) {
+  const currentSignals = new Set(normalizeSignals([
+    current.moodTitle,
+    current.moodSubtitle,
+    current.memoryText,
+    current.userNote,
+    ...current.visualTone,
+    ...current.songs.flatMap((song) => [song.title, song.artist]),
+  ]));
+  const candidateSignals = normalizeSignals([
+    candidate.moodTitle,
+    candidate.moodSubtitle,
+    candidate.memoryText,
+    candidate.userNote,
+    ...candidate.visualTone,
+    ...candidate.songs.flatMap((song) => [song.title, song.artist]),
+  ]);
+
+  return candidateSignals.reduce(
+    (score, signal) => score + (currentSignals.has(signal) ? 1 : 0),
+    0,
+  );
+}
+
+function normalizeSignals(values: Array<string | undefined>) {
+  return Array.from(
+    new Set(
+      values
+        .filter((value): value is string => typeof value === "string")
+        .flatMap((value) => value.split(/[\s,，.。/、:：;；|·()（）[\]{}"'!?！?_-]+/))
+        .map((value) => value.trim().toLowerCase())
+        .filter((value) => value.length >= 2),
+    ),
+  );
 }

@@ -8,6 +8,16 @@ import type {
 } from "@/lib/music-taxonomy";
 import { type SpaceMemoryType } from "@/lib/space-memory-taxonomy";
 import {
+  inferMoodTaxonomyTags,
+  type AtmosphereTag,
+  type EmotionTag,
+  type MemoryTag,
+  type SceneTag,
+  type SeasonTag,
+  type SpaceTag,
+  type VisualTag,
+} from "@/lib/taxonomy";
+import {
   extractVisualGrounding,
   tokenize,
   uniqueStrings,
@@ -25,6 +35,16 @@ export type MusicSong = {
   neteaseSongId?: string;
   coverUrl?: string;
   album?: string;
+  spaceTags: SpaceTag[];
+  sceneTags: SceneTag[];
+  emotionTags: EmotionTag[];
+  memoryTags: MemoryTag[];
+  visualTags: VisualTag[];
+  seasonTags: SeasonTag[];
+  atmosphereTags: AtmosphereTag[];
+  similarSpaces: SceneTag[];
+  recommendationReason: string;
+  confidence: number;
   memoryTypes: SpaceMemoryType[];
   scenes: string[];
   visibleObjects: string[];
@@ -48,6 +68,7 @@ export type MusicMemoryRecommendation = {
   score: number;
   reason: string;
   matchedSignals: string[];
+  matchedTagBreakdown?: Record<string, number>;
   spaceMemoryType: SpaceMemoryType;
 };
 
@@ -126,6 +147,16 @@ function toEmbeddedMusicRecommendation(
       artist,
       neteaseKeyword: [title, artist].filter(Boolean).join(" "),
       coverUrl: MUSIC_COVER_PLACEHOLDER,
+      spaceTags: [spaceMemoryType === "campus_youth" ? "Campus Space" : "Solitude Space"],
+      sceneTags: ["Window"],
+      emotionTags: ["Quiet"],
+      memoryTags: ["Old Photo"],
+      visualTags: ["Film Look"],
+      seasonTags: ["All Season"],
+      atmosphereTags: ["Quiet"],
+      similarSpaces: ["Window"],
+      recommendationReason: recommendation.reason,
+      confidence: 0.68,
       memoryTypes: [spaceMemoryType],
       scenes: [],
       visibleObjects: [],
@@ -243,6 +274,8 @@ function scoreSong(
   semanticContext: SemanticContext,
   spaceMemoryType: SpaceMemoryType,
 ): MusicMemoryRecommendation {
+  const moodTags = inferMoodTaxonomyTags(contextToMoodResult(context));
+  const weighted = scoreWeightedTaxonomy(songItem, moodTags);
   const sceneMatch = countMatches(semanticContext.scenes, songItem.scenes);
   const emotionMatch = countMatches(semanticContext.emotions, songItem.emotions);
   const memoryTypeMatch = countMatches(semanticContext.memoryTypes, songItem.memoryTypes);
@@ -255,6 +288,7 @@ function scoreSong(
   const culturalSignalMatch = countMatches(context.culturalSignals, songItem.culturalSignals);
   const forbiddenMismatch = countForbiddenMismatch(context, songItem);
   const score =
+    weighted.score +
     memoryTypeMatch * 5 +
     emotionMatch * 4 +
     sceneMatch * 2 +
@@ -275,7 +309,57 @@ function scoreSong(
     score,
     reason: createReason(songItem, context, matchedSignals),
     matchedSignals,
+    matchedTagBreakdown: weighted.breakdown,
     spaceMemoryType,
+  };
+}
+
+function scoreWeightedTaxonomy(
+  songItem: MusicSong,
+  moodTags: ReturnType<typeof inferMoodTaxonomyTags>,
+) {
+  const breakdown = {
+    spaceTags: countExactMatches(moodTags.spaceTags, songItem.spaceTags) * 12,
+    sceneTags: countExactMatches(moodTags.sceneTags, songItem.sceneTags) * 9,
+    emotionTags: countExactMatches(moodTags.emotionTags, songItem.emotionTags) * 7,
+    memoryTags: countExactMatches(moodTags.memoryTags, songItem.memoryTags) * 5,
+    visualTags: countExactMatches(moodTags.visualTags, songItem.visualTags) * 3,
+  };
+  const score = Object.values(breakdown).reduce((sum, value) => sum + value, 0);
+
+  return { score, breakdown };
+}
+
+function countExactMatches(source: readonly string[], target: readonly string[]) {
+  const targetSet = new Set(target);
+  return source.filter((tag) => targetSet.has(tag)).length;
+}
+
+function contextToMoodResult(context: NormalizedMusicContext) {
+  return {
+    scene_observation: {
+      primary_scene: context.sceneType,
+      visible_objects: context.visibleObjects,
+      human_activity: context.activity,
+      lighting: context.timeFeeling.join(" "),
+      color_tone: context.colorFeeling.join(" "),
+      camera_style: "",
+      atmosphere_evidence: context.visibleObjects,
+    },
+    mood_title: context.emotionalTone[0] ?? "",
+    mood_subtitle: context.emotionalTone.join(" "),
+    time_label: context.timeFeeling.join(" "),
+    writing: context.emotionalTone.join(" "),
+    space_memory_text: context.emotionalTone.join(" "),
+    space_personality: context.activity,
+    visual_tone: context.colorFeeling,
+    music_query: context.emotionalTone.join(" "),
+    music_keywords: context.emotionalTone,
+    music_memories: [],
+    music_recommendations: [],
+    share_card_text: context.emotionalTone.join(" "),
+    visual_mood_tags: context.emotionalTone,
+    debug_source: "mock_no_key" as const,
   };
 }
 
@@ -320,7 +404,7 @@ function createReason(
     : "这段空间的光线和气息";
   const emotion = pickEmotionPhrase(songItem, context);
 
-  return `因为画面中的${visualPhrase}，这首歌更接近一种${emotion}的情绪体验。`;
+  return `这首歌贴着${visualPhrase}慢慢展开，带着一点${emotion}，适合把这一刻再放久一点。`;
 }
 
 function fillFallback(
@@ -430,7 +514,7 @@ function pickEmotionPhrase(songItem: MusicSong, context: NormalizedMusicContext)
   const primary = candidates[0];
 
   if (primary) return `${primary}、慢下来并沉浸当下`;
-  if (songItem.pace === "slow") return "慢下来、沉浸当下";
+  if (songItem.pace === "slow") return "慢下来、停在原地";
   if (songItem.pace === "upbeat") return "明亮、轻盈";
 
   return "贴近当下、可以继续停留";

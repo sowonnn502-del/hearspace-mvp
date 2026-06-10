@@ -51,6 +51,7 @@ export function MusicCard({ song, index, reason, onReplace }: MusicCardProps) {
   const displayLabels = Array.from(new Set([...emotions, ...memoryScenes]))
     .filter(Boolean)
     .slice(0, 4);
+  const similarSpaces = getLabels(song.similarSpaces).slice(0, 4);
 
   useEffect(() => {
     setImageSrc(albumCover);
@@ -131,6 +132,24 @@ export function MusicCard({ song, index, reason, onReplace }: MusicCardProps) {
               <span key={`${label}-${labelIndex}`}>{label}</span>
             ))}
           </div>
+
+          {similarSpaces.length ? (
+            <div className="mt-5 max-w-2xl border-t border-ink/8 pt-4">
+              <p className="font-meta text-[10px] uppercase tracking-[0.22em] text-tide/50">
+                也常出现在这些空间记忆里
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {similarSpaces.map((space) => (
+                  <span
+                    key={space}
+                    className="rounded-full bg-ink/[0.04] px-3 py-1.5 font-meta text-[9px] uppercase tracking-[0.16em] text-ink/38"
+                  >
+                    {space}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           <div className="mt-6 flex flex-col gap-4 md:mt-auto md:items-end">
             <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row md:self-end">

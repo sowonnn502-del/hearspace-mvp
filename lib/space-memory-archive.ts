@@ -1,5 +1,6 @@
 import type { MusicMemoryRecommendation } from "@/lib/music-library";
 import type { MoodResult } from "@/lib/mood-schema";
+import { inferMoodTaxonomyTags } from "@/lib/taxonomy";
 
 export const SPACE_MEMORY_ARCHIVE_KEY = "hearspace:space-memory-archive";
 
@@ -16,6 +17,12 @@ export type SpaceMemoryArchiveItem = {
   id: string;
   createdAt: string;
   image: string | null;
+  userNote?: string;
+  spaceTags?: string[];
+  sceneTags?: string[];
+  emotionTags?: string[];
+  memoryTags?: string[];
+  visualTags?: string[];
   moodTitle: string;
   moodSubtitle: string;
   memoryText: string;
@@ -27,13 +34,21 @@ export function createArchiveItem(
   result: MoodResult,
   image: string | null,
   recommendations: MusicMemoryRecommendation[],
+  userNote?: string,
 ): SpaceMemoryArchiveItem {
   const createdAt = new Date().toISOString();
+  const taxonomyTags = inferMoodTaxonomyTags(result);
 
   return {
     id: createArchiveId(createdAt),
     createdAt,
     image,
+    userNote: userNote?.trim() || undefined,
+    spaceTags: result.spaceTags?.length ? result.spaceTags : taxonomyTags.spaceTags,
+    sceneTags: result.sceneTags?.length ? result.sceneTags : taxonomyTags.sceneTags,
+    emotionTags: result.emotionTags?.length ? result.emotionTags : taxonomyTags.emotionTags,
+    memoryTags: result.memoryTags?.length ? result.memoryTags : taxonomyTags.memoryTags,
+    visualTags: result.visualTags?.length ? result.visualTags : taxonomyTags.visualTags,
     moodTitle: result.mood_title,
     moodSubtitle: result.mood_subtitle,
     memoryText: result.space_memory_text || result.writing,
@@ -131,6 +146,12 @@ function isArchiveItem(value: unknown): value is SpaceMemoryArchiveItem {
     typeof record.id === "string" &&
     typeof record.createdAt === "string" &&
     (typeof record.image === "string" || record.image === null) &&
+    (typeof record.userNote === "string" || record.userNote === undefined) &&
+    isOptionalStringArray(record.spaceTags) &&
+    isOptionalStringArray(record.sceneTags) &&
+    isOptionalStringArray(record.emotionTags) &&
+    isOptionalStringArray(record.memoryTags) &&
+    isOptionalStringArray(record.visualTags) &&
     typeof record.moodTitle === "string" &&
     typeof record.moodSubtitle === "string" &&
     typeof record.memoryText === "string" &&
@@ -138,6 +159,13 @@ function isArchiveItem(value: unknown): value is SpaceMemoryArchiveItem {
     record.visualTone.every((item) => typeof item === "string") &&
     Array.isArray(record.songs) &&
     record.songs.every(isArchivedSong)
+  );
+}
+
+function isOptionalStringArray(value: unknown) {
+  return (
+    value === undefined ||
+    (Array.isArray(value) && value.every((item) => typeof item === "string"))
   );
 }
 

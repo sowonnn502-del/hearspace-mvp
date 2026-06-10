@@ -39,7 +39,7 @@ export const HEARSPACE_USER_PROMPT = [
   "- space_memory_text：40-80 字，核心情绪文字，像空间记忆，不是图片描述。断句自然，有呼吸感。",
   "- visual_tone：最多 4 个视觉氛围词，如 柔光、绿色植物、午后空气、安静水面。不要写高清、人物、建筑。",
   "- music_query：8-20 字，用于网易云搜索。结构是 情绪 + 场景 + 中文音乐关键词。不要英文 tag，不要 AI 关键词，不要长句。",
-  "- music_memories：必须 3 首歌。reason 要简短、情绪化，像朋友推荐歌。",
+  "- music_memories：必须 3 首歌。reason 要简短、情绪化，像朋友推荐歌，不要写匹配逻辑。",
   "- share_card_text：20-40 字，一句话，留白感，适合叠在图片上，不要解释。",
   "",
   "好标题例子：水边亭台、最后一课、花园记忆、云烟成雨、城市绿洲。",
@@ -52,6 +52,7 @@ export const HEARSPACE_USER_PROMPT = [
   "- writing 必须与 space_memory_text 同义，可更适合正文展示。",
   "- space_personality 用一句短句补充空间气质，不要超过 40 字。",
   "- music_keywords 从 music_query 拆成 3-5 个中文短词。",
+  "- spaceTags / sceneTags / emotionTags / memoryTags / visualTags / seasonTags 必须使用 HearSpace Taxonomy 英文标签。",
   "- music_recommendations 必须与 music_memories 内容一致。",
   "- visual_mood_tags 必须与 visual_tone 内容一致或相近。",
   "- time_label 用 2-6 字时间感，只有画面有证据时写具体时段，否则写 此刻。",
@@ -67,6 +68,12 @@ export const HEARSPACE_USER_PROMPT = [
   '    "camera_style": "真实构图或影像质感",',
   '    "atmosphere_evidence": ["支持情绪的视觉证据"]',
   "  },",
+  '  "spaceTags": ["Natural Space / Urban Space / Residential Space / Transit Space / Campus Space / Travel Space / Commercial Space / Solitude Space"],',
+  '  "sceneTags": ["Classroom / Garden / Park / Night Street / Window / Train Window 等 taxonomy 标签"],',
+  '  "emotionTags": ["Youth / Warm / Nostalgic / Lonely / Healing / Dreamy / Quiet 等 taxonomy 标签"],',
+  '  "memoryTags": ["Graduation / First Love / After School / Rainy Window / Daily Ritual 等 taxonomy 标签"],',
+  '  "visualTags": ["Rainy / Sunset / Warm Light / Golden Hour / Soft Focus / Film Look 等 taxonomy 标签"],',
+  '  "seasonTags": ["Spring / Summer / Autumn / Winter / Rain Season / All Season"],',
   '  "mood_title": "2-6字",',
   '  "mood_subtitle": "12-24字电影字幕感短句",',
   '  "time_label": "2-6字时间感，没有证据写此刻",',
@@ -82,3 +89,22 @@ export const HEARSPACE_USER_PROMPT = [
   '  "visual_mood_tags": ["视觉氛围词"]',
   "}",
 ].join("\n");
+
+export function createHearspaceUserPrompt(userNote?: string) {
+  const cleanedNote = userNote?.trim();
+
+  if (!cleanedNote) return HEARSPACE_USER_PROMPT;
+
+  return [
+    HEARSPACE_USER_PROMPT,
+    "",
+    "用户补充的一句话：",
+    cleanedNote,
+    "",
+    "使用规则：",
+    "- 这句话是用户当下的私人语境，可以影响文案的情绪方向。",
+    "- 但所有空间、光线、场景、物体判断仍必须以真实画面为准。",
+    "- 不要直接复述用户原话，除非它天然适合成为短句。",
+    "- 不要因为用户原话幻想画面中不存在的地点、天气或人物关系。",
+  ].join("\n");
+}

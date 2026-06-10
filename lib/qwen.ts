@@ -1,4 +1,7 @@
-import { HEARSPACE_SYSTEM_PROMPT, HEARSPACE_USER_PROMPT } from "@/lib/prompts";
+import {
+  HEARSPACE_SYSTEM_PROMPT,
+  createHearspaceUserPrompt,
+} from "@/lib/prompts";
 import {
   isMoodResultCore,
   type MoodDebugSource,
@@ -14,6 +17,7 @@ type ParsedMoodResult = {
 
 type GenerateMoodWithQwenParams = {
   image: File;
+  userNote?: string;
 };
 
 type DashScopeMessageContent =
@@ -40,6 +44,7 @@ export function getQwenVlModel() {
 
 export async function generateMoodWithQwen({
   image,
+  userNote,
 }: GenerateMoodWithQwenParams): Promise<MoodResult> {
   const apiKey = process.env.DASHSCOPE_API_KEY;
   const model = getQwenVlModel();
@@ -76,7 +81,7 @@ export async function generateMoodWithQwen({
             content: [
               {
                 type: "text",
-                text: HEARSPACE_USER_PROMPT,
+                text: createHearspaceUserPrompt(userNote),
               },
               {
                 type: "image_url",
@@ -269,6 +274,12 @@ function normalizeMoodResult(value: unknown): MoodResultCore {
 
   return {
     scene_observation: sceneObservation,
+    spaceTags: toStringArray(getFirstValue(record, ["spaceTags", "space_tags"])),
+    sceneTags: toStringArray(getFirstValue(record, ["sceneTags", "scene_tags"])),
+    emotionTags: toStringArray(getFirstValue(record, ["emotionTags", "emotion_tags"])),
+    memoryTags: toStringArray(getFirstValue(record, ["memoryTags", "memory_tags"])),
+    visualTags: toStringArray(getFirstValue(record, ["visualTags", "visual_tags"])),
+    seasonTags: toStringArray(getFirstValue(record, ["seasonTags", "season_tags"])),
     mood_title: toStringValue(getFirstValue(record, ["mood_title", "moodTitle", "title"])),
     mood_subtitle: toStringValue(getFirstValue(record, ["mood_subtitle", "moodSubtitle", "subtitle"])),
     time_label: timeLabel,
@@ -330,6 +341,12 @@ function completeMoodDefaults(value: MoodResultCore): MoodResultCore {
       camera_style: sceneObservation.camera_style,
       atmosphere_evidence: sceneObservation.atmosphere_evidence,
     },
+    spaceTags: value.spaceTags,
+    sceneTags: value.sceneTags,
+    emotionTags: value.emotionTags,
+    memoryTags: value.memoryTags,
+    visualTags: value.visualTags,
+    seasonTags: value.seasonTags,
     mood_title: moodTitle,
     mood_subtitle: moodSubtitle,
     time_label: value.time_label.trim() || "此刻",

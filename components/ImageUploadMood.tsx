@@ -15,6 +15,7 @@ export function ImageUploadMood() {
   const [isListening, setIsListening] = useState(false);
   const [isDissolvingLoading, setIsDissolvingLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [userNote, setUserNote] = useState("");
 
   useEffect(() => {
     return () => {
@@ -61,6 +62,7 @@ export function ImageUploadMood() {
       const compressed = await compressImage(imageFile);
       const formData = new FormData();
       formData.append("image", compressed);
+      if (userNote.trim()) formData.append("user_note", userNote.trim());
 
       const response = await fetch("/api/generate-mood", {
         method: "POST",
@@ -90,6 +92,7 @@ export function ImageUploadMood() {
       const imageDataUrl = await fileToDataUrl(imageFile);
       sessionStorage.setItem("hearspace:mood-result", JSON.stringify(payload.result));
       sessionStorage.setItem("hearspace:mood-image", imageDataUrl);
+      sessionStorage.setItem("hearspace:user-note", userNote.trim());
       setIsDissolvingLoading(true);
       await sleep(760);
       router.push("/result");
@@ -165,6 +168,19 @@ export function ImageUploadMood() {
             {errorMessage}
           </p>
         ) : null}
+
+        <label className="w-full max-w-3xl">
+          <span className="block text-center font-meta text-[10px] uppercase tracking-[0.28em] text-ink/34">
+            给这一刻留一句话
+          </span>
+          <textarea
+            value={userNote}
+            onChange={(event) => setUserNote(event.target.value.slice(0, 180))}
+            placeholder="比如：今天有点累，但这个地方让我慢了下来。"
+            rows={3}
+            className="mt-4 min-h-24 w-full resize-none rounded-[8px] border border-ink/10 bg-white/28 px-5 py-4 text-center font-serif text-lg leading-7 text-ink/72 outline-none backdrop-blur-xl transition duration-500 placeholder:text-ink/28 focus:border-tide/34 focus:bg-white/42"
+          />
+        </label>
 
         <button
           type="button"

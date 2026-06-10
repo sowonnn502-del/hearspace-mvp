@@ -5,6 +5,9 @@ import { generateMoodWithQwen, getQwenVlModel } from "@/lib/qwen";
 export async function POST(request: Request) {
   const formData = await request.formData();
   const image = formData.get("image");
+  const userNoteValue = formData.get("user_note");
+  const userNote =
+    typeof userNoteValue === "string" ? userNoteValue.trim().slice(0, 180) : "";
   const hasDashScopeApiKey = Boolean(process.env.DASHSCOPE_API_KEY);
   const allowMockFallback = process.env.HEARSPACE_ALLOW_MOCK === "true";
   const qwenVlModel = getQwenVlModel();
@@ -38,7 +41,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const result = await generateMoodWithQwen({ image });
+    const result = await generateMoodWithQwen({ image, userNote });
 
     return NextResponse.json({
       result,

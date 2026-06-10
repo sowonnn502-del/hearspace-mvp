@@ -9,6 +9,53 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "晴天 周杰伦",
     "neteaseSongId": "3339230677",
     "coverUrl": "https://p3.music.126.net/rM6PP_YrU0HjFes4jggIOw==/109951172445882513.jpg",
+    "spaceTags": [
+      "Campus Space",
+      "Residential Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Classroom",
+      "Window"
+    ],
+    "emotionTags": [
+      "Youth",
+      "Warm",
+      "Dreamy",
+      "Bittersweet",
+      "Light"
+    ],
+    "memoryTags": [
+      "After School",
+      "Graduation",
+      "Farewell",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Golden Hour",
+      "Soft Focus",
+      "Window Light"
+    ],
+    "seasonTags": [
+      "Spring",
+      "Summer"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "Soft Focus",
+      "Dreamy",
+      "Summer",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Classroom",
+      "Window",
+      "Corridor",
+      "Playground"
+    ],
+    "recommendationReason": "像夏天教室窗边的一束光，明亮里藏着一点没说出口的遗憾。",
+    "confidence": 0.82,
     "memoryTypes": [
       "campus_youth"
     ],
@@ -58,6 +105,55 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "知足 五月天",
     "neteaseSongId": "385965",
     "coverUrl": "https://p3.music.126.net/pLn35sx61-IXRYfCbfPnCA==/109951171415600711.jpg",
+    "spaceTags": [
+      "Campus Space",
+      "Residential Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Classroom",
+      "Playground",
+      "Window",
+      "After School"
+    ],
+    "emotionTags": [
+      "Youth",
+      "Warm",
+      "Nostalgic",
+      "Dreamy",
+      "Bittersweet",
+      "Light"
+    ],
+    "memoryTags": [
+      "After School",
+      "Graduation",
+      "Farewell",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Sunset",
+      "Warm Light",
+      "Soft Focus",
+      "Window Light"
+    ],
+    "seasonTags": [
+      "All Season"
+    ],
+    "atmosphereTags": [
+      "Sunset",
+      "Warm Light",
+      "Soft Focus",
+      "Nostalgic",
+      "Dreamy"
+    ],
+    "similarSpaces": [
+      "Classroom",
+      "Playground",
+      "Window",
+      "After School"
+    ],
+    "recommendationReason": "像操场边最后一次慢慢走远，把告别说得很轻。",
+    "confidence": 0.82,
     "memoryTypes": [
       "campus_youth"
     ],
@@ -107,6 +203,57 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "遇见 孙燕姿",
     "neteaseSongId": "454828887",
     "coverUrl": "https://p4.music.126.net/KZ0VfIoFYsxpjz9sTQuLVQ==/17687843556430013.jpg",
+    "spaceTags": [
+      "Campus Space",
+      "Urban Space",
+      "Solitude Space",
+      "Residential Space"
+    ],
+    "sceneTags": [
+      "Classroom",
+      "Night Street",
+      "Window"
+    ],
+    "emotionTags": [
+      "Youth",
+      "Warm",
+      "Dreamy",
+      "Tender",
+      "Bittersweet",
+      "Light"
+    ],
+    "memoryTags": [
+      "After School",
+      "Graduation",
+      "Farewell",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Warm Light",
+      "Golden Hour",
+      "Soft Focus",
+      "Window Light"
+    ],
+    "seasonTags": [
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain",
+      "Warm Light",
+      "Soft Focus",
+      "Dreamy",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Classroom",
+      "Night Street",
+      "Window",
+      "Corridor"
+    ],
+    "recommendationReason": "像窗边忽然吹进来的风，温柔地提醒你某个相遇。",
+    "confidence": 0.82,
     "memoryTypes": [
       "campus_youth"
     ],
@@ -156,6 +303,53 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "那些年 胡夏",
     "neteaseSongId": "97357",
     "coverUrl": "https://p3.music.126.net/GyH5RG2HUo78PJ161NCY8A==/109951165966760453.jpg",
+    "spaceTags": [
+      "Campus Space",
+      "Residential Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Classroom",
+      "Playground",
+      "Window",
+      "After School"
+    ],
+    "emotionTags": [
+      "Youth",
+      "Warm",
+      "Dreamy",
+      "Bittersweet",
+      "Light"
+    ],
+    "memoryTags": [
+      "After School",
+      "Graduation",
+      "Farewell",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Soft Focus",
+      "Window Light"
+    ],
+    "seasonTags": [
+      "Spring",
+      "Summer"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "Soft Focus",
+      "Dreamy",
+      "Summer"
+    ],
+    "similarSpaces": [
+      "Classroom",
+      "Playground",
+      "Window",
+      "After School"
+    ],
+    "recommendationReason": "像课桌上还没擦掉的字，把很多年后的回头留住。",
+    "confidence": 0.82,
     "memoryTypes": [
       "campus_youth"
     ],
@@ -205,6 +399,55 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "蒲公英的约定 周杰伦",
     "neteaseSongId": "3344477355",
     "coverUrl": "https://p3.music.126.net/8AeJLjbGKnp1gxwMycnDsQ==/109951172661339989.jpg",
+    "spaceTags": [
+      "Campus Space",
+      "Residential Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Classroom",
+      "Playground",
+      "Window"
+    ],
+    "emotionTags": [
+      "Youth",
+      "Warm",
+      "Nostalgic",
+      "Dreamy",
+      "Tender",
+      "Light"
+    ],
+    "memoryTags": [
+      "After School",
+      "Graduation",
+      "Soft Bloom",
+      "Old Photo"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Golden Hour",
+      "Soft Focus",
+      "Window Light"
+    ],
+    "seasonTags": [
+      "Summer"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "Soft Focus",
+      "Nostalgic",
+      "Dreamy",
+      "Summer",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Classroom",
+      "Playground",
+      "Window",
+      "Corridor"
+    ],
+    "recommendationReason": "像树荫下的一个约定，被风吹散，又一直没有消失。",
+    "confidence": 0.82,
     "memoryTypes": [
       "campus_youth"
     ],
@@ -254,6 +497,47 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "奇妙能力歌 陈粒",
     "neteaseSongId": "30431366",
     "coverUrl": "https://p3.music.126.net/VuJFMbXzpAProbJPoXLv7g==/7721870161993398.jpg",
+    "spaceTags": [
+      "Natural Space",
+      "Urban Space"
+    ],
+    "sceneTags": [
+      "Park"
+    ],
+    "emotionTags": [
+      "Healing",
+      "Dreamy",
+      "Free",
+      "Restorative",
+      "Light"
+    ],
+    "memoryTags": [
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Golden Hour",
+      "Soft Focus",
+      "Green Shadow"
+    ],
+    "seasonTags": [
+      "Spring",
+      "Summer"
+    ],
+    "atmosphereTags": [
+      "Soft Focus",
+      "Dreamy",
+      "Healing",
+      "Summer",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Park",
+      "Garden",
+      "Lakeside",
+      "Forest"
+    ],
+    "recommendationReason": "像在草地上走慢一点，心情忽然有了重新呼吸的地方。",
+    "confidence": 0.82,
     "memoryTypes": [
       "city_park_restorative"
     ],
@@ -304,6 +588,48 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "云烟成雨 房东的猫",
     "neteaseSongId": "513360721",
     "coverUrl": "https://p4.music.126.net/DSTg1dR7yKsyGq4IK3NL8A==/109951163046050093.jpg",
+    "spaceTags": [
+      "Natural Space",
+      "Urban Space"
+    ],
+    "sceneTags": [
+      "Garden",
+      "Park"
+    ],
+    "emotionTags": [
+      "Dreamy",
+      "Quiet",
+      "Tender",
+      "Melancholy",
+      "Light"
+    ],
+    "memoryTags": [
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Soft Focus",
+      "Green Shadow"
+    ],
+    "seasonTags": [
+      "Spring",
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain",
+      "Soft Focus",
+      "Quiet",
+      "Dreamy"
+    ],
+    "similarSpaces": [
+      "Garden",
+      "Park",
+      "Lakeside",
+      "Forest"
+    ],
+    "recommendationReason": "像雨后植物上的一点水光，安静地把思念放轻。",
+    "confidence": 0.82,
     "memoryTypes": [
       "city_park_restorative"
     ],
@@ -353,6 +679,48 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "夏日漱石 橘子海",
     "neteaseSongId": "3362244830",
     "coverUrl": "https://p4.music.126.net/O2rMXOb98szo-IC9EqgPBQ==/109951172931892582.jpg",
+    "spaceTags": [
+      "Natural Space",
+      "Urban Space",
+      "Transit Space",
+      "Travel Space"
+    ],
+    "sceneTags": [
+      "Park",
+      "Road Trip Sunset"
+    ],
+    "emotionTags": [
+      "Dreamy",
+      "Free",
+      "Light"
+    ],
+    "memoryTags": [
+      "Long Trip",
+      "Waiting",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Golden Hour",
+      "Soft Focus",
+      "Green Shadow"
+    ],
+    "seasonTags": [
+      "Summer"
+    ],
+    "atmosphereTags": [
+      "Soft Focus",
+      "Dreamy",
+      "Summer",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Park",
+      "Road Trip Sunset",
+      "Garden",
+      "Lakeside"
+    ],
+    "recommendationReason": "像盛夏路上的亮光，把空间一下子推得很远。",
+    "confidence": 0.82,
     "memoryTypes": [
       "city_park_restorative"
     ],
@@ -402,6 +770,44 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "春风十里 鹿先森乐队",
     "neteaseSongId": "38576323",
     "coverUrl": "https://p3.music.126.net/hYjA4Th6CAdkWI_sm32juw==/109951163669459549.jpg",
+    "spaceTags": [
+      "Natural Space",
+      "Urban Space"
+    ],
+    "sceneTags": [
+      "Park"
+    ],
+    "emotionTags": [
+      "Healing",
+      "Dreamy",
+      "Tender",
+      "Light"
+    ],
+    "memoryTags": [
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Sunset",
+      "Soft Focus",
+      "Green Shadow"
+    ],
+    "seasonTags": [
+      "Spring"
+    ],
+    "atmosphereTags": [
+      "Sunset",
+      "Soft Focus",
+      "Dreamy",
+      "Healing"
+    ],
+    "similarSpaces": [
+      "Park",
+      "Garden",
+      "Lakeside",
+      "Forest"
+    ],
+    "recommendationReason": "像傍晚的草地和风，适合把话说慢一点。",
+    "confidence": 0.82,
     "memoryTypes": [
       "city_park_restorative"
     ],
@@ -451,6 +857,52 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "水星记 郭顶",
     "neteaseSongId": "441491828",
     "coverUrl": "https://p3.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg",
+    "spaceTags": [
+      "Urban Space",
+      "Commercial Space",
+      "Natural Space",
+      "Solitude Space",
+      "Residential Space"
+    ],
+    "sceneTags": [
+      "Park",
+      "Night Street",
+      "Window",
+      "Restaurant"
+    ],
+    "emotionTags": [
+      "Warm",
+      "Lonely",
+      "Quiet"
+    ],
+    "memoryTags": [
+      "Rainy Window",
+      "Waiting"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Neon",
+      "Blue Hour",
+      "Low Light",
+      "Window Light"
+    ],
+    "seasonTags": [
+      "All Season"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "Quiet",
+      "Lonely",
+      "City Night"
+    ],
+    "similarSpaces": [
+      "Park",
+      "Night Street",
+      "Window",
+      "Restaurant"
+    ],
+    "recommendationReason": "像深夜城市里隔着一段距离的光，靠近又安静。",
+    "confidence": 0.82,
     "memoryTypes": [
       "night_city_dining"
     ],
@@ -499,6 +951,45 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "普通朋友 陶喆",
     "neteaseSongId": "150623",
     "coverUrl": "https://p3.music.126.net/tMQXBMTy8pGjGggX1j0YNQ==/109951169389595068.jpg",
+    "spaceTags": [
+      "Urban Space",
+      "Commercial Space",
+      "Natural Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Park",
+      "Night Street",
+      "Restaurant"
+    ],
+    "emotionTags": [
+      "Warm",
+      "Romantic"
+    ],
+    "memoryTags": [
+      "First Love"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Neon",
+      "Blue Hour",
+      "Low Light"
+    ],
+    "seasonTags": [
+      "All Season"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "City Night"
+    ],
+    "similarSpaces": [
+      "Park",
+      "Night Street",
+      "Restaurant",
+      "Convenience Store"
+    ],
+    "recommendationReason": "像餐桌旁没有说破的话，灯光把情绪留在半空。",
+    "confidence": 0.82,
     "memoryTypes": [
       "night_city_dining"
     ],
@@ -548,6 +1039,47 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "好久不见 陈奕迅",
     "neteaseSongId": "65538",
     "coverUrl": "https://p4.music.126.net/o_OjL_NZNoeog9fIjBXAyw==/18782957139233959.jpg",
+    "spaceTags": [
+      "Urban Space",
+      "Commercial Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Night Street",
+      "Restaurant"
+    ],
+    "emotionTags": [
+      "Warm",
+      "Nostalgic"
+    ],
+    "memoryTags": [
+      "Old Photo"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Warm Light",
+      "Neon",
+      "Blue Hour",
+      "Low Light"
+    ],
+    "seasonTags": [
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain",
+      "Warm Light",
+      "Nostalgic",
+      "City Night"
+    ],
+    "similarSpaces": [
+      "Night Street",
+      "Restaurant",
+      "Convenience Store",
+      "Subway"
+    ],
+    "recommendationReason": "像雨后的街道，很多话走到嘴边又慢慢停下。",
+    "confidence": 0.82,
     "memoryTypes": [
       "night_city_dining"
     ],
@@ -595,6 +1127,49 @@ export const generatedMusicLibrary: MusicSong[] =
     "title": "Under Lover",
     "artist": "落日飞车",
     "neteaseKeyword": "Under Lover 落日飞车",
+    "spaceTags": [
+      "Urban Space",
+      "Commercial Space",
+      "Solitude Space",
+      "Transit Space",
+      "Travel Space"
+    ],
+    "sceneTags": [
+      "Night Street",
+      "Train Window",
+      "Restaurant"
+    ],
+    "emotionTags": [
+      "Warm",
+      "Tender",
+      "Romantic"
+    ],
+    "memoryTags": [
+      "First Love",
+      "Long Trip",
+      "Waiting"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Neon",
+      "Blue Hour",
+      "Low Light"
+    ],
+    "seasonTags": [
+      "All Season"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "City Night"
+    ],
+    "similarSpaces": [
+      "Night Street",
+      "Train Window",
+      "Restaurant",
+      "Convenience Store"
+    ],
+    "recommendationReason": "像车窗外晃过的霓虹，城市在夜里变得柔软。",
+    "confidence": 0.82,
     "memoryTypes": [
       "night_city_dining"
     ],
@@ -638,12 +1213,51 @@ export const generatedMusicLibrary: MusicSong[] =
   },
   {
     "id": "滞留锋-deca-joins",
-    "title": "浴室",
+    "title": "浴室(2019 Reprise)",
     "artist": "deca joins",
     "neteaseKeyword": "滞留锋 deca joins",
-    "neteaseSongId": "483378334",
-    "coverUrl": "https://p3.music.126.net/byjfkEIOWI_RmxSKEWTPyw==/18910500486297525.jpg",
-    "album": "浴室",
+    "neteaseSongId": "1393399161",
+    "coverUrl": "https://p3.music.126.net/JiLYB0foQrGknogFd4CNSw==/109951164387825675.jpg",
+    "album": "浴室 (2019 Reprise)",
+    "spaceTags": [
+      "Urban Space",
+      "Commercial Space",
+      "Natural Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Park",
+      "Night Street",
+      "Restaurant"
+    ],
+    "emotionTags": [
+      "Warm",
+      "Romantic"
+    ],
+    "memoryTags": [
+      "First Love"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Neon",
+      "Blue Hour",
+      "Low Light"
+    ],
+    "seasonTags": [
+      "All Season"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "City Night"
+    ],
+    "similarSpaces": [
+      "Park",
+      "Night Street",
+      "Restaurant",
+      "Convenience Store"
+    ],
+    "recommendationReason": "像夜晚餐桌旁的灯光，话没有说满，情绪刚好停住。",
+    "confidence": 0.82,
     "memoryTypes": [
       "night_city_dining"
     ],
@@ -694,6 +1308,52 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "阴天 莫文蔚",
     "neteaseSongId": "108640",
     "coverUrl": "https://p3.music.126.net/DjFHDgJxYgByciKsCH3Tlg==/109951169614579889.jpg",
+    "spaceTags": [
+      "Solitude Space",
+      "Residential Space"
+    ],
+    "sceneTags": [
+      "Room",
+      "Window"
+    ],
+    "emotionTags": [
+      "Lonely",
+      "Quiet",
+      "Melancholy"
+    ],
+    "memoryTags": [
+      "Rainy Window",
+      "Waiting",
+      "Daily Ritual",
+      "Private Room"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Golden Hour",
+      "Blue Hour",
+      "Low Light",
+      "Window Light",
+      "Muted Color"
+    ],
+    "seasonTags": [
+      "Winter",
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain",
+      "Quiet",
+      "Lonely",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Room",
+      "Window",
+      "Night Street",
+      "Train Window"
+    ],
+    "recommendationReason": "像阴天房间里没有开灯，心事被灰色光线轻轻包住。",
+    "confidence": 0.82,
     "memoryTypes": [
       "rain_window_solitude"
     ],
@@ -743,6 +1403,50 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "爱情转移 陈奕迅",
     "neteaseSongId": "65536",
     "coverUrl": "https://p4.music.126.net/o_OjL_NZNoeog9fIjBXAyw==/18782957139233959.jpg",
+    "spaceTags": [
+      "Solitude Space",
+      "Residential Space",
+      "Urban Space",
+      "Transit Space",
+      "Travel Space"
+    ],
+    "sceneTags": [
+      "Night Street",
+      "Window",
+      "Train Window",
+      "Road Trip Sunset"
+    ],
+    "emotionTags": [
+      "Bittersweet"
+    ],
+    "memoryTags": [
+      "Farewell",
+      "Long Trip",
+      "Waiting"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Blue Hour",
+      "Low Light",
+      "Window Light",
+      "Muted Color"
+    ],
+    "seasonTags": [
+      "Winter",
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain"
+    ],
+    "similarSpaces": [
+      "Night Street",
+      "Window",
+      "Train Window",
+      "Road Trip Sunset"
+    ],
+    "recommendationReason": "像夜路上移动的车窗，把一段关系慢慢带远。",
+    "confidence": 0.82,
     "memoryTypes": [
       "rain_window_solitude"
     ],
@@ -791,6 +1495,54 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "雨下一整晚 周杰伦",
     "neteaseSongId": "3340801430",
     "coverUrl": "https://p4.music.126.net/sP5L--4FT_EHpsW6hwSZxg==/109951172496999853.jpg",
+    "spaceTags": [
+      "Solitude Space",
+      "Residential Space",
+      "Urban Space"
+    ],
+    "sceneTags": [
+      "Night Street",
+      "Room",
+      "Window"
+    ],
+    "emotionTags": [
+      "Nostalgic",
+      "Lonely",
+      "Melancholy"
+    ],
+    "memoryTags": [
+      "Rainy Window",
+      "Waiting",
+      "Daily Ritual",
+      "Private Room",
+      "Old Photo"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Blue Hour",
+      "Low Light",
+      "Window Light",
+      "Muted Color"
+    ],
+    "seasonTags": [
+      "Winter",
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain",
+      "Nostalgic",
+      "Lonely",
+      "City Night"
+    ],
+    "similarSpaces": [
+      "Night Street",
+      "Room",
+      "Window",
+      "Train Window"
+    ],
+    "recommendationReason": "像一整晚的雨贴着窗户，把回忆敲得很轻。",
+    "confidence": 0.82,
     "memoryTypes": [
       "rain_window_solitude"
     ],
@@ -840,6 +1592,44 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "琵琶语 林海",
     "neteaseSongId": "30431472",
     "coverUrl": "https://p3.music.126.net/F7l1O5-EU5kOr4HMvbyojw==/7719671138752962.jpg",
+    "spaceTags": [
+      "Natural Space"
+    ],
+    "sceneTags": [
+      "Garden",
+      "Lakeside"
+    ],
+    "emotionTags": [
+      "Quiet"
+    ],
+    "memoryTags": [
+      "Old Photo"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Sunset",
+      "Water Reflection",
+      "Muted Color"
+    ],
+    "seasonTags": [
+      "Summer",
+      "Winter",
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain",
+      "Sunset",
+      "Quiet"
+    ],
+    "similarSpaces": [
+      "Garden",
+      "Lakeside",
+      "Park",
+      "Forest"
+    ],
+    "recommendationReason": "像水面旁的一小段留白，声音落下去以后还在回响。",
+    "confidence": 0.82,
     "memoryTypes": [
       "chinese_garden_water"
     ],
@@ -894,6 +1684,49 @@ export const generatedMusicLibrary: MusicSong[] =
     "title": "风居住的街道",
     "artist": "矶村由纪子",
     "neteaseKeyword": "风居住的街道 矶村由纪子",
+    "spaceTags": [
+      "Natural Space",
+      "Urban Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Garden",
+      "Lakeside",
+      "Night Street"
+    ],
+    "emotionTags": [
+      "Nostalgic",
+      "Quiet",
+      "Tender"
+    ],
+    "memoryTags": [
+      "Old Photo"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Sunset",
+      "Water Reflection",
+      "Muted Color"
+    ],
+    "seasonTags": [
+      "Winter",
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain",
+      "Sunset",
+      "Quiet",
+      "Nostalgic"
+    ],
+    "similarSpaces": [
+      "Garden",
+      "Lakeside",
+      "Night Street",
+      "Park"
+    ],
+    "recommendationReason": "像一条有风经过的安静街道，把旧时光吹得很慢。",
+    "confidence": 0.82,
     "memoryTypes": [
       "chinese_garden_water"
     ],
@@ -950,6 +1783,45 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "繁花 陈致逸",
     "neteaseSongId": "482415265",
     "coverUrl": "https://p3.music.126.net/DK-W8xxHAeQhFaGoHef7Gg==/109951172175189657.jpg",
+    "spaceTags": [
+      "Natural Space"
+    ],
+    "sceneTags": [
+      "Garden",
+      "Lakeside"
+    ],
+    "emotionTags": [
+      "Quiet"
+    ],
+    "memoryTags": [
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Rainy",
+      "Sunset",
+      "Film Look",
+      "Water Reflection",
+      "Muted Color"
+    ],
+    "seasonTags": [
+      "Spring",
+      "Winter",
+      "Rain Season"
+    ],
+    "atmosphereTags": [
+      "Rainy",
+      "After Rain",
+      "Sunset",
+      "Quiet"
+    ],
+    "similarSpaces": [
+      "Garden",
+      "Lakeside",
+      "Park",
+      "Forest"
+    ],
+    "recommendationReason": "像花影和水光在同一个画面里停住，热闹却不喧哗。",
+    "confidence": 0.82,
     "memoryTypes": [
       "chinese_garden_water"
     ],
@@ -1006,6 +1878,51 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "旅行的意义 陈绮贞",
     "neteaseSongId": "209228",
     "coverUrl": "https://p4.music.126.net/NbGB1_vTJ6jX4B2r_I-EvA==/109951172349668373.jpg",
+    "spaceTags": [
+      "Natural Space",
+      "Urban Space",
+      "Solitude Space",
+      "Transit Space",
+      "Travel Space"
+    ],
+    "sceneTags": [
+      "Garden",
+      "Night Street",
+      "Road Trip Sunset"
+    ],
+    "emotionTags": [
+      "Dreamy",
+      "Free",
+      "Bittersweet",
+      "Light"
+    ],
+    "memoryTags": [
+      "Farewell",
+      "Long Trip",
+      "Waiting",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Golden Hour",
+      "Soft Focus",
+      "Pink Bloom"
+    ],
+    "seasonTags": [
+      "Spring"
+    ],
+    "atmosphereTags": [
+      "Soft Focus",
+      "Dreamy",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Garden",
+      "Night Street",
+      "Road Trip Sunset",
+      "Park"
+    ],
+    "recommendationReason": "像带着花香出门的午后，心里有一点想去远方。",
+    "confidence": 0.82,
     "memoryTypes": [
       "flower_dream_portrait"
     ],
@@ -1055,6 +1972,44 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "小情歌 苏打绿",
     "neteaseSongId": "1952285469",
     "coverUrl": "https://p3.music.126.net/jCqK50L1bmtUXJ6c-6L5Og==/109951169158810091.jpg",
+    "spaceTags": [
+      "Natural Space"
+    ],
+    "sceneTags": [
+      "Garden"
+    ],
+    "emotionTags": [
+      "Youth",
+      "Dreamy",
+      "Tender",
+      "Romantic",
+      "Light"
+    ],
+    "memoryTags": [
+      "First Love",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Golden Hour",
+      "Soft Focus",
+      "Pink Bloom"
+    ],
+    "seasonTags": [
+      "Spring"
+    ],
+    "atmosphereTags": [
+      "Soft Focus",
+      "Dreamy",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Garden",
+      "Park",
+      "Lakeside",
+      "Forest"
+    ],
+    "recommendationReason": "像阳光落在花园和课本之间，喜欢被唱得很干净。",
+    "confidence": 0.82,
     "memoryTypes": [
       "flower_dream_portrait"
     ],
@@ -1102,6 +2057,42 @@ export const generatedMusicLibrary: MusicSong[] =
     "title": "玫瑰少年",
     "artist": "蔡依林",
     "neteaseKeyword": "玫瑰少年 蔡依林",
+    "spaceTags": [
+      "Natural Space"
+    ],
+    "sceneTags": [
+      "Garden"
+    ],
+    "emotionTags": [
+      "Youth",
+      "Dreamy",
+      "Tender",
+      "Light"
+    ],
+    "memoryTags": [
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Golden Hour",
+      "Soft Focus",
+      "Pink Bloom"
+    ],
+    "seasonTags": [
+      "Spring"
+    ],
+    "atmosphereTags": [
+      "Soft Focus",
+      "Dreamy",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Garden",
+      "Park",
+      "Lakeside",
+      "Forest"
+    ],
+    "recommendationReason": "像玫瑰开得很认真，柔软里也有清楚的力量。",
+    "confidence": 0.82,
     "memoryTypes": [
       "flower_dream_portrait"
     ],
@@ -1151,6 +2142,51 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "慢慢喜欢你 莫文蔚",
     "neteaseSongId": "541687281",
     "coverUrl": "https://p3.music.126.net/VYZejIv5M-K4RsHKkyXQFQ==/109951165958895028.jpg",
+    "spaceTags": [
+      "Natural Space",
+      "Residential Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Garden",
+      "Room",
+      "Window"
+    ],
+    "emotionTags": [
+      "Warm",
+      "Dreamy",
+      "Tender",
+      "Romantic",
+      "Light"
+    ],
+    "memoryTags": [
+      "First Love",
+      "Daily Ritual",
+      "Private Room",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Golden Hour",
+      "Soft Focus",
+      "Window Light",
+      "Pink Bloom"
+    ],
+    "seasonTags": [
+      "Spring"
+    ],
+    "atmosphereTags": [
+      "Soft Focus",
+      "Dreamy",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Garden",
+      "Room",
+      "Window",
+      "Park"
+    ],
+    "recommendationReason": "像窗边慢慢亮起来的日常，把喜欢说得不急不慢。",
+    "confidence": 0.82,
     "memoryTypes": [
       "flower_dream_portrait"
     ],
@@ -1200,6 +2236,41 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "想去海边 夏日入侵企画",
     "neteaseSongId": "1413863166",
     "coverUrl": "https://p4.music.126.net/sLWN-iePq4ESOMPER0IWgQ==/109951164602081973.jpg",
+    "spaceTags": [
+      "Travel Space",
+      "Transit Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Train Window",
+      "Road Trip Sunset"
+    ],
+    "emotionTags": [
+      "Free",
+      "Light"
+    ],
+    "memoryTags": [
+      "Long Trip",
+      "Waiting"
+    ],
+    "visualTags": [
+      "Golden Hour"
+    ],
+    "seasonTags": [
+      "Summer"
+    ],
+    "atmosphereTags": [
+      "Summer",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Train Window",
+      "Road Trip Sunset",
+      "Airport Waiting",
+      "Hotel"
+    ],
+    "recommendationReason": "像突然想去海边的那个下午，空气一下子变宽了。",
+    "confidence": 0.82,
     "memoryTypes": [
       "travel_landscape"
     ],
@@ -1247,6 +2318,51 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "平凡的一天 毛不易",
     "neteaseSongId": "569214247",
     "coverUrl": "https://p4.music.126.net/vmCcDvD1H04e9gm97xsCqg==/109951163350929740.jpg",
+    "spaceTags": [
+      "Residential Space",
+      "Solitude Space",
+      "Urban Space"
+    ],
+    "sceneTags": [
+      "Night Street",
+      "Room",
+      "Kitchen"
+    ],
+    "emotionTags": [
+      "Warm",
+      "Healing",
+      "Dreamy",
+      "Quiet"
+    ],
+    "memoryTags": [
+      "Daily Ritual",
+      "Private Room",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Golden Hour",
+      "Soft Focus"
+    ],
+    "seasonTags": [
+      "All Season"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "Soft Focus",
+      "Quiet",
+      "Dreamy",
+      "Healing",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Night Street",
+      "Room",
+      "Kitchen",
+      "Window"
+    ],
+    "recommendationReason": "像一天里最普通的光，落在桌面上也很值得被记住。",
+    "confidence": 0.82,
     "memoryTypes": [
       "daily_life_home"
     ],
@@ -1295,6 +2411,50 @@ export const generatedMusicLibrary: MusicSong[] =
     "neteaseKeyword": "生活倒影 苏运莹",
     "neteaseSongId": "1306112195",
     "coverUrl": "https://p3.music.126.net/ZAGSQxIY3Xcx3eslDRdSuQ==/109951163722875135.jpg",
+    "spaceTags": [
+      "Residential Space",
+      "Solitude Space"
+    ],
+    "sceneTags": [
+      "Room",
+      "Window"
+    ],
+    "emotionTags": [
+      "Warm",
+      "Dreamy",
+      "Quiet",
+      "Tender"
+    ],
+    "memoryTags": [
+      "Daily Ritual",
+      "Private Room",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Warm Light",
+      "Golden Hour",
+      "Soft Focus",
+      "Window Light",
+      "Water Reflection"
+    ],
+    "seasonTags": [
+      "All Season"
+    ],
+    "atmosphereTags": [
+      "Warm Light",
+      "Soft Focus",
+      "Quiet",
+      "Dreamy",
+      "Slow Afternoon"
+    ],
+    "similarSpaces": [
+      "Room",
+      "Window",
+      "Kitchen",
+      "Balcony"
+    ],
+    "recommendationReason": "像房间里一小片倒影，把生活照得轻而安静。",
+    "confidence": 0.82,
     "memoryTypes": [
       "daily_life_home"
     ],
@@ -1341,6 +2501,45 @@ export const generatedMusicLibrary: MusicSong[] =
     "title": "Merry Christmas Mr. Lawrence",
     "artist": "Ryuichi Sakamoto",
     "neteaseKeyword": "Merry Christmas Mr. Lawrence Ryuichi Sakamoto",
+    "spaceTags": [
+      "Solitude Space",
+      "Residential Space"
+    ],
+    "sceneTags": [
+      "Room"
+    ],
+    "emotionTags": [
+      "Nostalgic",
+      "Dreamy",
+      "Quiet"
+    ],
+    "memoryTags": [
+      "Daily Ritual",
+      "Private Room",
+      "Soft Bloom",
+      "Old Photo"
+    ],
+    "visualTags": [
+      "Soft Focus",
+      "Film Look"
+    ],
+    "seasonTags": [
+      "Winter"
+    ],
+    "atmosphereTags": [
+      "Soft Focus",
+      "Quiet",
+      "Nostalgic",
+      "Dreamy"
+    ],
+    "similarSpaces": [
+      "Room",
+      "Window",
+      "Night Street",
+      "Train Window"
+    ],
+    "recommendationReason": "像冬天里很安静的一束光，回忆被放得很远。",
+    "confidence": 0.58,
     "memoryTypes": [
       "unknown_soft_memory"
     ],
@@ -1382,6 +2581,46 @@ export const generatedMusicLibrary: MusicSong[] =
     "title": "One Summer's Day",
     "artist": "Joe Hisaishi",
     "neteaseKeyword": "One Summer's Day Joe Hisaishi",
+    "spaceTags": [
+      "Solitude Space",
+      "Transit Space",
+      "Travel Space"
+    ],
+    "sceneTags": [
+      "Road Trip Sunset"
+    ],
+    "emotionTags": [
+      "Lonely",
+      "Dreamy",
+      "Free",
+      "Light"
+    ],
+    "memoryTags": [
+      "Rainy Window",
+      "Waiting",
+      "Long Trip",
+      "Soft Bloom"
+    ],
+    "visualTags": [
+      "Soft Focus"
+    ],
+    "seasonTags": [
+      "Summer"
+    ],
+    "atmosphereTags": [
+      "Soft Focus",
+      "Dreamy",
+      "Lonely",
+      "Summer"
+    ],
+    "similarSpaces": [
+      "Road Trip Sunset",
+      "Window",
+      "Room",
+      "Night Street"
+    ],
+    "recommendationReason": "像夏天忽然变得很大，天空和记忆一起铺开。",
+    "confidence": 0.58,
     "memoryTypes": [
       "unknown_soft_memory"
     ],

@@ -28,10 +28,12 @@ export function ResultExperience() {
     getMusicRecommendationPool(mockMoodResult),
   );
   const [saveMessage, setSaveMessage] = useState("");
+  const [userNote, setUserNote] = useState("");
 
   useEffect(() => {
     const storedResult = sessionStorage.getItem("hearspace:mood-result");
     const storedImage = sessionStorage.getItem("hearspace:mood-image");
+    const storedUserNote = sessionStorage.getItem("hearspace:user-note");
 
     if (storedResult) {
       try {
@@ -43,6 +45,7 @@ export function ResultExperience() {
     }
 
     if (storedImage) setImageUrl(storedImage);
+    if (storedUserNote) setUserNote(storedUserNote);
   }, []);
 
   useEffect(() => {
@@ -168,7 +171,7 @@ export function ResultExperience() {
   );
 
   function handleSaveMemory() {
-    const item = createArchiveItem(result, imageUrl, musicRecommendations);
+    const item = createArchiveItem(result, imageUrl, musicRecommendations, userNote);
     saveArchiveItem(item);
     setSaveMessage("已保存到我的空间记忆。");
   }

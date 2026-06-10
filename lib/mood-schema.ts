@@ -23,6 +23,12 @@ export type MusicRecommendation = {
 
 export type MoodResult = {
   scene_observation: SceneObservation;
+  spaceTags?: string[];
+  sceneTags?: string[];
+  emotionTags?: string[];
+  memoryTags?: string[];
+  visualTags?: string[];
+  seasonTags?: string[];
   mood_title: string;
   mood_subtitle: string;
   time_label: string;
@@ -68,6 +74,12 @@ export function isMoodResultCore(
     sceneObservation.atmosphere_evidence.every(
       (evidence) => typeof evidence === "string",
     ) &&
+    isOptionalStringArray(candidate.spaceTags) &&
+    isOptionalStringArray(candidate.sceneTags) &&
+    isOptionalStringArray(candidate.emotionTags) &&
+    isOptionalStringArray(candidate.memoryTags) &&
+    isOptionalStringArray(candidate.visualTags) &&
+    isOptionalStringArray(candidate.seasonTags) &&
     typeof candidate.mood_title === "string" &&
     typeof candidate.mood_subtitle === "string" &&
     typeof candidate.time_label === "string" &&
@@ -91,6 +103,13 @@ export function isMoodResultCore(
     typeof candidate.share_card_text === "string" &&
     Array.isArray(candidate.visual_mood_tags) &&
     candidate.visual_mood_tags.every((tag) => typeof tag === "string")
+  );
+}
+
+function isOptionalStringArray(value: unknown) {
+  return (
+    value === undefined ||
+    (Array.isArray(value) && value.every((item) => typeof item === "string"))
   );
 }
 
