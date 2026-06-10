@@ -74,8 +74,9 @@ export function MoodResultPanel({
             ) : null}
           </div>
           <div className="mt-6 grid max-w-5xl gap-6 sm:gap-7">
-            <AnimatePresence initial={false} mode="sync">
-              {musicRecommendations.slice(0, 3).map((recommendation, index) => {
+            {musicRecommendations.length ? (
+              <AnimatePresence initial={false} mode="sync">
+                {musicRecommendations.slice(0, 3).map((recommendation, index) => {
                 const song = recommendation.song;
                 const atmosphere = getRecommendationLabels(
                   getRecommendationField(song, "atmosphere"),
@@ -96,7 +97,14 @@ export function MoodResultPanel({
                   />
                 );
               })}
-            </AnimatePresence>
+              </AnimatePresence>
+            ) : (
+              <div className="border-t border-ink/10 py-8">
+                <p className="font-serif text-2xl leading-9 text-ink/62">
+                  正在寻找属于这个空间的旋律...
+                </p>
+              </div>
+            )}
           </div>
         </motion.div>
       </ScrollReveal>

@@ -72,7 +72,7 @@ export function MusicCard({ song, index, reason, onReplace }: MusicCardProps) {
       transition={{
         duration: 1.2,
         ease: hearspaceEase,
-        delay: index * 0.16,
+        delay: index * 0.5,
       }}
     >
       <div className="relative grid min-w-0 gap-5 md:grid-cols-[12.5rem_1fr] md:gap-7">

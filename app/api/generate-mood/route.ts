@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { createMockMoodResult } from "@/lib/mockMood";
 import { generateMoodWithQwen, getQwenVlModel } from "@/lib/qwen";
 
+export const maxDuration = 30;
+
 export async function POST(request: Request) {
   const formData = await request.formData();
   const image = formData.get("image");

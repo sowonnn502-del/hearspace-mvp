@@ -7,15 +7,15 @@ import { FilmGrain, VignetteLayer, hearspaceEase } from "@/components/MotionPrim
 const mainMessages = [
   "正在聆听这段空间...",
   "正在识别光线与情绪...",
-  "音乐记忆正在靠近...",
-  "正在为你寻找最贴近此刻的旋律...",
+  "正在整理这一刻的空气...",
+  "正在写下空间里的停顿...",
 ];
 
 const subMessages = [
   "正在识别光线、场景与情绪线索。",
   "空间的颜色正在慢慢浮出来。",
   "先写下这张照片里的真实细节。",
-  "音乐会稍后抵达，不急。",
+  "音乐会在结果页继续靠近。",
 ];
 
 type AtmosphereLoadingProps = {

@@ -20,6 +20,12 @@ type GenerateMoodWithQwenParams = {
   userNote?: string;
 };
 
+export type QwenMoodTitleResult = {
+  mood_title: string;
+  mood_subtitle: string;
+  time_label: string;
+};
+
 type DashScopeMessageContent =
   | { type: "text"; text: string }
   | { type: "image_url"; image_url: { url: `data:${string};base64,${string}` } };
@@ -27,6 +33,7 @@ type DashScopeMessageContent =
 const DASH_SCOPE_COMPATIBLE_URL =
   "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions";
 const DEFAULT_QWEN_VL_MODEL = "qwen3-vl-plus";
+const DEFAULT_QWEN_TIMEOUT_MS = 22000;
 
 export class QwenMoodError extends Error {
   constructor(
@@ -59,12 +66,16 @@ export async function generateMoodWithQwen({
   }
 
   const imageDataUrl = await fileToDataUrl(image);
+  const abortController = new AbortController();
+  const timeoutMs = getQwenTimeoutMs();
+  const timeout = setTimeout(() => abortController.abort(), timeoutMs);
   let response: Response | undefined;
   let responseBody: string | undefined;
 
   try {
     response = await fetch(DASH_SCOPE_COMPATIBLE_URL, {
       method: "POST",
+      signal: abortController.signal,
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
@@ -93,6 +104,8 @@ export async function generateMoodWithQwen({
           },
         ],
         response_format: { type: "json_object" },
+        max_tokens: 1200,
+        temperature: 0.35,
       }),
     });
 
@@ -138,7 +151,123 @@ export async function generateMoodWithQwen({
     console.error(responseBody ?? "(no response body)");
     console.error("[HearSpace AI] Qwen error message:", getErrorMessage(error));
     throw error;
+  } finally {
+    clearTimeout(timeout);
   }
+}
+
+export async function generateMoodTitleWithQwen({
+  image,
+  userNote,
+}: GenerateMoodWithQwenParams): Promise<QwenMoodTitleResult> {
+  const prompt = [
+    "你是 HearSpace 的空间标题编辑器。",
+    "请只根据图片真实内容，为这段空间生成第一阶段标题。",
+    "不要解释，不要描述模型，不要写 AI 分析。",
+    "输出 JSON，只包含 mood_title, mood_subtitle, time_label。",
+    "mood_title：2-6字，像空间记忆标题。",
+    "mood_subtitle：12-24字，像电影字幕。",
+    "time_label：2-6字，没有明确证据写 此刻。",
+    userNote?.trim() ? `用户补充语境：${userNote.trim()}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+  const parsed = await requestQwenJson({
+    image,
+    prompt,
+    maxTokens: 320,
+    timeoutMs: 9000,
+  });
+  const record = isRecord(parsed) ? parsed : {};
+
+  return {
+    mood_title: toStringValue(record.mood_title || record.moodTitle || record.title) || "正在浮现",
+    mood_subtitle:
+      toStringValue(record.mood_subtitle || record.moodSubtitle || record.subtitle) ||
+      "一些情绪正在靠近。",
+    time_label: toStringValue(record.time_label || record.timeLabel || record.time) || "此刻",
+  };
+}
+
+async function requestQwenJson({
+  image,
+  prompt,
+  maxTokens,
+  timeoutMs,
+}: {
+  image: File;
+  prompt: string;
+  maxTokens: number;
+  timeoutMs: number;
+}) {
+  const apiKey = process.env.DASHSCOPE_API_KEY;
+  const model = getQwenVlModel();
+
+  if (!apiKey) {
+    throw new Error("DASHSCOPE_API_KEY is required for Qwen mood generation.");
+  }
+
+  const imageDataUrl = await fileToDataUrl(image);
+  const abortController = new AbortController();
+  const timeout = setTimeout(() => abortController.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(DASH_SCOPE_COMPATIBLE_URL, {
+      method: "POST",
+      signal: abortController.signal,
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model,
+        messages: [
+          {
+            role: "system",
+            content: HEARSPACE_SYSTEM_PROMPT,
+          },
+          {
+            role: "user",
+            content: [
+              {
+                type: "text",
+                text: prompt,
+              },
+              {
+                type: "image_url",
+                image_url: {
+                  url: imageDataUrl,
+                },
+              },
+            ] satisfies DashScopeMessageContent[],
+          },
+        ],
+        response_format: { type: "json_object" },
+        max_tokens: maxTokens,
+        temperature: 0.32,
+      }),
+    });
+    const responseBody = await response.text();
+
+    if (!response.ok) {
+      throw new QwenMoodError(
+        `Qwen-VL request failed with status ${response.status} ${response.statusText}.`,
+        "api_error",
+      );
+    }
+
+    const payload = JSON.parse(responseBody);
+    return parseMoodContent(payload?.choices?.[0]?.message?.content);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function getQwenTimeoutMs() {
+  const parsed = Number(process.env.QWEN_VL_TIMEOUT_MS);
+  return Number.isFinite(parsed) && parsed >= 5000
+    ? parsed
+    : DEFAULT_QWEN_TIMEOUT_MS;
 }
 
 async function fileToDataUrl(file: File) {

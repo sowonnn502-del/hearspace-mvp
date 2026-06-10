@@ -2,9 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react";
-import { AtmosphereLoading } from "@/components/AtmosphereLoading";
 import { compressImage, MAX_UPLOAD_SIZE } from "@/lib/image-compression";
-import { isMoodResult } from "@/lib/mood-schema";
 
 export function ImageUploadMood() {
   const router = useRouter();
@@ -12,8 +10,7 @@ export function ImageUploadMood() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [isDissolvingLoading, setIsDissolvingLoading] = useState(false);
+  const [isPreparing, setIsPreparing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [userNote, setUserNote] = useState("");
 
@@ -52,19 +49,24 @@ export function ImageUploadMood() {
   }
 
   async function generateMood() {
-    if (!imageFile || isListening) return;
+    if (!imageFile || isPreparing) return;
 
-    setIsListening(true);
-    setIsDissolvingLoading(false);
+    setIsPreparing(true);
     setErrorMessage("");
 
     try {
       const compressed = await compressImage(imageFile);
+      const imageDataUrl = await fileToDataUrl(compressed);
       const formData = new FormData();
       formData.append("image", compressed);
       if (userNote.trim()) formData.append("user_note", userNote.trim());
 
-      const response = await fetch("/api/generate-mood", {
+      sessionStorage.removeItem("hearspace:mood-result");
+      sessionStorage.setItem("hearspace:mood-image", imageDataUrl);
+      sessionStorage.setItem("hearspace:user-note", userNote.trim());
+      sessionStorage.setItem("hearspace:mood-pending", "true");
+
+      const response = await fetch("/api/generate", {
         method: "POST",
         body: formData,
       });
@@ -73,50 +75,26 @@ export function ImageUploadMood() {
         const payload = (await response.json().catch(() => null)) as {
           error?: string;
         } | null;
-        throw new Error(payload?.error || "Mood generation failed.");
+        throw new Error(payload?.error || "无法创建空间记忆任务。");
       }
 
-      const payload = await response.json();
+      const payload = (await response.json()) as { taskId?: string };
+      if (!payload.taskId) throw new Error("空间记忆任务没有返回编号。");
 
-      if (!isMoodResult(payload.result)) {
-        throw new Error("Mood generation returned an invalid result.");
-      }
-
-      if (
-        payload.result.debug_source === "mock_api_error" ||
-        payload.result.debug_source === "mock_no_key"
-      ) {
-        throw new Error("图片分析服务还没有接入，不能使用默认示例结果。");
-      }
-
-      const imageDataUrl = await fileToDataUrl(imageFile);
-      sessionStorage.setItem("hearspace:mood-result", JSON.stringify(payload.result));
-      sessionStorage.setItem("hearspace:mood-image", imageDataUrl);
-      sessionStorage.setItem("hearspace:user-note", userNote.trim());
-      setIsDissolvingLoading(true);
-      await sleep(760);
-      router.push("/result");
+      sessionStorage.setItem("hearspace:generation-task-id", payload.taskId);
+      router.push(`/result?id=${encodeURIComponent(payload.taskId)}`);
     } catch (error) {
       setErrorMessage(
         error instanceof Error
           ? error.message
-          : "这段空间暂时还没有被听见，请稍后再试。",
+          : "这张照片暂时无法被保存，请换一张再试。",
       );
-      setIsListening(false);
-      setIsDissolvingLoading(false);
+      setIsPreparing(false);
     }
   }
 
   return (
-    <>
-      {isListening ? (
-        <AtmosphereLoading
-          imageSrc={previewUrl}
-          isDissolving={isDissolvingLoading}
-        />
-      ) : null}
-
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-6">
+    <div className="mx-auto flex max-w-5xl flex-col items-center gap-6">
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
@@ -188,10 +166,9 @@ export function ImageUploadMood() {
           onClick={generateMood}
           className="rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper transition duration-500 hover:-translate-y-0.5 hover:bg-tide disabled:cursor-not-allowed disabled:bg-ink/24 disabled:text-paper/70 disabled:hover:translate-y-0"
         >
-          生成空间情绪
+          {isPreparing ? "正在打开这段空间..." : "生成空间情绪"}
         </button>
-      </div>
-    </>
+    </div>
   );
 }
 
@@ -202,8 +179,4 @@ function fileToDataUrl(file: File) {
     reader.onerror = () => reject(reader.error);
     reader.readAsDataURL(file);
   });
-}
-
-function sleep(ms: number) {
-  return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
