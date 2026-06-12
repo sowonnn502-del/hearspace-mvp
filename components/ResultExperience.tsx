@@ -82,6 +82,7 @@ export function ResultExperience() {
 
     async function pollGenerationTask(taskId: string) {
       setIsMusicLoading(true);
+      let missingTaskAttempts = 0;
 
       while (!isCancelled) {
         try {
@@ -90,6 +91,38 @@ export function ResultExperience() {
           });
 
           if (!response.ok) {
+            if (response.status === 404 && missingTaskAttempts < 8) {
+              missingTaskAttempts += 1;
+              await sleep(900);
+              continue;
+            }
+
+            if (response.status === 404) {
+              const recoveredResult = await recoverGenerationFromStoredImage(
+                storedImage,
+                storedUserNote,
+              );
+
+              if (recoveredResult && !isCancelled) {
+                const recommendations = getMusicRecommendationPool(recoveredResult).slice(
+                  0,
+                  3,
+                );
+
+                setResult(recoveredResult);
+                setStage("SHARE_READY");
+                setMusicPool(getMusicRecommendationPool(recoveredResult));
+                setMusicRecommendations(recommendations);
+                setIsMusicLoading(false);
+                sessionStorage.setItem(
+                  "hearspace:mood-result",
+                  JSON.stringify(recoveredResult),
+                );
+                sessionStorage.removeItem("hearspace:mood-pending");
+                break;
+              }
+            }
+
             throw new Error("空间记忆任务暂时无法读取。");
           }
 
@@ -312,6 +345,38 @@ function isStageAtLeast(current: ResultProgressStage, target: ResultProgressStag
 
 function sleep(ms: number) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function recoverGenerationFromStoredImage(
+  imageDataUrl: string | null,
+  userNote: string | null,
+) {
+  if (!imageDataUrl) return null;
+
+  const image = await dataUrlToFile(imageDataUrl);
+  const formData = new FormData();
+  formData.append("image", image);
+  if (userNote?.trim()) formData.append("user_note", userNote.trim());
+
+  const response = await fetch("/api/generate-mood", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) return null;
+
+  const payload = (await response.json()) as { result?: unknown };
+  return isMoodResult(payload.result) ? payload.result : null;
+}
+
+async function dataUrlToFile(dataUrl: string) {
+  const response = await fetch(dataUrl);
+  const blob = await response.blob();
+  const extension = blob.type.split("/")[1] || "jpg";
+
+  return new File([blob], `hearspace-recovery.${extension}`, {
+    type: blob.type || "image/jpeg",
+  });
 }
 
 function getRecommendationKey(recommendation: MusicMemoryRecommendation) {
