@@ -12,7 +12,7 @@ export async function GET(
   { params }: GenerateTaskStatusRouteProps,
 ) {
   const { taskId } = await params;
-  const task = getGenerationTask(taskId);
+  const task = await getGenerationTask(taskId);
 
   if (!task) {
     return NextResponse.json({ error: "Generation task not found." }, { status: 404 });

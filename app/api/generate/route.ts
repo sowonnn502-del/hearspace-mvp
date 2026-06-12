@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { after } from "next/server";
+import { NextResponse, after } from "next/server";
 import {
   createGenerationTask,
   startGenerationTask,
@@ -25,7 +24,7 @@ export async function POST(request: Request) {
   const imageForTask = new File([imageBuffer], image.name || "hearspace.jpg", {
     type: image.type,
   });
-  const taskId = createGenerationTask({ image: imageForTask, userNote });
+  const taskId = await createGenerationTask({ image: imageForTask, userNote });
   after(async () => {
     await startGenerationTask(taskId, { image: imageForTask, userNote });
   });
