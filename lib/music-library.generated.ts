@@ -1,11 +1,11 @@
 import type { MusicSong } from "@/lib/music-library";
 
-export const generatedMusicLibrary: MusicSong[] = 
+export const generatedMusicLibrary: MusicSong[] =
 [
   {
     "id": "晴天-周杰伦",
     "title": "晴天",
-    "artist": "周杰伦- / A-LNK",
+    "artist": "周杰伦",
     "neteaseKeyword": "晴天 周杰伦",
     "songId": "3339230677",
     "neteaseSongId": "3339230677",
@@ -148,7 +148,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "youth memory"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.95,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "华语校园青春",
+        "千禧年代集体记忆",
+        "放学与暗恋叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "教室窗边",
+        "毕业季"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.95
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "知足-五月天",
@@ -297,7 +327,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "youth memory",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.93,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "青春告别",
+        "校园毕业",
+        "演唱会合唱"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "演唱会散场",
+        "毕业季"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.93
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "遇见-孙燕姿",
@@ -457,7 +517,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "youth memory"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.92,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "千禧年代华语女声",
+        "地铁与相遇",
+        "都市感"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "地铁末班车",
+        "雨天窗边",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.92
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "那些年-胡夏",
@@ -607,12 +699,40 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "youth memory"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "电影原声",
+        "校园青春",
+        "毕业季标配"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "毕业季",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "蒲公英的约定-周杰伦",
     "title": "蒲公英的约定",
-    "artist": "Montagem / 周杰伦、",
+    "artist": "周杰伦",
     "neteaseKeyword": "蒲公英的约定 周杰伦",
     "songId": "3344477355",
     "neteaseSongId": "3344477355",
@@ -754,7 +874,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "youth memory"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "校园毕业季",
+        "青春约定"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "毕业季",
+        "教室"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "奇妙能力歌-陈粒",
@@ -898,7 +1046,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "open travel"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "90后",
+        "00后",
+        "独立音乐听众"
+      ],
+      "culturalMemory": [
+        "中国独立民谣代表",
+        "文艺青年记忆"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "独立音乐听众"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "咖啡馆",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Cafe Afternoon",
+      "Park Grass / Bench"
+    ]
   },
   {
     "id": "云烟成雨-房东的猫",
@@ -1039,7 +1217,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "room solitude"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立民谣听众"
+      ],
+      "culturalMemory": [
+        "中国独立民谣新声",
+        "治愈系"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后",
+        "独立民谣听众"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "公园草地",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Rainy Window"
+    ]
   },
   {
     "id": "夏日漱石-橘子海",
@@ -1188,7 +1395,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立流行听众"
+      ],
+      "culturalMemory": [
+        "中国City Pop新声",
+        "夏日感"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "高铁窗边",
+        "城市自行车道"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Train Window"
+    ]
   },
   {
     "id": "春风十里-鹿先森乐队",
@@ -1328,7 +1563,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "city night"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "90后",
+        "00后",
+        "民谣听众"
+      ],
+      "culturalMemory": [
+        "中国民谣新声",
+        "春天叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "咖啡馆",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Park Grass / Bench",
+      "Old Neighborhood"
+    ]
   },
   {
     "id": "水星记-郭顶",
@@ -1488,7 +1752,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "night city groove"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "90后",
+        "00后",
+        "独立流行听众"
+      ],
+      "culturalMemory": [
+        "独立R&B",
+        "天文意象",
+        "短视频热门"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "独立流行听众"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "地铁末班车",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "普通朋友-陶喆",
@@ -1634,7 +1928,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "night city groove",
         "city night"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "R&B华语经典",
+        "KTV必点"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "城市夜景",
+        "朋友聚餐"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "好久不见-陈奕迅",
@@ -1784,7 +2107,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "room solitude",
         "city night"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.92,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "久别重逢",
+        "城市记忆",
+        "深夜独处"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "地铁末班车",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.92
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "under-lover-落日飞车",
@@ -2230,7 +2585,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "leaving and waiting",
         "room solitude"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "千禧年代都市女声",
+        "慵懒氛围"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "酒店独处",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Hotel Room"
+    ]
   },
   {
     "id": "爱情转移-陈奕迅",
@@ -2386,12 +2770,42 @@ export const generatedMusicLibrary: MusicSong[] =
         "night city groove",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "电影配乐记忆",
+        "都市情感"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "地铁末班车",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Subway / Empty Metro"
+    ]
   },
   {
     "id": "雨下一整晚-周杰伦",
-    "title": "雨下一整晚(伤感版)",
-    "artist": "ALen / 周杰伦、",
+    "title": "雨下一整晚",
+    "artist": "周杰伦",
     "neteaseKeyword": "雨下一整晚 周杰伦",
     "songId": "3340801430",
     "neteaseSongId": "3340801430",
@@ -2541,7 +2955,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "leaving and waiting",
         "room solitude"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "雨夜情歌",
+        "千禧年代华语流行"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "深夜房间"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Rainy Window"
+    ]
   },
   {
     "id": "琵琶语-林海",
@@ -2677,7 +3119,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "soft vocal",
         "instrumental texture"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Instrumental",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.75,
+      "generationFit": [
+        "85后",
+        "90后",
+        "文艺听众"
+      ],
+      "culturalMemory": [
+        "中国电影配乐",
+        "琵琶与现代融合",
+        "东方美学"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "文艺听众"
+      ],
+      "suitableChineseScenes": [
+        "寺庙庭院",
+        "中国园林",
+        "安静茶室"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Chinese Garden / Water"
+    ]
   },
   {
     "id": "风居住的街道-矶村由纪子",
@@ -2956,7 +3428,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "soft vocal",
         "instrumental texture"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Instrumental",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.65,
+      "generationFit": [
+        "95后",
+        "00后",
+        "游戏音乐听众"
+      ],
+      "culturalMemory": [
+        "游戏配乐",
+        "东方意境"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "寺庙庭院",
+        "中国园林"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.62
+    },
+    "primaryMusicScene": [
+      "Chinese Garden / Water"
+    ]
   },
   {
     "id": "旅行的意义-陈绮贞",
@@ -3013,7 +3512,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像带着花香出门的午后，心里有一点想去远方。",
     "confidence": 0.82,
     "memoryTypes": [
-      "flower_dream_portrait"
+      "travel_landscape"
     ],
     "scenes": [
       "花园",
@@ -3116,11 +3615,44 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "文艺青年"
+      ],
+      "culturalMemory": [
+        "台湾独立音乐代表",
+        "旅行文艺叙事",
+        "文艺青年入门曲"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后",
+        "文艺青年"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "机场候机",
+        "海边日落"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Train Window",
+      "Airport Waiting"
+    ]
   },
   {
     "id": "小情歌-苏打绿",
-    "title": "小情歌 (苏打绿版)",
+    "title": "小情歌",
     "artist": "苏打绿",
     "neteaseKeyword": "小情歌 苏打绿",
     "songId": "1952285469",
@@ -3166,7 +3698,8 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像阳光落在花园和课本之间，喜欢被唱得很干净。",
     "confidence": 0.82,
     "memoryTypes": [
-      "flower_dream_portrait"
+      "flower_dream_portrait",
+      "campus_youth"
     ],
     "scenes": [
       "花园",
@@ -3249,7 +3782,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "bright melody",
         "guitar arrangement"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "台湾独立流行代表",
+        "KTV经典"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "公园草地",
+        "花园肖像"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Garden Portrait",
+      "Campus Sunset"
+    ]
   },
   {
     "id": "玫瑰少年-蔡依林",
@@ -3524,7 +4086,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "room solitude"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "慢节奏恋爱观",
+        "温暖治愈"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "咖啡馆",
+        "公园草地",
+        "花园肖像"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Cafe Afternoon",
+      "Garden Portrait"
+    ]
   },
   {
     "id": "想去海边-夏日入侵企画",
@@ -3661,7 +4252,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立摇滚听众"
+      ],
+      "culturalMemory": [
+        "中国独立摇滚新声",
+        "夏日旅行"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "高铁窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Train Window"
+    ]
   },
   {
     "id": "平凡的一天-毛不易",
@@ -3816,7 +4434,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "room solitude",
         "city night"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "95后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "选秀出身",
+        "日常叙事",
+        "治愈系"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "咖啡馆",
+        "办公室加班"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Hotel Room"
+    ]
   },
   {
     "id": "生活倒影-苏运莹",
@@ -3964,7 +4611,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "room solitude",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.7,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立流行听众"
+      ],
+      "culturalMemory": [
+        "独立女声",
+        "独特唱腔"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "海边日落"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.68
+    },
+    "primaryMusicScene": [
+      "Park Grass / Bench"
+    ]
   },
   {
     "id": "merry-christmas-mr-lawrence-ryuichi-sakamoto",
@@ -4267,7 +4941,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -4346,7 +5020,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立流行听众"
+      ],
+      "culturalMemory": [
+        "台湾独立新声",
+        "短视频热门"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后",
+        "独立音乐听众"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "披星戴月的想你-告五人",
@@ -4394,7 +5096,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -4470,12 +5172,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立流行听众"
+      ],
+      "culturalMemory": [
+        "台湾独立新声",
+        "浪漫叙事"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "浪费-林宥嘉",
     "title": "浪费",
-    "artist": "徐凤年 / 林宥嘉禾",
+    "artist": "林宥嘉禾",
     "neteaseKeyword": "浪费 林宥嘉",
     "songId": "2029970004",
     "neteaseSongId": "2029970004",
@@ -4518,7 +5247,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -4599,12 +5328,41 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "台湾流行",
+        "情感叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "地铁末班车",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store",
+      "Night Street Walk"
+    ]
   },
   {
     "id": "说谎-林宥嘉",
     "title": "说谎",
-    "artist": "林宥嘉. / 街道办GDC/欧阳耀莹.",
+    "artist": "林宥嘉/ 街道办GDC/欧阳耀莹",
     "neteaseKeyword": "说谎 林宥嘉",
     "songId": "3381540525",
     "neteaseSongId": "3381540525",
@@ -4648,7 +5406,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -4730,7 +5488,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "KTV经典",
+        "台湾流行代表作"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "公交站",
+        "深夜便利店",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store",
+      "Bus Stop"
+    ]
   },
   {
     "id": "你要的爱-戴佩妮",
@@ -4778,7 +5565,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -4854,7 +5641,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "台湾偶像剧记忆"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "深夜便利店"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "身骑白马-徐佳莹",
@@ -4902,7 +5716,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -4978,7 +5792,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "选秀出道",
+        "闽南语元素",
+        "中国风融合"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "城市夜景",
+        "深夜便利店"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "寂寞烟火-蓝心羽",
@@ -5026,7 +5868,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -5102,7 +5944,31 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.65,
+      "generationFit": [
+        "00后",
+        "网络音乐听众"
+      ],
+      "culturalMemory": [
+        "网络翻唱时代"
+      ],
+      "likelyAudience": [
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.6
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "最佳损友-陈奕迅",
@@ -5150,7 +6016,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -5227,7 +6093,38 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Cantonese",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "粤语区用户"
+      ],
+      "culturalMemory": [
+        "友谊记忆",
+        "粤语流行经典"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后",
+        "粤语用户"
+      ],
+      "suitableChineseScenes": [
+        "朋友聚餐",
+        "演唱会散场",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "无人之境-陈奕迅",
@@ -5275,7 +6172,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -5355,7 +6252,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Cantonese",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "85后",
+        "90后",
+        "粤语区用户"
+      ],
+      "culturalMemory": [
+        "粤语都市情感"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "粤语用户"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "城市夜景",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store",
+      "Night Street Walk"
+    ]
   },
   {
     "id": "日落大道-梁博",
@@ -5403,7 +6329,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -5485,7 +6411,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后",
+        "摇滚听众"
+      ],
+      "culturalMemory": [
+        "选秀冠军",
+        "公路摇滚"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "城市夜景",
+        "天台夜景",
+        "深夜便利店"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store",
+      "Night Street Walk"
+    ]
   },
   {
     "id": "夜空中最亮的星-逃跑计划",
@@ -5533,7 +6488,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -5611,7 +6566,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "青年励志",
+        "综艺翻唱",
+        "集体合唱"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "天台夜景",
+        "演唱会散场",
+        "深夜便利店"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "别找我麻烦-蔡健雅",
@@ -5659,7 +6643,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -5735,7 +6719,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "都市轻快叙事"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "晚安晚安-魏如萱",
@@ -5783,7 +6794,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -5859,7 +6870,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.75,
+      "generationFit": [
+        "90后",
+        "00后",
+        "独立音乐听众"
+      ],
+      "culturalMemory": [
+        "台湾独立女声"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.72
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store"
+    ]
   },
   {
     "id": "孤独患者-陈奕迅",
@@ -5911,7 +6948,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -6000,7 +7037,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "城市孤独感",
+        "深夜独处"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "地铁末班车",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store",
+      "Bus Stop"
+    ]
   },
   {
     "id": "空白格-蔡健雅",
@@ -6048,7 +7114,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -6131,7 +7197,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "都市情感",
+        "KTV经典"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "地铁末班车",
+        "雨天窗边",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store",
+      "Rainy Window"
+    ]
   },
   {
     "id": "可乐-赵紫骅",
@@ -6179,7 +7275,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -6261,7 +7357,32 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.65,
+      "generationFit": [
+        "00后",
+        "网络音乐听众"
+      ],
+      "culturalMemory": [
+        "网络热歌"
+      ],
+      "likelyAudience": [
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "深夜便利店",
+        "公交站"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.6
+    },
+    "primaryMusicScene": [
+      "Late Night Convenience Store",
+      "Bus Stop"
+    ]
   },
   {
     "id": "慢冷-梁静茹",
@@ -6436,7 +7557,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -6518,7 +7639,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "电影原声",
+        "公路记忆",
+        "青春迷茫"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "海边日落",
+        "公路旅行"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Airport Waiting",
+      "Train Window"
+    ]
   },
   {
     "id": "南方姑娘-赵雷",
@@ -6566,7 +7717,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "daily_life_home"
     ],
     "scenes": [
       "空间",
@@ -6648,7 +7799,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后",
+        "民谣听众"
+      ],
+      "culturalMemory": [
+        "中国民谣叙事",
+        "城市记忆"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "民谣听众"
+      ],
+      "suitableChineseScenes": [
+        "老城区街巷",
+        "公园草地",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Old Neighborhood",
+      "Park Grass / Bench"
+    ]
   },
   {
     "id": "成都-赵雷",
@@ -6696,7 +7877,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "daily_life_home"
     ],
     "scenes": [
       "空间",
@@ -6778,7 +7959,38 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "城市民谣代表",
+        "成都记忆",
+        "综艺爆款"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "全年龄段"
+      ],
+      "suitableChineseScenes": [
+        "老城区街巷",
+        "公园草地",
+        "旅行记忆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Old Neighborhood",
+      "Park Grass / Bench"
+    ]
   },
   {
     "id": "再见-张震岳",
@@ -6826,7 +8038,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -6904,7 +8116,38 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "KTV告别曲",
+        "毕业季",
+        "旅行记忆"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "机场候机",
+        "高铁窗边",
+        "毕业季"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Airport Waiting",
+      "Empty Station"
+    ]
   },
   {
     "id": "后来-刘若英",
@@ -6952,7 +8195,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "daily_life_home"
     ],
     "scenes": [
       "空间",
@@ -7035,7 +8278,40 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.95,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "全年龄段"
+      ],
+      "culturalMemory": [
+        "KTV必点",
+        "青春遗憾",
+        "回忆杀"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后",
+        "全年龄段"
+      ],
+      "suitableChineseScenes": [
+        "老城区街巷",
+        "校园黄昏",
+        "演唱会散场"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.95
+    },
+    "primaryMusicScene": [
+      "Old Neighborhood",
+      "Bus Stop"
+    ]
   },
   {
     "id": "路过人间-郁可唯",
@@ -7083,7 +8359,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -7161,7 +8437,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "OST歌手",
+        "人生感悟"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "机场候机",
+        "高铁窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Airport Waiting"
+    ]
   },
   {
     "id": "遥远的她-张学友",
@@ -7209,7 +8511,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -7287,7 +8589,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Cantonese",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "80后",
+        "90后",
+        "粤语区用户"
+      ],
+      "culturalMemory": [
+        "粤语经典情歌",
+        "KTV经典"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "粤语用户"
+      ],
+      "suitableChineseScenes": [
+        "机场候机",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Airport Waiting"
+    ]
   },
   {
     "id": "一万次悲伤-逃跑计划",
@@ -7335,7 +8665,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -7411,7 +8741,32 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "摇滚情歌"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "天台夜景",
+        "演唱会散场"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Empty Station"
+    ]
   },
   {
     "id": "蓝莲花-许巍",
@@ -7459,7 +8814,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -7541,12 +8896,44 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后",
+        "摇滚用户"
+      ],
+      "culturalMemory": [
+        "自由与旅行",
+        "公路精神",
+        "中国摇滚经典"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "海边日落",
+        "公路旅行"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Train Window",
+      "Seaside Sunset"
+    ]
   },
   {
     "id": "漂洋过海来看你-李宗盛",
     "title": "漂洋过海来看你",
-    "artist": "周华健 / 李宗盛",
+    "artist": "李宗盛",
     "neteaseKeyword": "漂洋过海来看你 李宗盛",
     "songId": "29775419",
     "neteaseSongId": "29775419",
@@ -7589,7 +8976,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -7665,7 +9052,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "80后",
+        "90后",
+        "华语经典听众"
+      ],
+      "culturalMemory": [
+        "华语经典情歌",
+        "异地情感"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "华语经典听众"
+      ],
+      "suitableChineseScenes": [
+        "机场候机",
+        "高铁窗边",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Airport Waiting",
+      "Train Window"
+    ]
   },
   {
     "id": "山丘-李宗盛",
@@ -7713,7 +9130,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -7792,7 +9209,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "80后",
+        "90后",
+        "华语经典听众"
+      ],
+      "culturalMemory": [
+        "中年感悟",
+        "人生回顾",
+        "华语经典"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "华语经典听众"
+      ],
+      "suitableChineseScenes": [
+        "办公室加班",
+        "酒店独处",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Office Night"
+    ]
   },
   {
     "id": "给自己的歌-李宗盛",
@@ -7840,7 +9287,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -7919,12 +9366,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "80后",
+        "90后",
+        "华语经典听众"
+      ],
+      "culturalMemory": [
+        "自我反思",
+        "人生感悟"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后"
+      ],
+      "suitableChineseScenes": [
+        "办公室加班",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Office Night"
+    ]
   },
   {
     "id": "一路向北-周杰伦",
     "title": "一路向北",
-    "artist": "夏蔓蔓 / 周杰伦.",
+    "artist": "周杰伦",
     "neteaseKeyword": "一路向北 周杰伦",
     "songId": "3336883136",
     "neteaseSongId": "3336883136",
@@ -7968,7 +9442,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -8049,7 +9523,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.92,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "电影配乐记忆",
+        "公路与告别"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "机场候机",
+        "车内夜路"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Airport Waiting",
+      "Bus Stop"
+    ]
   },
   {
     "id": "轨迹-周杰伦",
@@ -8222,7 +9726,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -8305,7 +9809,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.92,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "电影原声记忆",
+        "校园青春",
+        "毕业季"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "老城区街巷",
+        "毕业季"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.92
+    },
+    "primaryMusicScene": [
+      "Campus Sunset",
+      "Old Neighborhood"
+    ]
   },
   {
     "id": "红豆-王菲",
@@ -8353,7 +9889,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -8436,7 +9972,40 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.93,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "华语经典情歌",
+        "KTV回忆",
+        "千禧年代"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后",
+        "全年龄段"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "酒店独处",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.93
+    },
+    "primaryMusicScene": [
+      "Rainy Window",
+      "Hotel Room"
+    ]
   },
   {
     "id": "曾经的你-许巍",
@@ -8484,7 +10053,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -8557,7 +10126,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "旅行精神",
+        "摇滚经典"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "公路旅行"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Train Window"
+    ]
   },
   {
     "id": "故乡-许巍",
@@ -8605,7 +10202,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -8678,7 +10275,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "故乡情怀",
+        "中国摇滚"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Train Window"
+    ]
   },
   {
     "id": "去大理-郝云",
@@ -8726,7 +10351,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -8799,7 +10424,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.7,
+      "generationFit": [
+        "90后",
+        "民谣听众"
+      ],
+      "culturalMemory": [
+        "旅行民谣",
+        "大理旅行记忆"
+      ],
+      "likelyAudience": [
+        "90后",
+        "民谣听众"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "海边日落"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.68
+    },
+    "primaryMusicScene": [
+      "Train Window"
+    ]
   },
   {
     "id": "生活不止眼前的苟且-许巍",
@@ -8847,7 +10498,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -8920,7 +10571,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "诗意与远方"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "办公室加班"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Train Window"
+    ]
   },
   {
     "id": "远在北方孤独的鬼-花粥",
@@ -8972,7 +10650,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -9051,7 +10729,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.62,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立民谣听众"
+      ],
+      "culturalMemory": [
+        "独立民谣",
+        "网络音乐时代"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "公园草地"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.6
+    },
+    "primaryMusicScene": [
+      "Train Window"
+    ]
   },
   {
     "id": "斑马斑马-宋冬野",
@@ -9224,7 +10929,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "daily_life_home"
     ],
     "scenes": [
       "空间",
@@ -9308,7 +11013,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "90后",
+        "00后",
+        "民谣听众"
+      ],
+      "culturalMemory": [
+        "中国民谣代表作",
+        "北京城市记忆"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "老城区街巷",
+        "天台夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Old Neighborhood",
+      "Bridge / Overpass"
+    ]
   },
   {
     "id": "南山南-马頔",
@@ -9356,7 +11090,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "daily_life_home"
     ],
     "scenes": [
       "空间",
@@ -9440,7 +11174,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "中国民谣爆款",
+        "综艺翻唱"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "老城区街巷",
+        "天台夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Old Neighborhood",
+      "Bridge / Overpass"
+    ]
   },
   {
     "id": "new-boy-朴树",
@@ -9608,7 +11370,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -9688,7 +11450,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "校园毕业",
+        "青春告别"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "毕业季",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Campus Sunset",
+      "Old Neighborhood"
+    ]
   },
   {
     "id": "美好事物-房东的猫",
@@ -9736,7 +11528,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -9814,7 +11606,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立民谣听众"
+      ],
+      "culturalMemory": [
+        "治愈日常",
+        "小清新"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "海边日落",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Park Grass / Bench",
+      "Seaside Sunset"
+    ]
   },
   {
     "id": "下一站茶山刘-房东的猫",
@@ -9862,7 +11683,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -9938,7 +11759,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.7,
+      "generationFit": [
+        "00后",
+        "独立民谣听众"
+      ],
+      "culturalMemory": [
+        "校园民谣新声",
+        "武汉城市记忆"
+      ],
+      "likelyAudience": [
+        "00后",
+        "独立民谣听众"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "校园黄昏"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.7
+    },
+    "primaryMusicScene": [
+      "Train Window",
+      "Campus Sunset"
+    ]
   },
   {
     "id": "走马-陈粒",
@@ -9986,7 +11834,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -10059,7 +11907,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后",
+        "独立音乐听众"
+      ],
+      "culturalMemory": [
+        "独立民谣",
+        "文艺叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "高铁窗边",
+        "公园草地"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Park Grass / Bench"
+    ]
   },
   {
     "id": "凄美地-郭顶",
@@ -10107,7 +11982,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -10187,7 +12062,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后",
+        "独立流行听众"
+      ],
+      "culturalMemory": [
+        "独立摇滚",
+        "城市感"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "城市夜景",
+        "地铁末班车",
+        "天台夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Subway / Empty Metro",
+      "Night Street Walk"
+    ]
   },
   {
     "id": "失落沙洲-徐佳莹",
@@ -10235,7 +12139,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -10315,7 +12219,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "选秀代表作",
+        "情感叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "地铁末班车",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Subway / Empty Metro",
+      "Bus Stop"
+    ]
   },
   {
     "id": "突然好想你-五月天",
@@ -10479,7 +12410,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "youth memory"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.93,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "思念与青春",
+        "演唱会大合唱"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "地铁末班车",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.93
+    },
+    "primaryMusicScene": [
+      "Campus Sunset",
+      "Subway / Empty Metro"
+    ]
   },
   {
     "id": "让我留在你身边-陈奕迅",
@@ -10527,7 +12487,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -10604,7 +12564,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "电影配乐",
+        "城市陪伴感"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "地铁末班车",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Subway / Empty Metro"
+    ]
   },
   {
     "id": "你就不要想起我-田馥甄",
@@ -10652,7 +12639,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -10732,7 +12719,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "台湾流行女声",
+        "KTV经典"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "地铁末班车",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Subway / Empty Metro",
+      "Rainy Window"
+    ]
   },
   {
     "id": "地下铁-萧亚轩",
@@ -10780,7 +12795,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -10856,7 +12871,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "千禧年代都市流行",
+        "地铁叙事"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "地铁末班车",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Subway / Empty Metro"
+    ]
   },
   {
     "id": "下一站天后-twins",
@@ -10904,7 +12947,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -10980,7 +13023,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Cantonese",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后",
+        "粤语区用户"
+      ],
+      "culturalMemory": [
+        "粤语青春偶像",
+        "地铁记忆"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "粤语用户"
+      ],
+      "suitableChineseScenes": [
+        "地铁末班车",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Subway / Empty Metro"
+    ]
   },
   {
     "id": "富士山下-陈奕迅",
@@ -11028,7 +13099,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -11110,7 +13181,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Cantonese",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "粤语区用户"
+      ],
+      "culturalMemory": [
+        "粤语经典情歌",
+        "旅行记忆"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后",
+        "粤语用户"
+      ],
+      "suitableChineseScenes": [
+        "地铁末班车",
+        "城市夜景",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Subway / Empty Metro",
+      "Night Street Walk"
+    ]
   },
   {
     "id": "不要说话-陈奕迅",
@@ -11158,7 +13261,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -11240,7 +13343,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "城市安静时刻"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "酒店独处",
+        "深夜便利店",
+        "办公室加班"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Hotel Room",
+      "Night Street Walk"
+    ]
   },
   {
     "id": "寂寞寂寞就好-田馥甄",
@@ -11288,7 +13419,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -11365,7 +13496,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "台湾流行",
+        "都市情感"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "酒店独处",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Hotel Room",
+      "Rainy Window"
+    ]
   },
   {
     "id": "小半-陈粒",
@@ -11413,7 +13571,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -11492,11 +13650,38 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后",
+        "独立音乐听众"
+      ],
+      "culturalMemory": [
+        "独立流行"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "酒店独处",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Hotel Room",
+      "Rainy Window"
+    ]
   },
   {
     "id": "房间-刘瑞琦",
-    "title": "房间（Live）",
+    "title": "房间",
     "artist": "刘瑞琦",
     "neteaseKeyword": "房间 刘瑞琦",
     "songId": "1407424789",
@@ -11642,7 +13827,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "room solitude",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.75,
+      "generationFit": [
+        "95后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "翻唱起家",
+        "房间叙事"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "酒店独处",
+        "房间空间"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.72
+    },
+    "primaryMusicScene": [
+      "Hotel Room"
+    ]
   },
   {
     "id": "我怀念的-孙燕姿",
@@ -11690,7 +13901,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -11768,7 +13979,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "千禧年代情歌经典",
+        "KTV必点"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Hotel Room",
+      "Rainy Window"
+    ]
   },
   {
     "id": "开始懂了-孙燕姿",
@@ -11816,7 +14057,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -11894,7 +14135,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "千禧年代成长主题"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Hotel Room",
+      "Rainy Window"
+    ]
   },
   {
     "id": "如果你也听说-张惠妹",
@@ -12063,7 +14332,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -12138,7 +14407,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "KTV经典",
+        "情感释放"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "酒店独处",
+        "演唱会后"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Hotel Room"
+    ]
   },
   {
     "id": "还是会寂寞-陈绮贞",
@@ -12186,7 +14483,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -12263,7 +14560,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "85后",
+        "90后",
+        "文艺青年"
+      ],
+      "culturalMemory": [
+        "台湾独立音乐",
+        "小清新"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "文艺青年"
+      ],
+      "suitableChineseScenes": [
+        "酒店独处",
+        "雨天窗边",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Hotel Room",
+      "Rainy Window"
+    ]
   },
   {
     "id": "会呼吸的痛-梁静茹",
@@ -12312,7 +14639,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -12389,7 +14716,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "KTV情歌经典",
+        "都市情感"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Hotel Room",
+      "Rainy Window"
+    ]
   },
   {
     "id": "崇拜-梁静茹",
@@ -12437,7 +14793,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -12514,7 +14870,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "KTV情歌经典"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Hotel Room",
+      "Rainy Window"
+    ]
   },
   {
     "id": "有暖气-橘子海",
@@ -12563,7 +14947,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -12636,7 +15020,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.68,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立流行听众"
+      ],
+      "culturalMemory": [
+        "中国City Pop"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.65
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset"
+    ]
   },
   {
     "id": "起风了-买辣椒也用券",
@@ -12684,7 +15094,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -12757,7 +15167,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "95后",
+        "00后",
+        "网络音乐用户"
+      ],
+      "culturalMemory": [
+        "网络翻唱爆款",
+        "短视频热门",
+        "日文原曲翻唱"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "高铁窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset"
+    ]
   },
   {
     "id": "忽然之间-莫文蔚",
@@ -12805,7 +15243,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -12878,7 +15316,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "地震记忆",
+        "珍惜当下",
+        "KTV经典"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "城市夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset"
+    ]
   },
   {
     "id": "小宇-张震岳",
@@ -12926,7 +15393,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -12999,7 +15466,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "夏日恋爱",
+        "轻松日常"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "公园草地"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset"
+    ]
   },
   {
     "id": "如果有来生-谭维维",
@@ -13047,7 +15542,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -13120,7 +15615,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "民谣叙事",
+        "综艺翻唱"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "公园草地"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset"
+    ]
   },
   {
     "id": "海阔天空-beyond",
@@ -13168,7 +15689,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -13241,7 +15762,41 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Cantonese",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.95,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后",
+        "粤语区用户",
+        "摇滚用户"
+      ],
+      "culturalMemory": [
+        "粤语摇滚经典",
+        "自由与理想",
+        "集体KTV记忆"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后",
+        "粤语用户"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "演唱会散场",
+        "天台夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.95
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset",
+      "Empty Station"
+    ]
   },
   {
     "id": "光辉岁月-beyond",
@@ -13289,7 +15844,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "travel_landscape"
     ],
     "scenes": [
       "空间",
@@ -13362,7 +15917,38 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Cantonese",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.95,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后",
+        "粤语区用户"
+      ],
+      "culturalMemory": [
+        "粤语摇滚经典",
+        "理想与坚持",
+        "集体记忆"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后",
+        "粤语用户"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "演唱会散场"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.95
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset"
+    ]
   },
   {
     "id": "旅行-许巍",
@@ -13503,11 +16089,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "leaving and waiting"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "旅行记忆"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "高铁窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset",
+      "Train Window"
+    ]
   },
   {
     "id": "无与伦比的美丽-苏打绿",
-    "title": "无与伦比的美丽 (苏打绿版)",
+    "title": "无与伦比的美丽",
     "artist": "苏打绿",
     "neteaseKeyword": "无与伦比的美丽 苏打绿",
     "songId": "2023994371",
@@ -13551,7 +16165,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -13627,7 +16241,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "友情叙事",
+        "台湾独立流行"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "海边日落",
+        "公园草地",
+        "演唱会散场"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Seaside Sunset",
+      "Park Grass / Bench"
+    ]
   },
   {
     "id": "小幸运-田馥甄",
@@ -13675,7 +16317,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -13747,12 +16389,40 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "电影原声爆款",
+        "校园青春",
+        "KTV必点"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "毕业季"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "稻香-周杰伦",
     "title": "稻香",
-    "artist": "周杰伦- / Montagem",
+    "artist": "周杰伦",
     "neteaseKeyword": "稻香 周杰伦",
     "songId": "3357698666",
     "neteaseSongId": "3357698666",
@@ -13795,7 +16465,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -13867,7 +16537,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.95,
+      "generationFit": [
+        "90后",
+        "00后",
+        "10后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "童年回忆",
+        "乡村与自然",
+        "治愈力量"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "10后",
+        "全年龄段"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "校园黄昏",
+        "田园空间"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.95
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "倔强-五月天",
@@ -13915,7 +16617,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -13987,7 +16689,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.93,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "青年励志",
+        "校园运动会",
+        "毕业季"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "演唱会散场"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.93
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "同桌的你-老狼",
@@ -14035,7 +16766,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -14113,7 +16844,40 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.92,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后",
+        "全年龄段"
+      ],
+      "culturalMemory": [
+        "校园民谣经典",
+        "毕业季",
+        "同桌记忆"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后",
+        "全年龄段"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "毕业季",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.92
+    },
+    "primaryMusicScene": [
+      "Campus Sunset",
+      "Old Neighborhood"
+    ]
   },
   {
     "id": "贝加尔湖畔-李健",
@@ -14162,7 +16926,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -14240,11 +17004,42 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后",
+        "文艺听众"
+      ],
+      "culturalMemory": [
+        "综艺翻唱经典",
+        "诗意叙事"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "老城区街巷",
+        "公园草地",
+        "湖边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Campus Sunset",
+      "Old Neighborhood"
+    ]
   },
   {
     "id": "我们的明天-鹿晗",
-    "title": "我们的明天 (Live)",
+    "title": "我们的明天",
     "artist": "鹿晗",
     "neteaseKeyword": "我们的明天 鹿晗",
     "songId": "1325484910",
@@ -14288,7 +17083,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -14360,12 +17155,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.75,
+      "generationFit": [
+        "95后",
+        "00后",
+        "流行偶像听众"
+      ],
+      "culturalMemory": [
+        "偶像流行",
+        "电影原声"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "公园草地"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.72
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "七里香-周杰伦",
     "title": "七里香",
-    "artist": "周杰伦- / Montagem",
+    "artist": "周杰伦",
     "neteaseKeyword": "七里香 周杰伦",
     "songId": "3357693420",
     "neteaseSongId": "3357693420",
@@ -14408,7 +17230,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -14480,7 +17302,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.95,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "华语青春代表作",
+        "夏季记忆",
+        "千禧年夏日"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "夏日窗边",
+        "公园草地"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.95
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "简单爱-周杰伦",
@@ -14833,7 +17685,7 @@ export const generatedMusicLibrary: MusicSong[] =
   {
     "id": "不能说的秘密-周杰伦",
     "title": "不能说的秘密",
-    "artist": "Montagem / 周杰伦、",
+    "artist": "周杰伦",
     "neteaseKeyword": "不能说的秘密 周杰伦",
     "songId": "3344469861",
     "neteaseSongId": "3344469861",
@@ -14876,7 +17728,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -14948,11 +17800,39 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.92,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "电影原声记忆",
+        "校园暗恋",
+        "钢琴与青春"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "教室窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "等你下课-周杰伦",
-    "title": "等你下课（正式版）",
+    "title": "等你下课",
     "artist": "周杰伦- / 夏蔓蔓",
     "neteaseKeyword": "等你下课 周杰伦",
     "songId": "3384561708",
@@ -15000,7 +17880,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -15081,7 +17961,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "youth memory"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行核心用户"
+      ],
+      "culturalMemory": [
+        "等放学叙事",
+        "校园日常"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "公交站",
+        "放学后"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Campus Sunset",
+      "Bus Stop"
+    ]
   },
   {
     "id": "致青春-王菲",
@@ -15235,7 +18145,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "youth memory"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "电影原声",
+        "校园记忆"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "毕业季"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Campus Sunset"
+    ]
   },
   {
     "id": "暖暖-梁静茹",
@@ -15283,7 +18221,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -15359,7 +18297,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "温暖治愈",
+        "校园回忆"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "公园草地",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Campus Sunset",
+      "Park Grass / Bench"
+    ]
   },
   {
     "id": "小手拉大手-梁静茹",
@@ -15407,7 +18373,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "campus_youth"
     ],
     "scenes": [
       "空间",
@@ -15483,7 +18449,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "甜蜜日常",
+        "日系翻唱"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "校园黄昏",
+        "公园草地"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Campus Sunset",
+      "Park Grass / Bench"
+    ]
   },
   {
     "id": "她说-林俊杰",
@@ -15531,7 +18524,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -15604,7 +18597,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "华语流行情歌",
+        "KTV常点"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Rainy Window"
+    ]
   },
   {
     "id": "可惜没如果-林俊杰",
@@ -15652,7 +18672,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -15725,7 +18745,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "遗憾叙事",
+        "KTV经典"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "深夜房间"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Rainy Window"
+    ]
   },
   {
     "id": "下雨天-南拳妈妈",
@@ -16037,7 +19084,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "leaving and waiting",
         "room solitude"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "台湾偶像剧记忆",
+        "雨景叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边",
+        "公交站"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Rainy Window"
+    ]
   },
   {
     "id": "我也很想他-孙燕姿",
@@ -16085,7 +19158,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "rain_window_solitude"
     ],
     "scenes": [
       "空间",
@@ -16159,7 +19232,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "千禧年代情感记忆"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Rainy Window"
+    ]
   },
   {
     "id": "melody-陶喆",
@@ -16207,7 +19306,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -16285,7 +19384,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "华语R&B代表作",
+        "经典情歌"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "城市夜景",
+        "天台夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Night Street Walk"
+    ]
   },
   {
     "id": "男孩-梁博",
@@ -16333,7 +19460,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -16410,7 +19537,33 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "选秀代表作",
+        "成长叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "城市夜景",
+        "天台夜景"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Night Street Walk"
+    ]
   },
   {
     "id": "红色高跟鞋-蔡健雅",
@@ -16458,7 +19611,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -16536,7 +19689,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "都市女性叙事",
+        "短视频热门"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "城市夜景",
+        "朋友聚餐"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.82
+    },
+    "primaryMusicScene": [
+      "Night Street Walk",
+      "Office Night"
+    ]
   },
   {
     "id": "记念-蔡健雅",
@@ -16584,7 +19764,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -16659,7 +19839,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "都市情感"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "城市夜景",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Night Street Walk"
+    ]
   },
   {
     "id": "倒带-蔡依林",
@@ -16707,7 +19914,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -16782,7 +19989,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "KTV经典",
+        "千禧年代流行"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "城市夜景",
+        "雨天窗边"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Night Street Walk"
+    ]
   },
   {
     "id": "理想三旬-陈鸿宇",
@@ -16830,7 +20065,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -16908,7 +20143,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.7,
+      "generationFit": [
+        "90后",
+        "00后",
+        "民谣听众"
+      ],
+      "culturalMemory": [
+        "中国独立民谣新声",
+        "理想叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后",
+        "民谣听众"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "咖啡馆",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.68
+    },
+    "primaryMusicScene": [
+      "Park Grass / Bench",
+      "Old Neighborhood"
+    ]
   },
   {
     "id": "董小姐-宋冬野",
@@ -16956,7 +20221,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -17034,7 +20299,36 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "90后",
+        "00后",
+        "民谣听众"
+      ],
+      "culturalMemory": [
+        "中国民谣叙事",
+        "选秀翻唱"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "老城区街巷",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Park Grass / Bench",
+      "Old Neighborhood"
+    ]
   },
   {
     "id": "岁月神偷-金玟岐",
@@ -17082,7 +20376,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "city_park_restorative"
     ],
     "scenes": [
       "空间",
@@ -17160,7 +20454,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.78,
+      "generationFit": [
+        "95后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "电影原声",
+        "时间叙事"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "公园草地",
+        "老城区街巷",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.75
+    },
+    "primaryMusicScene": [
+      "Park Grass / Bench",
+      "Old Neighborhood"
+    ]
   },
   {
     "id": "消愁-毛不易",
@@ -17218,7 +20540,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一天里最普通的光，落在桌面上也很值得被记住。",
     "confidence": 0.82,
     "memoryTypes": [
-      "daily_life_home"
+      "night_city_dining"
     ],
     "scenes": [
       "房间",
@@ -17311,7 +20633,37 @@ export const generatedMusicLibrary: MusicSong[] =
         "room solitude",
         "city night"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "95后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "选秀爆款",
+        "酒桌叙事",
+        "综艺记忆"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后",
+        "华语流行用户"
+      ],
+      "suitableChineseScenes": [
+        "办公室加班",
+        "深夜便利店",
+        "酒店独处"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Office Night"
+    ]
   },
   {
     "id": "像我这样的人-毛不易",
@@ -17369,7 +20721,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一天里最普通的光，落在桌面上也很值得被记住。",
     "confidence": 0.82,
     "memoryTypes": [
-      "daily_life_home"
+      "night_city_dining"
     ],
     "scenes": [
       "房间",
@@ -17462,7 +20814,34 @@ export const generatedMusicLibrary: MusicSong[] =
         "room solitude",
         "city night"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "95后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "选秀代表作",
+        "自嘲叙事"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "办公室加班",
+        "深夜便利店"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Office Night"
+    ]
   },
   {
     "id": "达尔文-蔡健雅",
@@ -17510,7 +20889,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -17585,7 +20964,35 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "进化叙事",
+        "都市感悟"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "办公室加班",
+        "咖啡馆"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Office Night"
+    ]
   },
   {
     "id": "凡人歌-李宗盛",
@@ -17633,7 +21040,7 @@ export const generatedMusicLibrary: MusicSong[] =
     "recommendationReason": "像一段模糊但柔和的空间记忆，被轻轻放在心里。",
     "confidence": 0.72,
     "memoryTypes": [
-      "unknown_soft_memory"
+      "night_city_dining"
     ],
     "scenes": [
       "空间",
@@ -17708,7 +21115,816 @@ export const generatedMusicLibrary: MusicSong[] =
         "guitar arrangement",
         "daily healing"
       ]
-    }
+    },
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "80后",
+        "90后",
+        "00后",
+        "华语经典听众"
+      ],
+      "culturalMemory": [
+        "平凡人生叙事",
+        "华语经典"
+      ],
+      "likelyAudience": [
+        "80后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "办公室加班",
+        "老城区街巷"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Office Night"
+    ]
+  },
+  {
+    "id": "下雨的夜晚-苏打绿",
+    "title": "下雨的夜晚",
+    "artist": "苏打绿",
+    "neteaseKeyword": "下雨的夜晚 苏打绿",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Cafe Afternoon"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Cafe Afternoon"
+      ],
+      "scene": [
+        "Cafe Afternoon"
+      ],
+      "music": []
+    },
+    "recommendationReason": "适合咖啡馆窗边，雨声和音乐一起慢慢展开。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "city_park_restorative",
+      "daily_life_home"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "深夜",
+      "便利店",
+      "机场",
+      "地铁"
+    ],
+    "season": "all",
+    "pace": "slow",
+    "lightTone": "soft",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "适合咖啡馆窗边，雨声和音乐一起慢慢展开。",
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.82,
+      "generationFit": [
+        "90后",
+        "00后",
+        "独立流行听众"
+      ],
+      "culturalMemory": [
+        "台湾独立流行",
+        "雨天氛围"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "咖啡馆午后",
+        "雨天窗边",
+        "安静房间"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.8
+    },
+    "primaryMusicScene": [
+      "Cafe Afternoon"
+    ]
+  },
+  {
+    "id": "儿歌-张悬",
+    "title": "儿歌",
+    "artist": "张悬",
+    "neteaseKeyword": "儿歌 张悬",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Cafe Afternoon"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Cafe Afternoon"
+      ],
+      "scene": [
+        "Cafe Afternoon"
+      ],
+      "music": []
+    },
+    "recommendationReason": "简单的吉他和人声，像咖啡馆里一个很慢的下午。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "city_park_restorative",
+      "daily_life_home"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "深夜",
+      "便利店",
+      "机场",
+      "地铁"
+    ],
+    "season": "all",
+    "pace": "medium",
+    "lightTone": "warm",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "简单的吉他和人声，像咖啡馆里一个很慢的下午。",
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "medium",
+      "chineseListenerFit": 0.8,
+      "generationFit": [
+        "85后",
+        "90后",
+        "独立音乐听众"
+      ],
+      "culturalMemory": [
+        "台湾独立民谣",
+        "安稳日常"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后"
+      ],
+      "suitableChineseScenes": [
+        "咖啡馆午后",
+        "公园草地",
+        "安静房间"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.78
+    },
+    "primaryMusicScene": [
+      "Cafe Afternoon"
+    ]
+  },
+  {
+    "id": "小森林-陈鸿宇",
+    "title": "小森林",
+    "artist": "陈鸿宇",
+    "neteaseKeyword": "小森林 陈鸿宇",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Cafe Afternoon"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Cafe Afternoon"
+      ],
+      "scene": [
+        "Cafe Afternoon"
+      ],
+      "music": []
+    },
+    "recommendationReason": "像是坐在咖啡馆角落，看窗外树叶轻轻晃。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "city_park_restorative",
+      "daily_life_home"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "深夜",
+      "便利店",
+      "机场"
+    ],
+    "season": "all",
+    "pace": "slow",
+    "lightTone": "warm",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "像是坐在咖啡馆角落，看窗外树叶轻轻晃。",
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "discovery",
+      "chineseListenerFit": 0.72,
+      "generationFit": [
+        "95后",
+        "00后",
+        "独立民谣听众"
+      ],
+      "culturalMemory": [
+        "中国独立民谣",
+        "日常叙事"
+      ],
+      "likelyAudience": [
+        "95后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "咖啡馆午后",
+        "公园草地"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.7
+    },
+    "primaryMusicScene": [
+      "Cafe Afternoon"
+    ]
+  },
+  {
+    "id": "后来的我们-五月天",
+    "title": "后来的我们",
+    "artist": "五月天",
+    "neteaseKeyword": "后来的我们 五月天",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Concert Afterglow"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Concert Afterglow"
+      ],
+      "scene": [
+        "Concert Afterglow"
+      ],
+      "music": []
+    },
+    "recommendationReason": "散场后的街道，刚才的旋律还在耳边，人群慢慢离开。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "night_city_dining",
+      "campus_youth"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "便利店",
+      "机场",
+      "酒店"
+    ],
+    "season": "all",
+    "pace": "medium",
+    "lightTone": "warm",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "散场后的街道，刚才的旋律还在耳边，人群慢慢离开。",
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.92,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "五月天演唱会",
+        "青春散场",
+        "集体合唱"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "演唱会散场",
+        "校园黄昏"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.9
+    },
+    "primaryMusicScene": [
+      "Concert Afterglow"
+    ]
+  },
+  {
+    "id": "如果我们不曾相遇-五月天",
+    "title": "如果我们不曾相遇",
+    "artist": "五月天",
+    "neteaseKeyword": "如果我们不曾相遇 五月天",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Concert Afterglow"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Concert Afterglow"
+      ],
+      "scene": [
+        "Concert Afterglow"
+      ],
+      "music": []
+    },
+    "recommendationReason": "适合散场后走在路上，和人群一起慢慢散开的感觉。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "night_city_dining",
+      "campus_youth"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "便利店",
+      "机场",
+      "酒店",
+      "办公室"
+    ],
+    "season": "all",
+    "pace": "medium",
+    "lightTone": "warm",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "适合散场后走在路上，和人群一起慢慢散开的感觉。",
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "五月天演唱会终曲",
+        "相遇与告别"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "演唱会散场",
+        "校园黄昏"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Concert Afterglow"
+    ]
+  },
+  {
+    "id": "我不愿让你一个人-五月天",
+    "title": "我不愿让你一个人",
+    "artist": "五月天",
+    "neteaseKeyword": "我不愿让你一个人 五月天",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Concert Afterglow"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Concert Afterglow"
+      ],
+      "scene": [
+        "Concert Afterglow"
+      ],
+      "music": []
+    },
+    "recommendationReason": "散场后的路灯下，人群渐渐散去，但刚才的共鸣还在。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "night_city_dining",
+      "rain_window_solitude"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "便利店",
+      "机场",
+      "办公室"
+    ],
+    "season": "all",
+    "pace": "medium",
+    "lightTone": "warm",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "散场后的路灯下，人群渐渐散去，但刚才的共鸣还在。",
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.9,
+      "generationFit": [
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "五月天演唱会",
+        "陪伴叙事"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "演唱会散场",
+        "深夜街道"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Concert Afterglow"
+    ]
+  },
+  {
+    "id": "干杯-五月天",
+    "title": "干杯",
+    "artist": "五月天",
+    "neteaseKeyword": "干杯 五月天",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Friends Gathering"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Friends Gathering"
+      ],
+      "scene": [
+        "Friends Gathering"
+      ],
+      "music": []
+    },
+    "recommendationReason": "像朋友们举起杯子那一刻，热气腾腾的桌上，大家还没散。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "night_city_dining"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "独处",
+      "雨夜",
+      "酒店",
+      "机场"
+    ],
+    "season": "all",
+    "pace": "upbeat",
+    "lightTone": "bright",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "像朋友们举起杯子那一刻，热气腾腾的桌上，大家还没散。",
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.92,
+      "generationFit": [
+        "90后",
+        "00后",
+        "华语流行用户"
+      ],
+      "culturalMemory": [
+        "友情经典",
+        "聚餐必唱",
+        "干杯仪式"
+      ],
+      "likelyAudience": [
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "朋友聚餐",
+        "毕业聚餐"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.92
+    },
+    "primaryMusicScene": [
+      "Friends Gathering"
+    ]
+  },
+  {
+    "id": "友情岁月-郑伊健",
+    "title": "友情岁月",
+    "artist": "郑伊健",
+    "neteaseKeyword": "友情岁月 郑伊健",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Friends Gathering"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Friends Gathering"
+      ],
+      "scene": [
+        "Friends Gathering"
+      ],
+      "music": []
+    },
+    "recommendationReason": "朋友围坐一桌，热气蒸腾，这顿饭还没到散场的时候。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "night_city_dining"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "独处",
+      "便利店",
+      "机场",
+      "酒店"
+    ],
+    "season": "all",
+    "pace": "medium",
+    "lightTone": "warm",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "朋友围坐一桌，热气蒸腾，这顿饭还没到散场的时候。",
+    "listenerEvidence": {
+      "language": "Cantonese",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.88,
+      "generationFit": [
+        "85后",
+        "90后",
+        "粤语区用户"
+      ],
+      "culturalMemory": [
+        "港片友情怀旧",
+        "KTV合唱经典"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "粤语用户"
+      ],
+      "suitableChineseScenes": [
+        "朋友聚餐",
+        "KTV聚会"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.88
+    },
+    "primaryMusicScene": [
+      "Friends Gathering"
+    ]
+  },
+  {
+    "id": "我的好兄弟-高进",
+    "title": "我的好兄弟",
+    "artist": "高进",
+    "neteaseKeyword": "我的好兄弟 高进",
+    "metadataSource": "manual",
+    "metadataVerified": false,
+    "unavailableReason": "Phase 4 seed — pending NetEase metadata verification.",
+    "spaceTags": [],
+    "sceneTags": [],
+    "cityTags": [],
+    "timeTags": [],
+    "socialContextTags": [],
+    "musicSceneTags": [
+      "Friends Gathering"
+    ],
+    "cultureTags": [],
+    "emotionTags": [],
+    "memoryTags": [],
+    "visualTags": [],
+    "seasonTags": ["All Season"],
+    "atmosphereTags": [],
+    "similarSpaces": [],
+    "musicFeatures": [],
+    "lyricalThemes": [],
+    "usageScenes": [],
+    "recommendationEvidence": {
+      "space": [
+        "Friends Gathering"
+      ],
+      "scene": [
+        "Friends Gathering"
+      ],
+      "music": []
+    },
+    "recommendationReason": "在热气腾腾的火锅桌前，兄弟几个还没聊够。",
+    "confidence": 0.75,
+    "memoryTypes": [
+      "night_city_dining"
+    ],
+    "scenes": [],
+    "visibleObjects": [],
+    "emotions": [],
+    "timeFeelings": [],
+    "colorFeelings": [],
+    "culturalSignals": [],
+    "avoidWhen": [
+      "独处",
+      "便利店",
+      "机场",
+      "酒店"
+    ],
+    "season": "all",
+    "pace": "medium",
+    "lightTone": "warm",
+    "narrative": "",
+    "archetype": "unknown_soft_memory",
+    "description": "在热气腾腾的火锅桌前，兄弟几个还没聊够。",
+    "listenerEvidence": {
+      "language": "Mandarin",
+      "familiarityTier": "high",
+      "chineseListenerFit": 0.85,
+      "generationFit": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "culturalMemory": [
+        "KTV兄弟经典",
+        "聚餐必点"
+      ],
+      "likelyAudience": [
+        "85后",
+        "90后",
+        "00后"
+      ],
+      "suitableChineseScenes": [
+        "朋友聚餐",
+        "KTV聚会"
+      ],
+      "evidenceSource": "manual",
+      "evidenceConfidence": 0.85
+    },
+    "primaryMusicScene": [
+      "Friends Gathering"
+    ]
   }
-]
-;
+];

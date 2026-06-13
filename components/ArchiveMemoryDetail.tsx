@@ -131,7 +131,18 @@ export function ArchiveMemoryDetail({ id }: ArchiveMemoryDetailProps) {
             这段记忆里的歌
           </h2>
           <div className="mt-8 grid gap-4">
-            {item.songs.map((song, index) => (
+            {item.songs.length > 0 ? (
+              item.songs.map((song, index) => {
+                // Guard: skip archived songs that look like tags instead of real songs.
+                const forbiddenWords = [
+                  "春日", "花园", "胶片感", "治愈", "孤独", "黄昏", "柔和",
+                  "城市夜晚", "温柔", "安静", "华语", "独立音乐", "民谣",
+                ];
+                if (!song.title || !song.artist || forbiddenWords.includes(song.title)) {
+                  return null;
+                }
+
+                return (
               <div
                 key={`${song.trackId}-${index}`}
                 className="grid gap-4 rounded-[24px] bg-white/34 p-4 shadow-[0_16px_54px_rgba(17,17,19,0.06)] ring-1 ring-ink/[0.05] sm:grid-cols-[6rem_1fr] sm:p-5"
@@ -170,7 +181,18 @@ export function ArchiveMemoryDetail({ id }: ArchiveMemoryDetailProps) {
                   ) : null}
                 </div>
               </div>
-            ))}
+                );
+              })
+            ) : (
+              <div className="rounded-[24px] bg-white/20 p-6 text-center">
+                <p className="font-serif text-lg leading-8 text-ink/50">
+                  这段记忆还没有找到适合的音乐。
+                </p>
+                <p className="mt-2 font-meta text-[10px] text-ink/30">
+                  标签不能替代歌曲，我们不在还没准备好的时候随便推荐。
+                </p>
+              </div>
+            )}
           </div>
         </section>
 

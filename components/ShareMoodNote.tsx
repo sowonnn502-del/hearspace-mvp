@@ -3,7 +3,10 @@
 import { toPng } from "html-to-image";
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { FilmGrain } from "@/components/MotionPrimitives";
-import type { MusicMemoryRecommendation } from "@/lib/music-library";
+import {
+  type MusicMemoryRecommendation,
+  filterVerifiedRecommendations,
+} from "@/lib/music-library";
 import type { MoodResult } from "@/lib/mood-schema";
 
 type ShareMoodNoteProps = {
@@ -20,6 +23,10 @@ export function ShareMoodNote({
   const exportRef = useRef<HTMLDivElement>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+
+  // Guard: filter out any non-verified recommendations.
+  // Tags like "春日" / "花园" / "胶片感" will never pass.
+  const verifiedMusic = filterVerifiedRecommendations(musicRecommendations);
 
   async function downloadImage() {
     if (isExporting) return;
@@ -93,7 +100,7 @@ export function ShareMoodNote({
           <PreviewMoodNoteCard
             result={result}
             imageUrl={imageUrl}
-            musicRecommendations={musicRecommendations}
+            musicRecommendations={verifiedMusic}
           />
         </div>
       ) : (
@@ -110,7 +117,7 @@ export function ShareMoodNote({
           ref={exportRef}
           result={result}
           imageUrl={imageUrl}
-          musicRecommendations={musicRecommendations}
+          musicRecommendations={verifiedMusic}
           mode="export"
         />
       </div>
@@ -211,28 +218,36 @@ const MoodNoteCard = forwardRef<HTMLDivElement, MoodNoteCardProps>(
               音乐记忆
             </p>
             <div className="mt-[3%] grid gap-[7px]">
-              {musicRecommendations.slice(0, 3).map((recommendation, index) => {
-                const song = recommendation.song;
+              {musicRecommendations.length > 0 ? (
+                musicRecommendations.slice(0, 3).map((recommendation, index) => {
+                  const song = recommendation.song;
+                  // Double-check: skip if the song looks like a tag
+                  if (!song.title || !song.artist || !song.songId) return null;
 
-                return (
-                  <div
-                    key={`${song.title}-${index}`}
-                    className="grid min-w-0 grid-cols-[34px_1fr] items-baseline gap-[10px]"
-                  >
-                    <span className="font-meta text-[10px] leading-[18px] text-ink/32">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="truncate font-sans text-[14px] font-medium leading-[18px] text-ink/78">
-                        {song.title}
-                      </p>
-                      <p className="truncate font-meta text-[9px] uppercase leading-[14px] tracking-[0.14em] text-ink/34">
-                        {song.artist}
-                      </p>
+                  return (
+                    <div
+                      key={`${song.title}-${index}`}
+                      className="grid min-w-0 grid-cols-[34px_1fr] items-baseline gap-[10px]"
+                    >
+                      <span className="font-meta text-[10px] leading-[18px] text-ink/32">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="truncate font-sans text-[14px] font-medium leading-[18px] text-ink/78">
+                          {song.title}
+                        </p>
+                        <p className="truncate font-meta text-[9px] uppercase leading-[14px] tracking-[0.14em] text-ink/34">
+                          {song.artist}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              ) : (
+                <p className="font-serif text-[12px] leading-[16px] text-ink/38">
+                  这个空间暂时还没有找到足够贴近的音乐。
+                </p>
+              )}
             </div>
 
             <div className="mt-[3%] flex max-h-[42px] flex-wrap overflow-hidden gap-x-[12px] gap-y-[6px] font-meta text-[9px] uppercase leading-[12px] tracking-[0.18em] text-ink/32">

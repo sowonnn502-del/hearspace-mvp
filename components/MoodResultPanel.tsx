@@ -7,7 +7,10 @@ import {
   ScrollReveal,
   hearspaceEase,
 } from "@/components/MotionPrimitives";
-import type { MusicMemoryRecommendation } from "@/lib/music-library";
+import {
+  type MusicMemoryRecommendation,
+  filterVerifiedRecommendations,
+} from "@/lib/music-library";
 import type { MoodResult } from "@/lib/mood-schema";
 
 type MoodResultPanelProps = {
@@ -23,6 +26,10 @@ export function MoodResultPanel({
   isMusicLoading = false,
   onReplaceTrack,
 }: MoodResultPanelProps) {
+  // Guard: filter out any recommendations that don't contain verified songs.
+  // Tags/keywords like "春日" / "花园" / "胶片感" will never pass.
+  const verifiedRecommendations = filterVerifiedRecommendations(musicRecommendations);
+
   return (
     <div className="relative">
       <MotionText
@@ -74,10 +81,10 @@ export function MoodResultPanel({
             ) : null}
           </div>
           <div className="mt-6 grid max-w-5xl gap-6 sm:gap-7">
-            {musicRecommendations.length ? (
+            {verifiedRecommendations.length ? (
               <>
               <AnimatePresence initial={false} mode="sync">
-                {musicRecommendations.slice(0, 3).map((recommendation, index) => {
+                {verifiedRecommendations.slice(0, 3).map((recommendation, index) => {
                 const song = recommendation.song;
                 const atmosphere = getRecommendationLabels(
                   getRecommendationField(song, "atmosphere"),
@@ -99,7 +106,7 @@ export function MoodResultPanel({
                 );
               })}
               </AnimatePresence>
-              {musicRecommendations.some((recommendation) => recommendation.coverageRisk) ? (
+              {verifiedRecommendations.some((recommendation) => recommendation.coverageRisk) ? (
                 <p className="border-t border-ink/8 pt-5 font-serif text-base leading-7 text-ink/46">
                   还在为这类空间补充更多音乐记忆。
                 </p>
@@ -108,7 +115,10 @@ export function MoodResultPanel({
             ) : (
               <div className="border-t border-ink/10 py-8">
                 <p className="font-serif text-2xl leading-9 text-ink/62">
-                  还在为这类空间补充更多音乐记忆。
+                  这个空间暂时还没有找到足够贴近的音乐。
+                </p>
+                <p className="mt-3 text-base leading-7 text-ink/38">
+                  标签不能替代歌曲，我们不在还没准备好的时候随便推荐。
                 </p>
               </div>
             )}

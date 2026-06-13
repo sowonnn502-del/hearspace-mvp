@@ -8,6 +8,7 @@ import {
   MUSIC_COVER_PLACEHOLDER,
   type CuratedMusicTrack,
 } from "@/lib/music-library";
+import { FORBIDDEN_TAG_WORDS } from "@/lib/mood-schema";
 
 type FlexibleMusicTrack = CuratedMusicTrack & {
   atmosphere?: unknown;
@@ -33,10 +34,42 @@ type LikedTrackRecord = {
 
 const LIKED_TRACKS_STORAGE_KEY = "likedTracks";
 
+/**
+ * Guard: returns true if the song object has the minimum required fields
+ * to be displayed as a real verified song. Tags/keywords will always fail.
+ */
+function isDisplayableSong(song: FlexibleMusicTrack): boolean {
+  const title = getText(song.title);
+  const artist = getText(song.artist);
+  const songId = getText(song.songId) || getText(song.neteaseSongId);
+
+  // Must have title and artist
+  if (!title || !artist) return false;
+
+  // Must have a verified song ID
+  if (!songId) return false;
+
+  // Must be metadata-verified
+  if (song.metadataVerified !== true) return false;
+
+  // Title must not be a known tag word
+  const forbiddenSet = new Set<string>(FORBIDDEN_TAG_WORDS as readonly string[]);
+  if (forbiddenSet.has(title)) return false;
+
+  return true;
+}
+
 export function MusicCard({ song, index, reason, onReplace }: MusicCardProps) {
   const title = getText(song.title);
   const artist = getText(song.artist);
   const trackId = getTrackId(song, title, artist);
+
+  // Runtime guard: if the song is not a verified music track, do not render as a MusicCard.
+  // Tags/keywords like "春日" or "花园" will never pass this check.
+  if (!isDisplayableSong(song)) {
+    return null;
+  }
+
   const emotions = getLabels(song.emotions, song.tags, song.mood, song.keywords);
   const memoryScenes = getLabels(song.memoryScenes);
   const neteaseKeyword =

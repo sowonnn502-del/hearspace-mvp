@@ -961,37 +961,21 @@ function createShareCardText(spaceMemoryText: string, moodSubtitle: string) {
   return moodSubtitle || "这一刻安静下来，像被空间轻轻记住。";
 }
 
-function createMusicRecommendations(
-  musicKeywords: string[],
-  sceneObservation: MoodResultCore["scene_observation"],
-  visualMoodTags: string[],
-): MusicRecommendation[] {
-  const scene = primarySceneToChinese(sceneObservation.primary_scene);
-  const moodSeeds = visualMoodTags.length > 0 ? visualMoodTags : ["春日记忆", "安静", "电影感"];
-
-  return musicKeywords.slice(0, 3).map((keyword, index) => ({
-    title: keyword,
-    reason: createMusicReason(keyword, scene, sceneObservation),
-    mood: moodSeeds[index] ?? moodSeeds[0] ?? "电影感",
-  }));
-}
-
-function createMusicReason(
-  keyword: string,
-  scene: string,
-  sceneObservation: MoodResultCore["scene_observation"],
-) {
-  const evidence =
-    sceneObservation.lighting ||
-    sceneObservation.color_tone ||
-    sceneObservation.atmosphere_evidence[0];
-
-  if (evidence) {
-    return `适合${scene}里这层安静。`;
-  }
-
-  return `像给${scene}留下一点余温。`;
-}
+/**
+ * DELETED: createMusicRecommendations and createMusicReason.
+ *
+ * These functions were previously used to generate fake "recommendations"
+ * from music_keywords (e.g., turning "春日" into a song title).
+ *
+ * This is FORBIDDEN behavior:
+ * - music_keywords are atmosphere descriptors, NOT song names.
+ * - Music recommendations must ONLY come from the verified music library
+ *   via getMusicRecommendationPool().
+ * - Tags must never appear where real song titles are expected.
+ *
+ * If music keywords exist but no library songs match, the UI shows:
+ * "这个空间暂时还没有找到足够贴近的音乐。" — NOT keyword-based fake songs.
+ */
 
 function primarySceneToChinese(primaryScene: string) {
   const scene = primaryScene.trim().toLowerCase();

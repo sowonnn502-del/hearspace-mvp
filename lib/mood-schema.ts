@@ -14,12 +14,88 @@ export type SceneObservation = {
   atmosphere_evidence: string[];
 };
 
+/**
+ * Legacy MusicRecommendation type from Qwen.
+ * These are mood-level descriptions, NOT verified songs.
+ * They MUST NOT be rendered as verified music recommendations.
+ */
 export type MusicRecommendation = {
   title: string;
   artist?: string;
   reason: string;
   mood: string;
 };
+
+/**
+ * Tags that must NEVER appear as song titles.
+ * These are atmosphere/vibe descriptors, not music identifiers.
+ */
+const FORBIDDEN_SONG_TITLES = new Set([
+  "春日", "花园", "胶片感", "治愈", "孤独", "黄昏", "柔和",
+  "城市夜晚", "温柔", "安静", "华语", "独立音乐", "民谣",
+  "青春", "回忆", "电影感", "水边", "深夜", "轻音乐",
+  "午后", "雨天", "夏天", "秋天", "冬天", "春天",
+  "慢歌", "轻民谣", "钢琴曲", "古风", "国风",
+]);
+
+/**
+ * Runtime guard: determines whether a value is a verified music recommendation
+ * with all required fields for display as a real song.
+ *
+ * Only objects with ALL of: title, artist, songId, songUrl, metadataVerified=true
+ * can pass this guard.
+ *
+ * Keywords/tags like "春日", "花园", "胶片感" will always fail.
+ */
+export function isVerifiedMusicRecommendation(value: unknown): boolean {
+  if (!value || typeof value !== "object") return false;
+  const candidate = value as Record<string, unknown>;
+
+  // Must have a song object or be the song itself
+  const song = (candidate.song as Record<string, unknown>) ?? candidate;
+
+  if (!song || typeof song !== "object") return false;
+
+  const title = typeof song.title === "string" ? song.title.trim() : "";
+  const artist = typeof song.artist === "string" ? song.artist.trim() : "";
+  const songId = song.songId ?? song.neteaseSongId;
+  const songUrl = typeof song.songUrl === "string" ? song.songUrl : "";
+  const metadataVerified = song.metadataVerified === true;
+
+  // Hard requirement: all five fields must be present
+  if (!title || !artist || !songId || !songUrl || !metadataVerified) {
+    return false;
+  }
+
+  // Forbidden titles check: keywords/tags can NEVER be song names
+  if (FORBIDDEN_SONG_TITLES.has(title)) {
+    return false;
+  }
+
+  // Song titles must contain CJK or Latin characters (not pure emoji/symbols)
+  if (!/[一-鿿\w]/.test(title)) {
+    return false;
+  }
+
+  // Song URL must contain the song ID for verification
+  if (!songUrl.includes(String(songId))) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Tag words that must NEVER appear in a music recommendation display.
+ * These are strictly atmosphere/vibe descriptors.
+ */
+export const FORBIDDEN_TAG_WORDS = [
+  "春日", "花园", "胶片感", "治愈", "孤独", "黄昏", "柔和",
+  "城市夜晚", "温柔", "安静", "华语", "独立音乐", "民谣",
+  "青春", "回忆", "电影感", "水边", "深夜", "轻音乐",
+  "午后", "雨天", "夏天", "秋天", "冬天", "春天",
+  "慢歌", "轻民谣", "钢琴曲", "古风", "国风",
+] as const;
 
 export type MoodResult = {
   scene_observation: SceneObservation;
@@ -38,7 +114,9 @@ export type MoodResult = {
   visual_tone: string[];
   music_query: string;
   music_keywords: string[];
+  /** @deprecated Use MusicMemoryRecommendation[] from music-library instead. Always empty from Qwen. */
   music_memories: MusicRecommendation[];
+  /** @deprecated Use MusicMemoryRecommendation[] from music-library instead. Always empty from Qwen. */
   music_recommendations?: MusicRecommendation[];
   share_card_text: string;
   visual_mood_tags: string[];

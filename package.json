@@ -11,11 +11,17 @@
     "start": "next start",
     "lint": "next lint",
     "music:enrich": "tsx scripts/enrich-music-library.ts",
+    "music:enrich-v3": "tsx scripts/enrich-music-library-v3.ts",
+    "music:enrich-v4": "tsx scripts/enrich-music-library-v4.ts",
     "music:validate": "tsx scripts/validate-music-library.ts",
     "music:coverage": "tsx scripts/report-music-coverage.ts",
     "music:test-recommendations": "tsx scripts/test-music-recommendations.ts",
+    "music:test": "npm run music:test-recommendations",
+    "music:china-fit": "tsx scripts/report-chinese-listener-fit.ts",
+    "music:golden-test": "tsx scripts/test-golden-cases.ts",
+    "music:discriminability": "npm run music:validate && npm run music:coverage && npm run music:china-fit && npm run music:golden-test",
     "music:build": "npm run music:enrich && npm run music:validate",
-    "music:v3": "npm run music:enrich && npm run music:validate && npm run music:coverage && npm run music:test-recommendations"
+    "music:v3": "npm run music:enrich-v3 && npm run music:validate && npm run music:coverage && npm run music:test-recommendations && npm run music:china-fit && npm run music:golden-test"
   },
   "dependencies": {
     "cheerio": "^1.2.0",

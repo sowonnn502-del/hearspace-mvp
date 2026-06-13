@@ -7,9 +7,10 @@ import { MoodResultPanel } from "@/components/MoodResultPanel";
 import { mockMoodResult } from "@/lib/mockMood";
 import {
   getMusicRecommendationPool,
+  filterVerifiedRecommendations,
   type MusicMemoryRecommendation,
 } from "@/lib/music-library";
-import { isMoodResult, type MoodResult } from "@/lib/mood-schema";
+import { isMoodResult, isVerifiedMusicRecommendation, type MoodResult } from "@/lib/mood-schema";
 import {
   createArchiveItem,
   saveArchiveItem,
@@ -104,14 +105,12 @@ export function ResultExperience() {
               );
 
               if (recoveredResult && !isCancelled) {
-                const recommendations = getMusicRecommendationPool(recoveredResult).slice(
-                  0,
-                  3,
-                );
+                const pool = getMusicRecommendationPool(recoveredResult);
+                const recommendations = filterVerifiedRecommendations(pool).slice(0, 3);
 
                 setResult(recoveredResult);
                 setStage("SHARE_READY");
-                setMusicPool(getMusicRecommendationPool(recoveredResult));
+                setMusicPool(pool);
                 setMusicRecommendations(recommendations);
                 setIsMusicLoading(false);
                 sessionStorage.setItem(
@@ -148,7 +147,8 @@ export function ResultExperience() {
             }
           }
           if (snapshot.musicRecommendations?.length) {
-            setMusicRecommendations(snapshot.musicRecommendations.slice(0, 3));
+            const verified = filterVerifiedRecommendations(snapshot.musicRecommendations);
+            setMusicRecommendations(verified.slice(0, 3));
             setIsMusicLoading(false);
           } else if (snapshot.stage === "MUSIC_READY" || snapshot.stage === "SHARE_READY") {
             setIsMusicLoading(false);
@@ -293,7 +293,8 @@ export function ResultExperience() {
   function handleReplaceTrack(index: number) {
     setMusicRecommendations((currentRecommendations) => {
       const currentKeys = new Set(currentRecommendations.map(getRecommendationKey));
-      const replacement = musicPool.find(
+      const verifiedPool = filterVerifiedRecommendations(musicPool);
+      const replacement = verifiedPool.find(
         (recommendation) => !currentKeys.has(getRecommendationKey(recommendation)),
       );
 

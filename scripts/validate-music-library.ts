@@ -1,6 +1,7 @@
 import { musicSeed } from "../data/music-seed";
 import { generatedMusicLibrary } from "../lib/music-library.generated";
 import { MUSIC_COVER_PLACEHOLDER } from "../lib/music-library";
+import { FORBIDDEN_TAG_WORDS } from "../lib/mood-schema";
 
 type Report = {
   verified: number;
@@ -8,6 +9,8 @@ type Report = {
   missingCover: number;
   titleArtistMismatch: number;
   excluded: number;
+  tagAsSong: number;
+  missingListenerEvidence: number;
 };
 
 const errors: string[] = [];
@@ -23,7 +26,12 @@ const report: Report = {
   missingCover: 0,
   titleArtistMismatch: 0,
   excluded: 0,
+  tagAsSong: 0,
+  missingListenerEvidence: 0,
 };
+
+// Hard assertion: forbidden tag word set
+const forbiddenTitleSet = new Set<string>(FORBIDDEN_TAG_WORDS as readonly string[]);
 
 for (const song of generatedMusicLibrary) {
   const label = `${song.title || "(missing title)"} ${song.artist || ""}`.trim();
@@ -136,6 +144,22 @@ for (const song of generatedMusicLibrary) {
     report.invalidMetadata += 1;
     errors.push(`${label}: ${reasons.join("; ")}.`);
   }
+
+  // Hard assertion: song title must not be a forbidden tag word
+  if (song.metadataVerified && forbiddenTitleSet.has(song.title)) {
+    report.tagAsSong += 1;
+    errors.push(
+      `${label}: 标签冒充歌曲 — title "${song.title}" 是氛围/视觉标签，不能作为歌曲名。`,
+    );
+  }
+
+  // Check: verified song should have listenerEvidence
+  if (song.metadataVerified && !song.listenerEvidence) {
+    report.missingListenerEvidence += 1;
+    warnings.push(
+      `${label}: 缺少 listenerEvidence — 中国用户文化适配数据缺失。`,
+    );
+  }
 }
 
 for (const [songId, labels] of seenSongIds) {
@@ -212,6 +236,8 @@ async function printReport() {
   console.log(`Invalid metadata: ${report.invalidMetadata}`);
   console.log(`Missing cover: ${report.missingCover}`);
   console.log(`Title/artist mismatch: ${report.titleArtistMismatch}`);
+  console.log(`Tag-as-song (标签冒充歌曲): ${report.tagAsSong}`);
+  console.log(`Missing listenerEvidence: ${report.missingListenerEvidence}`);
   console.log(`Excluded from production pool: ${report.excluded}`);
 
   if (warnings.length) {

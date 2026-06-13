@@ -422,6 +422,7 @@ function toRecommendation(
       music: [],
     },
     spaceMemoryType,
+    candidateLevel: "secondary" as import("./music-library").CandidateLevel,
     coverageRisk: true,
     candidateCount: 0,
   };
