@@ -75,6 +75,7 @@ export function MoodResultPanel({
           </div>
           <div className="mt-6 grid max-w-5xl gap-6 sm:gap-7">
             {musicRecommendations.length ? (
+              <>
               <AnimatePresence initial={false} mode="sync">
                 {musicRecommendations.slice(0, 3).map((recommendation, index) => {
                 const song = recommendation.song;
@@ -98,10 +99,16 @@ export function MoodResultPanel({
                 );
               })}
               </AnimatePresence>
+              {musicRecommendations.some((recommendation) => recommendation.coverageRisk) ? (
+                <p className="border-t border-ink/8 pt-5 font-serif text-base leading-7 text-ink/46">
+                  还在为这类空间补充更多音乐记忆。
+                </p>
+              ) : null}
+              </>
             ) : (
               <div className="border-t border-ink/10 py-8">
                 <p className="font-serif text-2xl leading-9 text-ink/62">
-                  正在寻找属于这个空间的旋律...
+                  还在为这类空间补充更多音乐记忆。
                 </p>
               </div>
             )}

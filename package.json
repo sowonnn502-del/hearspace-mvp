@@ -12,7 +12,10 @@
     "lint": "next lint",
     "music:enrich": "tsx scripts/enrich-music-library.ts",
     "music:validate": "tsx scripts/validate-music-library.ts",
-    "music:build": "npm run music:enrich && npm run music:validate"
+    "music:coverage": "tsx scripts/report-music-coverage.ts",
+    "music:test-recommendations": "tsx scripts/test-music-recommendations.ts",
+    "music:build": "npm run music:enrich && npm run music:validate",
+    "music:v3": "npm run music:enrich && npm run music:validate && npm run music:coverage && npm run music:test-recommendations"
   },
   "dependencies": {
     "cheerio": "^1.2.0",

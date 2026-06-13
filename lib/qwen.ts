@@ -366,26 +366,8 @@ function normalizeMoodResult(value: unknown): MoodResultCore {
   const visualTone = toStringArray(getFirstValue(record, ["visual_tone", "visualTone", "visual_mood_tags", "visualMoodTags", "mood_tags", "tags"]));
   const musicQuery = toStringValue(getFirstValue(record, ["music_query", "musicQuery", "music_search", "musicSearch"]));
   const musicKeywords = toStringArray(getFirstValue(record, ["music_keywords", "musicKeywords", "music", "keywords"]));
-  const musicMemories = normalizeMusicRecommendations(
-    getFirstValue(record, [
-      "music_memories",
-      "musicMemories",
-      "music_recommendations",
-      "musicRecommendations",
-      "recommendations",
-    ]),
-  );
-  const musicRecommendations = normalizeMusicRecommendations(
-    getFirstValue(record, [
-      "music_recommendations",
-      "musicRecommendations",
-      "music_memories",
-      "musicMemories",
-      "music_memory",
-      "musicMemory",
-      "recommendations",
-    ]),
-  );
+  const musicMemories: MusicRecommendation[] = [];
+  const musicRecommendations: MusicRecommendation[] = [];
   const visualMoodTags = toStringArray(getFirstValue(record, ["visual_mood_tags", "visualMoodTags", "visual_tone", "visualTone", "mood_tags", "tags"]));
   const timeLabel = toStringValue(getFirstValue(record, ["time_label", "timeLabel", "time"]));
   const spacePersonality =
@@ -445,14 +427,8 @@ function completeMoodDefaults(value: MoodResultCore): MoodResultCore {
     value.music_keywords.length > 0
       ? value.music_keywords
       : splitMusicQuery(musicQuery);
-  const musicRecommendations =
-    value.music_recommendations && value.music_recommendations.length > 0
-      ? value.music_recommendations
-      : value.music_memories;
-  const musicMemories =
-    value.music_memories.length > 0
-      ? value.music_memories.slice(0, 3)
-      : createMusicRecommendations(musicKeywords, sceneObservation, visualTone).slice(0, 3);
+  const musicRecommendations: MusicRecommendation[] = [];
+  const musicMemories: MusicRecommendation[] = [];
   const visualMoodTags =
     value.visual_mood_tags.length > 0 ? value.visual_mood_tags : visualTone;
   const moodSubtitle =
@@ -487,10 +463,7 @@ function completeMoodDefaults(value: MoodResultCore): MoodResultCore {
     music_query: musicQuery,
     music_keywords: musicKeywords,
     music_memories: musicMemories,
-    music_recommendations:
-      musicRecommendations && musicRecommendations.length > 0
-        ? musicRecommendations.slice(0, 3)
-        : musicMemories,
+    music_recommendations: musicRecommendations,
     share_card_text: shareCardText,
     visual_mood_tags: visualMoodTags,
   };

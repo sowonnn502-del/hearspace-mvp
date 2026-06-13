@@ -35,14 +35,31 @@ export type MusicSong = {
   neteaseSongId?: string;
   coverUrl?: string;
   album?: string;
+  metadataSource: "netease" | "manual";
+  metadataVerified: boolean;
+  metadataCheckedAt?: string;
+  unavailableReason?: string;
   spaceTags: SpaceTag[];
   sceneTags: SceneTag[];
+  cityTags: string[];
+  timeTags: string[];
+  socialContextTags: string[];
+  musicSceneTags: string[];
+  cultureTags: string[];
   emotionTags: EmotionTag[];
   memoryTags: MemoryTag[];
   visualTags: VisualTag[];
   seasonTags: SeasonTag[];
   atmosphereTags: AtmosphereTag[];
   similarSpaces: SceneTag[];
+  musicFeatures: string[];
+  lyricalThemes: string[];
+  usageScenes: string[];
+  recommendationEvidence: {
+    space: string[];
+    scene: string[];
+    music: string[];
+  };
   recommendationReason: string;
   confidence: number;
   memoryTypes: SpaceMemoryType[];
@@ -68,36 +85,26 @@ export type MusicMemoryRecommendation = {
   score: number;
   reason: string;
   matchedSignals: string[];
+  matchedEvidence?: {
+    space: string[];
+    scene: string[];
+    music: string[];
+  };
   matchedTagBreakdown?: Record<string, number>;
   spaceMemoryType: SpaceMemoryType;
+  coverageRisk: boolean;
+  candidateCount: number;
 };
 
 export const MUSIC_COVER_PLACEHOLDER = "/music-cover-placeholder.jpg";
 export const curatedMusicLibrary = generatedMusicLibrary;
+export const verifiedMusicLibrary = generatedMusicLibrary.filter(isVerifiedMusicSong);
 
 export function getEmbeddedMusicRecommendations(
   result: MoodResult,
 ): MusicMemoryRecommendation[] {
-  if (result.debug_source === "mock_no_key" || result.debug_source === "mock_api_error") {
-    return [];
-  }
-
-  const embedded = result.music_recommendations?.length
-    ? result.music_recommendations
-    : result.music_memories;
-
-  if (!embedded.length) return [];
-
-  const context = extractVisualGrounding(result);
-  const routedTypes = routeSpaceMemoryType(context);
-  const primaryType = routedTypes[0] ?? "unknown_soft_memory";
-
-  return embedded
-    .filter((recommendation) => recommendation.title.trim())
-    .slice(0, 3)
-    .map((recommendation, index) =>
-      toEmbeddedMusicRecommendation(recommendation, context, primaryType, index),
-    );
+  void result;
+  return [];
 }
 
 export function matchMusicByMemory(result: MoodResult): MusicMemoryRecommendation[] {
@@ -105,7 +112,6 @@ export function matchMusicByMemory(result: MoodResult): MusicMemoryRecommendatio
 }
 
 export function getMusicRecommendationPool(result: MoodResult): MusicMemoryRecommendation[] {
-  const embeddedRecommendations = getEmbeddedMusicRecommendations(result);
   const context = extractVisualGrounding(result);
   const routedTypes = routeSpaceMemoryType(context);
   const semanticContext = buildSemanticContext(context, routedTypes);
@@ -119,13 +125,21 @@ export function getMusicRecommendationPool(result: MoodResult): MusicMemoryRecom
     .sort((a, b) => b.score - a.score || b.tieBreak - a.tieBreak || a.index - b.index);
 
   const recommendations = pickDiverseRecommendations(scored.filter((item) => item.score > -4));
-  const fallback = fillFallback(recommendations, routedTypes[0], semanticContext);
+  const coverageRisk = candidates.length < 3 || recommendations.length < 3;
+  const withCoverage = recommendations.map((recommendation) => ({
+    ...recommendation,
+    coverageRisk,
+    candidateCount: candidates.length,
+  }));
 
-  return mergeUniqueRecommendations([
-    ...embeddedRecommendations,
-    ...recommendations,
-    ...fallback,
-  ]);
+  logMusicDebug({
+    context,
+    sourceTags: inferMoodTaxonomyTags(contextToMoodResult(context)),
+    candidates,
+    selected: withCoverage,
+  });
+
+  return mergeUniqueRecommendations(withCoverage);
 }
 
 export const matchMusicByMood = matchMusicByMemory;
@@ -147,14 +161,30 @@ function toEmbeddedMusicRecommendation(
       artist,
       neteaseKeyword: [title, artist].filter(Boolean).join(" "),
       coverUrl: MUSIC_COVER_PLACEHOLDER,
+      metadataSource: "manual",
+      metadataVerified: false,
+      unavailableReason: "Qwen generated recommendation is not part of verified generatedMusicLibrary.",
       spaceTags: [spaceMemoryType === "campus_youth" ? "Campus Space" : "Solitude Space"],
       sceneTags: ["Window"],
+      cityTags: [],
+      timeTags: [],
+      socialContextTags: [],
+      musicSceneTags: [],
+      cultureTags: [],
       emotionTags: ["Quiet"],
       memoryTags: ["Old Photo"],
       visualTags: ["Film Look"],
       seasonTags: ["All Season"],
       atmosphereTags: ["Quiet"],
       similarSpaces: ["Window"],
+      musicFeatures: [],
+      lyricalThemes: [],
+      usageScenes: [],
+      recommendationEvidence: {
+        space: [],
+        scene: [],
+        music: [],
+      },
       recommendationReason: recommendation.reason,
       confidence: 0.68,
       memoryTypes: [spaceMemoryType],
@@ -176,20 +206,25 @@ function toEmbeddedMusicRecommendation(
       description: recommendation.reason,
     } satisfies MusicSong);
 
+  const matchedEvidence = {
+    space: context.visibleObjects.slice(0, 2),
+    scene: [context.sceneType, spaceMemoryType].filter(Boolean),
+    music: song.musicFeatures.slice(0, 2),
+  };
+
   return {
     song,
     score: 20 - index,
-    reason: createReason(song, context, [
-      recommendation.mood,
-      ...context.colorFeeling,
-      ...context.timeFeeling,
-    ]),
+    reason: createReason(song, context, matchedEvidence),
     matchedSignals: uniqueStrings([
       recommendation.mood,
       spaceMemoryType,
       ...context.emotionalTone,
     ]).slice(0, 5),
+    matchedEvidence,
     spaceMemoryType,
+    coverageRisk: true,
+    candidateCount: 0,
   };
 }
 
@@ -257,15 +292,87 @@ function getCandidateSongs(
   context: NormalizedMusicContext,
 ) {
   const primaryType = routedTypes[0];
-  const allCandidates = curatedMusicLibrary.filter((songItem) =>
+  const allCandidates = verifiedMusicLibrary.filter((songItem) =>
     shouldConsiderSong(songItem, routedTypes, context),
   );
+  const requiredMusicSceneTags = getRequiredMusicSceneTags(context);
+  const musicSceneLockedCandidates = requiredMusicSceneTags.length
+    ? allCandidates.filter((songItem) =>
+        requiredMusicSceneTags.some((sceneTag) =>
+          songItem.musicSceneTags.includes(sceneTag),
+        ),
+      )
+    : allCandidates;
+
+  if (requiredMusicSceneTags.length && musicSceneLockedCandidates.length === 0) {
+    return [];
+  }
+
+  const requiredSceneTags = requiredMusicSceneTags.length
+    ? []
+    : getRequiredSceneTags(context);
+  const sceneLockedCandidates = requiredSceneTags.length
+    ? musicSceneLockedCandidates.filter((songItem) =>
+        requiredSceneTags.some((sceneTag) => songItem.sceneTags.includes(sceneTag)),
+      )
+    : musicSceneLockedCandidates;
+
   const primaryCandidates =
     primaryType && primaryType !== "unknown_soft_memory"
-      ? allCandidates.filter((songItem) => songItem.memoryTypes.includes(primaryType))
+      ? sceneLockedCandidates.filter((songItem) => songItem.memoryTypes.includes(primaryType))
       : [];
 
-  return primaryCandidates.length >= 3 ? primaryCandidates : allCandidates;
+  return primaryCandidates.length >= 3 ? primaryCandidates : sceneLockedCandidates;
+}
+
+function getRequiredMusicSceneTags(context: NormalizedMusicContext) {
+  const text = rawContextText(context);
+  const rules = [
+    { tag: "Late Night Convenience Store", pattern: /便利店|convenience/i },
+    { tag: "Airport Waiting", pattern: /机场|候机|airport/i },
+    { tag: "Train Window", pattern: /火车|高铁|列车|车窗|train/i },
+    { tag: "Subway / Empty Metro", pattern: /地铁|subway|metro|空站/i },
+    { tag: "Hotel Room", pattern: /酒店|旅馆|hotel/i },
+    { tag: "Seaside Sunset", pattern: /海边|海|seaside|beach/i },
+    { tag: "Campus Sunset", pattern: /校园|操场|放学|毕业|campus/i },
+    { tag: "Rainy Window", pattern: /雨|窗边|窗户|rain|window/i },
+    { tag: "Night Street Walk", pattern: /夜路|街道|街角|night street/i },
+    { tag: "Park Grass / Bench", pattern: /公园|草地|长椅|park/i },
+    { tag: "Bus Stop", pattern: /公交|公交站|bus stop/i },
+    { tag: "Empty Station", pattern: /车站|站台|空站|station/i },
+    { tag: "Office Night", pattern: /办公室|写字楼|加班|office/i },
+    { tag: "Bridge / Overpass", pattern: /天桥|高架|立交桥|overpass|bridge/i },
+    { tag: "Old Neighborhood", pattern: /老街|旧街|小区|old neighborhood/i },
+  ];
+
+  return rules.filter((rule) => rule.pattern.test(text)).map((rule) => rule.tag);
+}
+
+function getRequiredSceneTags(context: NormalizedMusicContext): SceneTag[] {
+  const text = rawContextText(context);
+  const specificRules: Array<{ tag: SceneTag; pattern: RegExp }> = [
+    { tag: "Convenience Store", pattern: /便利店|convenience/ },
+    { tag: "Airport Waiting", pattern: /机场|候机|airport/ },
+    { tag: "Train Window", pattern: /火车|高铁|列车|车窗|train/ },
+    { tag: "Subway", pattern: /地铁|subway|metro/ },
+    { tag: "Hotel", pattern: /酒店|旅馆|hotel/ },
+  ];
+  const specificMatch = specificRules.find((rule) => rule.pattern.test(text));
+
+  if (specificMatch) return [specificMatch.tag];
+
+  const broadRules: Array<{ tag: SceneTag; pattern: RegExp }> = [
+    { tag: "Playground", pattern: /操场|playground/ },
+    { tag: "Park", pattern: /公园|草地|长椅|park/ },
+    { tag: "Window", pattern: /窗边|窗户|玻璃|window/ },
+    { tag: "Night Street", pattern: /街道|街角|夜路|night street/ },
+    { tag: "Restaurant", pattern: /餐厅|饭店|restaurant/ },
+    { tag: "Cafe", pattern: /咖啡|cafe/ },
+  ];
+
+  return broadRules
+    .filter((rule) => rule.pattern.test(text))
+    .map((rule) => rule.tag);
 }
 
 function scoreSong(
@@ -279,6 +386,9 @@ function scoreSong(
   const sceneMatch = countMatches(semanticContext.scenes, songItem.scenes);
   const emotionMatch = countMatches(semanticContext.emotions, songItem.emotions);
   const memoryTypeMatch = countMatches(semanticContext.memoryTypes, songItem.memoryTypes);
+  const musicSceneMatches = getRequiredMusicSceneTags(context).filter((tag) =>
+    songItem.musicSceneTags.includes(tag),
+  );
   const seasonMatch =
     songItem.season === "all" || semanticContext.season === songItem.season ? 1 : 0;
   const lightToneMatch =
@@ -289,6 +399,7 @@ function scoreSong(
   const forbiddenMismatch = countForbiddenMismatch(context, songItem);
   const score =
     weighted.score +
+    musicSceneMatches.length * 14 +
     memoryTypeMatch * 5 +
     emotionMatch * 4 +
     sceneMatch * 2 +
@@ -300,17 +411,22 @@ function scoreSong(
     ...matchLabels(semanticContext.memoryTypes, songItem.memoryTypes),
     ...matchLabels(semanticContext.emotions, songItem.emotions),
     ...matchLabels(semanticContext.scenes, songItem.scenes),
+    ...musicSceneMatches,
     ...matchLabels([semanticContext.season], [songItem.season]),
     ...matchLabels([semanticContext.lightTone], [songItem.lightTone]),
   ]).slice(0, 5);
+  const matchedEvidence = buildMatchedEvidence(songItem, context, matchedSignals);
 
   return {
     song: songItem,
     score,
-    reason: createReason(songItem, context, matchedSignals),
+    reason: createReason(songItem, context, matchedEvidence),
     matchedSignals,
+    matchedEvidence,
     matchedTagBreakdown: weighted.breakdown,
     spaceMemoryType,
+    coverageRisk: false,
+    candidateCount: 0,
   };
 }
 
@@ -391,59 +507,38 @@ function countForbiddenMismatch(context: NormalizedMusicContext, songItem: Music
 function createReason(
   songItem: MusicSong,
   context: NormalizedMusicContext,
-  matchedSignals: string[],
+  matchedEvidence: NonNullable<MusicMemoryRecommendation["matchedEvidence"]>,
 ) {
-  const visualSignals = uniqueStrings([
-    ...context.colorFeeling,
-    ...context.timeFeeling,
-    ...context.visibleObjects.filter(hasCjkText),
-    ...matchedSignals.filter(hasCjkText),
-  ]).slice(0, 2);
-  const visualPhrase = visualSignals.length
-    ? visualSignals.join("与")
-    : "这段空间的光线和气息";
-  const emotion = pickEmotionPhrase(songItem, context);
+  const spaceEvidence = matchedEvidence.space.join("、") || "画面里的空间线索";
+  const sceneEvidence = matchedEvidence.scene.join("、") || context.sceneType || "这一类场景";
+  const musicEvidence =
+    matchedEvidence.music.join("、") || songItem.usageScenes.slice(0, 2).join("、") || "歌曲气质";
 
-  return `这首歌贴着${visualPhrase}慢慢展开，带着一点${emotion}，适合把这一刻再放久一点。`;
+  return `照片里的${spaceEvidence}，让这个空间更接近${sceneEvidence}。这首歌的${musicEvidence}与这些空间记忆相连，所以不是只按情绪推荐。`;
 }
 
-function fillFallback(
-  current: MusicMemoryRecommendation[],
-  type: SpaceMemoryType,
-  semanticContext: SemanticContext,
-) {
-  const fallbackType = type === "unknown_soft_memory" ? "daily_life_home" : type;
-  const existing = new Set(current.map((item) => item.song.id));
-  const fallbackSongs = curatedMusicLibrary
-    .filter((songItem) => songItem.memoryTypes.includes(fallbackType) && !existing.has(songItem.id))
-    .slice(0, 3 - current.length)
-    .map((songItem) => ({
-      song: songItem,
-      score: 0,
-      reason: songItem.description,
-      matchedSignals: uniqueStrings([
-        ...songItem.memoryTypes,
-        ...songItem.emotions,
-        semanticContext.season,
-      ]).slice(0, 3),
-      spaceMemoryType: fallbackType,
-    }));
+function buildMatchedEvidence(
+  songItem: MusicSong,
+  context: NormalizedMusicContext,
+  matchedSignals: string[],
+): NonNullable<MusicMemoryRecommendation["matchedEvidence"]> {
+  const space = uniqueStrings([
+    ...context.visibleObjects.filter(hasCjkText),
+    ...context.colorFeeling.filter(hasCjkText),
+    ...context.timeFeeling.filter(hasCjkText),
+  ]).slice(0, 3);
+  const scene = uniqueStrings([
+    context.sceneType,
+    ...songItem.usageScenes,
+    ...matchedSignals.filter(hasCjkText),
+  ]).slice(0, 3);
+  const music = uniqueStrings([
+    ...songItem.musicFeatures,
+    songItem.pace !== "medium" ? `${songItem.pace} pace` : "",
+    songItem.lightTone !== "neutral" ? `${songItem.lightTone} light` : "",
+  ]).filter(Boolean).slice(0, 3);
 
-  if (fallbackSongs.length) return [...current, ...fallbackSongs];
-
-  return [
-    ...current,
-    ...curatedMusicLibrary
-      .filter((songItem) => !songItem.memoryTypes.includes("chinese_garden_water"))
-      .slice(0, 3 - current.length)
-      .map((songItem) => ({
-        song: songItem,
-        score: 0,
-        reason: songItem.description,
-        matchedSignals: songItem.emotions.slice(0, 2),
-        spaceMemoryType: "unknown_soft_memory" as SpaceMemoryType,
-      })),
-  ];
+  return { space, scene, music };
 }
 
 type ScoredMusicRecommendation = MusicMemoryRecommendation & {
@@ -500,6 +595,74 @@ function getSongIdentity(songItem: MusicSong) {
   ]
     .filter(Boolean)
     .join(":");
+}
+
+function isVerifiedMusicSong(songItem: MusicSong) {
+  const songId = songItem.songId || songItem.neteaseSongId;
+
+  return (
+    songItem.metadataVerified === true &&
+    songItem.metadataSource === "netease" &&
+    songItem.confidence >= 0.65 &&
+    (songItem.musicSceneTags?.length ?? 0) > 0 &&
+    (songItem.musicSceneTags?.length ?? 0) <= 5 &&
+    Boolean(songId) &&
+    Boolean(songItem.coverUrl) &&
+    songItem.coverUrl !== MUSIC_COVER_PLACEHOLDER &&
+    Boolean(songItem.songUrl) &&
+    Boolean(songItem.songUrl?.includes(`id=${songId}`))
+  );
+}
+
+function logMusicDebug({
+  context,
+  sourceTags,
+  candidates,
+  selected,
+}: {
+  context: NormalizedMusicContext;
+  sourceTags: ReturnType<typeof inferMoodTaxonomyTags>;
+  candidates: MusicSong[];
+  selected: MusicMemoryRecommendation[];
+}) {
+  if (process.env.NODE_ENV !== "development") return;
+
+  const excludedTracks = generatedMusicLibrary
+    .filter((songItem) => !isVerifiedMusicSong(songItem))
+    .map((songItem) => ({
+      title: songItem.title,
+      artist: songItem.artist,
+      songId: songItem.songId || songItem.neteaseSongId,
+      reason: songItem.unavailableReason || "metadata not verified",
+    }));
+
+  console.log("[HearSpace Music] Source: verified generatedMusicLibrary");
+  console.log(`[HearSpace Music] Candidate count: ${candidates.length}`);
+  for (const item of selected) {
+    console.log(
+      `[HearSpace Music] Selected: ${item.song.title} - ${item.song.artist} - ${
+        item.song.songId || item.song.neteaseSongId || "no-song-id"
+      }`,
+    );
+  }
+  console.log("[HearSpace Music] Debug:", {
+    sourceTags,
+    sourceScene: context.sceneType,
+    candidateCount: candidates.length,
+    excludedTracks,
+    selectedTracks: selected.map((item) => ({
+      title: item.song.title,
+      artist: item.song.artist,
+      songId: item.song.songId || item.song.neteaseSongId,
+      metadataVerified: item.song.metadataVerified,
+    })),
+    scoreBreakdown: selected.map((item) => ({
+      title: item.song.title,
+      score: item.score,
+      breakdown: item.matchedTagBreakdown,
+      matchedEvidence: item.matchedEvidence,
+    })),
+  });
 }
 
 function hasCjkText(value: string) {
@@ -565,6 +728,18 @@ function contextTokens(context: NormalizedMusicContext) {
     ...context.emotionalTone,
     ...context.culturalSignals,
   ]).flatMap(tokenize);
+}
+
+function rawContextText(context: NormalizedMusicContext) {
+  return uniqueStrings([
+    context.sceneType,
+    context.activity,
+    ...context.visibleObjects,
+    ...context.timeFeeling,
+    ...context.colorFeeling,
+    ...context.emotionalTone,
+    ...context.culturalSignals,
+  ]).join(" ");
 }
 
 function countMatches(source: string[], target: string[]) {

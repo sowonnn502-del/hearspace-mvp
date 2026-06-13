@@ -85,12 +85,12 @@
   },
   "Under Lover 落日飞车": null,
   "滞留锋 deca joins": {
-    "songId": "1393399161",
-    "title": "浴室(2019 Reprise)",
+    "songId": "483378334",
+    "title": "浴室",
     "artist": "deca joins",
-    "album": "浴室 (2019 Reprise)",
-    "coverUrl": "https://p3.music.126.net/JiLYB0foQrGknogFd4CNSw==/109951164387825675.jpg",
-    "songUrl": "https://music.163.com/#/song?id=1393399161"
+    "album": "浴室",
+    "coverUrl": "https://p4.music.126.net/byjfkEIOWI_RmxSKEWTPyw==/18910500486297525.jpg",
+    "songUrl": "https://music.163.com/#/song?id=483378334"
   },
   "阴天 莫文蔚": {
     "songId": "108640",
@@ -172,5 +172,790 @@
     "songUrl": "https://music.163.com/#/song?id=1306112195"
   },
   "Merry Christmas Mr. Lawrence Ryuichi Sakamoto": null,
-  "One Summer's Day Joe Hisaishi": null
+  "One Summer's Day Joe Hisaishi": null,
+  "爱人错过 告五人": {
+    "songId": "1368754688",
+    "title": "爱人错过",
+    "artist": "告五人",
+    "album": "我肯定在几百年前就说过爱你",
+    "coverUrl": "https://p4.music.126.net/awJUvRnQYOjyoUJbzfL-Ig==/109951172190059964.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1368754688"
+  },
+  "披星戴月的想你 告五人": {
+    "songId": "1317457805",
+    "title": "披星戴月的想你",
+    "artist": "告五人",
+    "album": "披星戴月的想你",
+    "coverUrl": "https://p4.music.126.net/NHOypDpCMWUSmGGdA2lXGQ==/109951163608032298.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1317457805"
+  },
+  "浪费 林宥嘉": {
+    "songId": "2029970004",
+    "title": "浪费",
+    "artist": "徐凤年 / 林宥嘉禾",
+    "album": "说唱",
+    "coverUrl": "https://p4.music.126.net/Nhb0HIngogTGFMI2FXNRXg==/109951168093805421.jpg",
+    "songUrl": "https://music.163.com/#/song?id=2029970004"
+  },
+  "说谎 林宥嘉": {
+    "songId": "3381540525",
+    "title": "说谎",
+    "artist": "林宥嘉. / 街道办GDC/欧阳耀莹.",
+    "album": "终究意难平",
+    "coverUrl": "https://p4.music.126.net/ZSzD7Y1Ox0EAc0Mi4f889g==/109951168734682555.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3381540525"
+  },
+  "你要的爱 戴佩妮": {
+    "songId": "223994",
+    "title": "你要的爱",
+    "artist": "戴佩妮",
+    "album": "怎样",
+    "coverUrl": "https://p4.music.126.net/rskOQly_BrQ2_31NN6hjFA==/109951172402265270.jpg",
+    "songUrl": "https://music.163.com/#/song?id=223994"
+  },
+  "身骑白马 徐佳莹": {
+    "songId": "306664",
+    "title": "身骑白马",
+    "artist": "徐佳莹",
+    "album": "LaLa首张创作专辑",
+    "coverUrl": "https://p4.music.126.net/b1hZLgWA9ihXkivZeqo81g==/109951168296446353.jpg",
+    "songUrl": "https://music.163.com/#/song?id=306664"
+  },
+  "寂寞烟火 蓝心羽": {
+    "songId": "2132193789",
+    "title": "寂寞烟火",
+    "artist": "蓝心羽",
+    "album": "寂寞烟火",
+    "coverUrl": "https://p3.music.126.net/i9tCzr-l5Vyl8d62pfMjsQ==/109951169385759820.jpg",
+    "songUrl": "https://music.163.com/#/song?id=2132193789"
+  },
+  "最佳损友 陈奕迅": {
+    "songId": "65800",
+    "title": "最佳损友",
+    "artist": "陈奕迅",
+    "album": "Life Continues…",
+    "coverUrl": "https://p4.music.126.net/3mi073axgjg-g-79ObwwEQ==/109951171836582062.jpg",
+    "songUrl": "https://music.163.com/#/song?id=65800"
+  },
+  "无人之境 陈奕迅": {
+    "songId": "64625",
+    "title": "无人之境",
+    "artist": "陈奕迅",
+    "album": "Time Flies",
+    "coverUrl": "https://p4.music.126.net/90Hf_rzZe79hWdf5S-wiAg==/109951170448806800.jpg",
+    "songUrl": "https://music.163.com/#/song?id=64625"
+  },
+  "平凡之路 朴树": {
+    "songId": "28815250",
+    "title": "平凡之路",
+    "artist": "朴树",
+    "album": "猎户星座",
+    "coverUrl": "https://p4.music.126.net/W_5XiCv3rGS1-J7EXpHSCQ==/18885211718782327.jpg",
+    "songUrl": "https://music.163.com/#/song?id=28815250"
+  },
+  "南方姑娘 赵雷": {
+    "songId": "202373",
+    "title": "南方姑娘",
+    "artist": "赵雷",
+    "album": "赵小雷",
+    "coverUrl": "https://p3.music.126.net/btBocL7KKvl0sRZY62_BIA==/109951169213244790.jpg",
+    "songUrl": "https://music.163.com/#/song?id=202373"
+  },
+  "成都 赵雷": {
+    "songId": "436514312",
+    "title": "成都",
+    "artist": "赵雷",
+    "album": "成都",
+    "coverUrl": "https://p4.music.126.net/34YW1QtKxJ_3YnX9ZzKhzw==/2946691234868155.jpg",
+    "songUrl": "https://music.163.com/#/song?id=436514312"
+  },
+  "再见 张震岳": {
+    "songId": "185726",
+    "title": "再见",
+    "artist": "张震岳",
+    "album": "再见",
+    "coverUrl": "https://p3.music.126.net/gqPj8m67CY6-HTFFjHuEvQ==/109951172439752652.jpg",
+    "songUrl": "https://music.163.com/#/song?id=185726"
+  },
+  "后来 刘若英": {
+    "songId": "254574",
+    "title": "后来",
+    "artist": "刘若英",
+    "album": "我等你",
+    "coverUrl": "https://p4.music.126.net/eBF7bHnJYBUfOFrJ_7SUfw==/109951163351825356.jpg",
+    "songUrl": "https://music.163.com/#/song?id=254574"
+  },
+  "路过人间 郁可唯": {
+    "songId": "1888915574",
+    "title": "路过人间",
+    "artist": "郁可唯",
+    "album": "时光音乐会 第1期",
+    "coverUrl": "https://p3.music.126.net/b_lFQUHgdaOvuBgf8wMO0w==/109951166557050112.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1888915574"
+  },
+  "遥远的她 张学友": {
+    "songId": "191232",
+    "title": "遥远的她",
+    "artist": "张学友",
+    "album": "遥远的她·Amour",
+    "coverUrl": "https://p4.music.126.net/vjLs7CkHECi5PUu9hX79CQ==/109951171530606390.jpg",
+    "songUrl": "https://music.163.com/#/song?id=191232"
+  },
+  "一万次悲伤 逃跑计划": {
+    "songId": "25706279",
+    "title": "一万次悲伤",
+    "artist": "逃跑计划",
+    "album": "世界",
+    "coverUrl": "https://p4.music.126.net/625-tE8OzdM-rWO37PgqlQ==/109951168111472442.jpg",
+    "songUrl": "https://music.163.com/#/song?id=25706279"
+  },
+  "蓝莲花 许巍": {
+    "songId": "168091",
+    "title": "蓝莲花",
+    "artist": "许巍",
+    "album": "时光.漫步",
+    "coverUrl": "https://p3.music.126.net/C6txAWMGlVmAcAD37RVutQ==/122045790684028.jpg",
+    "songUrl": "https://music.163.com/#/song?id=168091"
+  },
+  "曾经的你 许巍": {
+    "songId": "167728",
+    "title": "曾经的你",
+    "artist": "许巍",
+    "album": "今天 许巍 2002-2008生活作品集",
+    "coverUrl": "https://p3.music.126.net/LuTvnMyPzF8AobEUOt_HdA==/109951171500978174.jpg",
+    "songUrl": "https://music.163.com/#/song?id=167728"
+  },
+  "故乡 许巍": {
+    "songId": "168141",
+    "title": "故乡",
+    "artist": "许巍",
+    "album": "那一年",
+    "coverUrl": "https://p4.music.126.net/jvDVEYjmrXXds2vUI71jow==/109951164795538863.jpg",
+    "songUrl": "https://music.163.com/#/song?id=168141"
+  },
+  "去大理 郝云": {
+    "songId": "28977819",
+    "title": "去大理",
+    "artist": "郝云",
+    "album": "去大理",
+    "coverUrl": "https://p3.music.126.net/TIB1eeavn5tmI4aAwfp6xw==/109951165159904823.jpg",
+    "songUrl": "https://music.163.com/#/song?id=28977819"
+  },
+  "生活不止眼前的苟且 许巍": {
+    "songId": "2095592331",
+    "title": "生活不止眼前的苟且",
+    "artist": "许巍",
+    "album": "生活不止眼前的苟且",
+    "coverUrl": "https://p4.music.126.net/e2ykAeAzOR3p2yUrlv-9Bw==/109951169525488672.jpg",
+    "songUrl": "https://music.163.com/#/song?id=2095592331"
+  },
+  "远在北方孤独的鬼 花粥": {
+    "songId": "1386711763",
+    "title": "远在北方孤独的鬼",
+    "artist": "花粥",
+    "album": "乍见之欢",
+    "coverUrl": "https://p4.music.126.net/UljlEhCZDzH_xbey6m7QFA==/109951164323665643.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1386711763"
+  },
+  "凄美地 郭顶": {
+    "songId": "436346833",
+    "title": "凄美地",
+    "artist": "郭顶",
+    "album": "飞行器的执行周期",
+    "coverUrl": "https://p3.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg",
+    "songUrl": "https://music.163.com/#/song?id=436346833"
+  },
+  "失落沙洲 徐佳莹": {
+    "songId": "306662",
+    "title": "失落沙洲",
+    "artist": "徐佳莹",
+    "album": "LaLa首张创作专辑",
+    "coverUrl": "https://p3.music.126.net/b1hZLgWA9ihXkivZeqo81g==/109951168296446353.jpg",
+    "songUrl": "https://music.163.com/#/song?id=306662"
+  },
+  "突然好想你 五月天": {
+    "songId": "385781",
+    "title": "突然好想你",
+    "artist": "五月天",
+    "album": "后青春期的诗",
+    "coverUrl": "https://p4.music.126.net/l0vGEnowGfj6DgFSGojyfQ==/109951168163397768.jpg",
+    "songUrl": "https://music.163.com/#/song?id=385781"
+  },
+  "让我留在你身边 陈奕迅": {
+    "songId": "438801672",
+    "title": "让我留在你身边",
+    "artist": "陈奕迅",
+    "album": "让我留在你身边",
+    "coverUrl": "https://p4.music.126.net/71YQw1K88LS06iMjLRY5CA==/18610333812708195.jpg",
+    "songUrl": "https://music.163.com/#/song?id=438801672"
+  },
+  "你就不要想起我 田馥甄": {
+    "songId": "3349595639",
+    "title": "你就不要想起我",
+    "artist": "田馥甄的小迷妹",
+    "album": "你就不要想起我",
+    "coverUrl": "https://p4.music.126.net/guOfiYNju7SLEFC9P2_B4A==/109951172741642131.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3349595639"
+  },
+  "不要说话 陈奕迅": {
+    "songId": "25906124",
+    "title": "不要说话",
+    "artist": "陈奕迅",
+    "album": "不想放手",
+    "coverUrl": "https://p4.music.126.net/F7iOBko9fXjhW-aqJGZseA==/109951171843776354.jpg",
+    "songUrl": "https://music.163.com/#/song?id=25906124"
+  },
+  "寂寞寂寞就好 田馥甄": {
+    "songId": "3349606201",
+    "title": "寂寞寂寞就好",
+    "artist": "田馥甄的小迷妹",
+    "album": "寂寞寂寞就好",
+    "coverUrl": "https://p4.music.126.net/DIb8-iPtjVznXNJemcd_ew==/109951172741719008.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3349606201"
+  },
+  "小半 陈粒": {
+    "songId": "421423806",
+    "title": "小半",
+    "artist": "陈粒",
+    "album": "小梦大半",
+    "coverUrl": "https://p3.music.126.net/HQxTggMCB7AHUXN-ZFEtmA==/1371091013186741.jpg",
+    "songUrl": "https://music.163.com/#/song?id=421423806"
+  },
+  "房间 刘瑞琦": {
+    "songId": "1407424789",
+    "title": "房间（Live）",
+    "artist": "刘瑞琦",
+    "album": "温暖的房间Live精选集",
+    "coverUrl": "https://p3.music.126.net/LFvKHuroGfTgMo_SLBTtlQ==/109951164524372177.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1407424789"
+  },
+  "有暖气 橘子海": {
+    "songId": "1359815264",
+    "title": "有暖气 (You Nuan Chi)",
+    "artist": "橘子海 (Orange Ocean)",
+    "album": "浪潮上岸 (Tears In Ocean)",
+    "coverUrl": "https://p4.music.126.net/RI3Lg3qgUiL09Df-KrsJJQ==/109951166118036919.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1359815264"
+  },
+  "起风了 买辣椒也用券": {
+    "songId": "1330348068",
+    "title": "起风了",
+    "artist": "冯沁苑(买辣椒也用券)",
+    "album": "起风了",
+    "coverUrl": "https://p4.music.126.net/diGAyEmpymX8G7JcnElncQ==/109951163699673355.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1330348068"
+  },
+  "忽然之间 莫文蔚": {
+    "songId": "277698",
+    "title": "忽然之间",
+    "artist": "莫文蔚",
+    "album": "Karen More… No.1 新曲+精选全纪录20首",
+    "coverUrl": "https://p4.music.126.net/FZlMWjRYjxTHgryAZ6sxTQ==/109951168351517454.jpg",
+    "songUrl": "https://music.163.com/#/song?id=277698"
+  },
+  "小宇 张震岳": {
+    "songId": "185712",
+    "title": "小宇",
+    "artist": "张震岳",
+    "album": "OK",
+    "coverUrl": "https://p3.music.126.net/N61oLy0iLfEkZTHD2j87iA==/18693896697392706.jpg",
+    "songUrl": "https://music.163.com/#/song?id=185712"
+  },
+  "如果有来生 谭维维": {
+    "songId": "293948",
+    "title": "如果有来生",
+    "artist": "谭维维",
+    "album": "谭某某",
+    "coverUrl": "https://p4.music.126.net/V1oiaFl104PH0yuHLCKVuQ==/109951163061827624.jpg",
+    "songUrl": "https://music.163.com/#/song?id=293948"
+  },
+  "小幸运 田馥甄": {
+    "songId": "3343236872",
+    "title": "小幸运",
+    "artist": "田馥甄的小迷妹",
+    "album": "小幸运",
+    "coverUrl": "https://p4.music.126.net/SzW99G1xSKGARieDjAOXOg==/109951172646576953.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3343236872"
+  },
+  "稻香 周杰伦": {
+    "songId": "3357698666",
+    "title": "稻香",
+    "artist": "周杰伦- / Montagem",
+    "album": "青花瓷",
+    "coverUrl": "https://p4.music.126.net/VGsmmMUgkgVoHwn9D7XU4g==/109951172861932473.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3357698666"
+  },
+  "倔强 五月天": {
+    "songId": "386175",
+    "title": "倔强",
+    "artist": "五月天",
+    "album": "神的孩子都在跳舞",
+    "coverUrl": "https://p4.music.126.net/6BGLm69kJGI_NPaezIPihA==/109951172136049624.jpg",
+    "songUrl": "https://music.163.com/#/song?id=386175"
+  },
+  "同桌的你 老狼": {
+    "songId": "1298435663",
+    "title": "同桌的你",
+    "artist": "老狼",
+    "album": "一人一首成名曲（10）",
+    "coverUrl": "https://p3.music.126.net/lYn5neyt8NxLtEFzM29hQg==/109951168108537623.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1298435663"
+  },
+  "贝加尔湖畔 李健": {
+    "songId": "109998",
+    "title": "贝加尔湖畔",
+    "artist": "李健",
+    "album": "依然",
+    "coverUrl": "https://p4.music.126.net/vSdrZFQn3uMetLL_j3AnQg==/109951163432562414.jpg",
+    "songUrl": "https://music.163.com/#/song?id=109998"
+  },
+  "我们的明天 鹿晗": {
+    "songId": "1325484910",
+    "title": "我们的明天 (Live)",
+    "artist": "鹿晗",
+    "album": "2018鹿晗RE:X巡回演唱会",
+    "coverUrl": "https://p3.music.126.net/FHeEnBhz8lX_xw8irQjOXA==/109951166673393845.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1325484910"
+  },
+  "她说 林俊杰": {
+    "songId": "108242",
+    "title": "她说",
+    "artist": "林俊杰",
+    "album": "她说 概念自选辑",
+    "coverUrl": "https://p4.music.126.net/LI3duoHIZyyLawRJLY51kA==/109951172024569374.jpg",
+    "songUrl": "https://music.163.com/#/song?id=108242"
+  },
+  "可惜没如果 林俊杰": {
+    "songId": "29814898",
+    "title": "可惜没如果",
+    "artist": "林俊杰",
+    "album": "新地球 - 人 (Special Edition)",
+    "coverUrl": "https://p3.music.126.net/2e__sKuIQsTSVVGr5Hk1FA==/109951170313536564.jpg",
+    "songUrl": "https://music.163.com/#/song?id=29814898"
+  },
+  "下雨天 南拳妈妈": null,
+  "Melody 陶喆": {
+    "songId": "150520",
+    "title": "Melody",
+    "artist": "陶喆",
+    "album": "Ultrasound 乐之路 1997-2003",
+    "coverUrl": "https://p3.music.126.net/4uHOznBK63ZOa9vft8qjxQ==/109951164124485287.jpg",
+    "songUrl": "https://music.163.com/#/song?id=150520"
+  },
+  "理想三旬 陈鸿宇": {
+    "songId": "31445772",
+    "title": "理想三旬",
+    "artist": "陈鸿宇",
+    "album": "浓烟下的诗歌电台",
+    "coverUrl": "https://p4.music.126.net/ryk8Gu64rOhlYn0pc2Q8Ww==/109951168090271827.jpg",
+    "songUrl": "https://music.163.com/#/song?id=31445772"
+  },
+  "消愁 毛不易": {
+    "songId": "569200213",
+    "title": "消愁",
+    "artist": "毛不易",
+    "album": "平凡的一天",
+    "coverUrl": "https://p4.music.126.net/vmCcDvD1H04e9gm97xsCqg==/109951163350929740.jpg",
+    "songUrl": "https://music.163.com/#/song?id=569200213"
+  },
+  "像我这样的人 毛不易": {
+    "songId": "569213220",
+    "title": "像我这样的人",
+    "artist": "毛不易",
+    "album": "平凡的一天",
+    "coverUrl": "https://p4.music.126.net/vmCcDvD1H04e9gm97xsCqg==/109951163350929740.jpg",
+    "songUrl": "https://music.163.com/#/song?id=569213220"
+  },
+  "达尔文 蔡健雅": {
+    "songId": "208933",
+    "title": "达尔文",
+    "artist": "蔡健雅",
+    "album": "Goodbye & Hello",
+    "coverUrl": "https://p4.music.126.net/AryQmM2GgfCk4C9XfwV5uQ==/109951168271384367.jpg",
+    "songUrl": "https://music.163.com/#/song?id=208933"
+  },
+  "红色高跟鞋 蔡健雅": {
+    "songId": "208902",
+    "title": "红色高跟鞋",
+    "artist": "蔡健雅",
+    "album": "若你碰到他",
+    "coverUrl": "https://p4.music.126.net/jJOaqlez9x5VofjgB7B_Bw==/109951166195459631.jpg",
+    "songUrl": "https://music.163.com/#/song?id=208902"
+  },
+  "日落大道 梁博": {
+    "songId": "36392029",
+    "title": "日落大道",
+    "artist": "梁博",
+    "album": "迷藏",
+    "coverUrl": "https://p4.music.126.net/8Xt93DOQF6X9ayqSaXjVtA==/109951169775153266.jpg",
+    "songUrl": "https://music.163.com/#/song?id=36392029"
+  },
+  "夜空中最亮的星 逃跑计划": {
+    "songId": "25706282",
+    "title": "夜空中最亮的星",
+    "artist": "逃跑计划",
+    "album": "世界",
+    "coverUrl": "https://p3.music.126.net/625-tE8OzdM-rWO37PgqlQ==/109951168111472442.jpg",
+    "songUrl": "https://music.163.com/#/song?id=25706282"
+  },
+  "别找我麻烦 蔡健雅": {
+    "songId": "208889",
+    "title": "别找我麻烦",
+    "artist": "蔡健雅",
+    "album": "说到爱",
+    "coverUrl": "https://p3.music.126.net/5TTqb3sID_G-u2YOS2P0aA==/109951171536245206.jpg",
+    "songUrl": "https://music.163.com/#/song?id=208889"
+  },
+  "晚安晚安 魏如萱": {
+    "songId": "297715",
+    "title": "晚安晚安",
+    "artist": "魏如萱",
+    "album": "不允许哭泣的场合",
+    "coverUrl": "https://p3.music.126.net/rk5G0n_Foy3O_kRhuK45nA==/109951167965167884.jpg",
+    "songUrl": "https://music.163.com/#/song?id=297715"
+  },
+  "孤独患者 陈奕迅": {
+    "songId": "64093",
+    "title": "孤独患者",
+    "artist": "陈奕迅",
+    "album": "？",
+    "coverUrl": "https://p4.music.126.net/Po0tJTtv4aBaYozWlnojHg==/18546562139313276.jpg",
+    "songUrl": "https://music.163.com/#/song?id=64093"
+  },
+  "漂洋过海来看你 李宗盛": {
+    "songId": "29775419",
+    "title": "漂洋过海来看你",
+    "artist": "周华健 / 李宗盛",
+    "album": "热门华语252",
+    "coverUrl": "https://p3.music.126.net/cpoUinrExafBHL5Nv5iDHQ==/109951166361218466.jpg",
+    "songUrl": "https://music.163.com/#/song?id=29775419"
+  },
+  "山丘 李宗盛": {
+    "songId": "26598946",
+    "title": "山丘",
+    "artist": "李宗盛",
+    "album": "山丘",
+    "coverUrl": "https://p4.music.126.net/0tEzUaiiWOb3gOgQaYKATg==/109951163023734669.jpg",
+    "songUrl": "https://music.163.com/#/song?id=26598946"
+  },
+  "给自己的歌 李宗盛": {
+    "songId": "394670",
+    "title": "给自己的歌",
+    "artist": "李宗盛",
+    "album": "南下专线",
+    "coverUrl": "https://p3.music.126.net/CZQlP4Qgy2jbk22BKyDkUA==/120946279068589.jpg",
+    "songUrl": "https://music.163.com/#/song?id=394670"
+  },
+  "一路向北 周杰伦": {
+    "songId": "3336883136",
+    "title": "一路向北",
+    "artist": "夏蔓蔓 / 周杰伦.",
+    "album": "何必为难",
+    "coverUrl": "https://p3.music.126.net/sP5L--4FT_EHpsW6hwSZxg==/109951172496999853.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3336883136"
+  },
+  "轨迹 周杰伦": null,
+  "斑马斑马 宋冬野": null,
+  "安和桥 宋冬野": {
+    "songId": "27646205",
+    "title": "安和桥",
+    "artist": "宋冬野",
+    "album": "安和桥北",
+    "coverUrl": "https://p4.music.126.net/Ss7mkl2EK3Xl7Vv6iz-XAg==/109951172945820235.jpg",
+    "songUrl": "https://music.163.com/#/song?id=27646205"
+  },
+  "南山南 马頔": {
+    "songId": "29715551",
+    "title": "南山南",
+    "artist": "马頔",
+    "album": "孤岛",
+    "coverUrl": "https://p3.music.126.net/CVJlM5yyYcdTFVn5gXtyOw==/109951172945818860.jpg",
+    "songUrl": "https://music.163.com/#/song?id=29715551"
+  },
+  "New Boy 朴树": null,
+  "那些花儿 朴树": {
+    "songId": "28996922",
+    "title": "那些花儿",
+    "artist": "朴树",
+    "album": "我去2000年",
+    "coverUrl": "https://p3.music.126.net/xANk1-adqsx10DpRLJOBzg==/109951167411817871.jpg",
+    "songUrl": "https://music.163.com/#/song?id=28996922"
+  },
+  "地下铁 萧亚轩": {
+    "songId": "307251",
+    "title": "地下铁",
+    "artist": "萧亚轩",
+    "album": "第5大道",
+    "coverUrl": "https://p4.music.126.net/DDTclFhMYMYTCiCAGOzGWw==/109951172263244645.jpg",
+    "songUrl": "https://music.163.com/#/song?id=307251"
+  },
+  "下一站天后 Twins": {
+    "songId": "382844",
+    "title": "下一站天后",
+    "artist": "Twins",
+    "album": "我们相爱6年(新曲+精选)",
+    "coverUrl": "https://p3.music.126.net/rmd1a0ljzRzSAujjTQb_-g==/109951169288319285.jpg",
+    "songUrl": "https://music.163.com/#/song?id=382844"
+  },
+  "富士山下 陈奕迅": {
+    "songId": "65766",
+    "title": "富士山下",
+    "artist": "陈奕迅",
+    "album": "What's Going On…?",
+    "coverUrl": "https://p4.music.126.net/oSMs7RzJFx0TgWCqRC8XjA==/109951171844247587.jpg",
+    "songUrl": "https://music.163.com/#/song?id=65766"
+  },
+  "我怀念的 孙燕姿": {
+    "songId": "287063",
+    "title": "我怀念的",
+    "artist": "孙燕姿",
+    "album": "逆光",
+    "coverUrl": "https://p3.music.126.net/wF25xzePLml5EGUWM2eInw==/109951173219336672.jpg",
+    "songUrl": "https://music.163.com/#/song?id=287063"
+  },
+  "开始懂了 孙燕姿": {
+    "songId": "287719",
+    "title": "开始懂了",
+    "artist": "孙燕姿",
+    "album": "我要的幸福",
+    "coverUrl": "https://p4.music.126.net/1HJILQwc62AfvcXkGgVJHQ==/109951165549820772.jpg",
+    "songUrl": "https://music.163.com/#/song?id=287719"
+  },
+  "如果你也听说 张惠妹": null,
+  "解脱 张惠妹": {
+    "songId": "327601",
+    "title": "解脱",
+    "artist": "张惠妹",
+    "album": "姊妹",
+    "coverUrl": "https://p3.music.126.net/yiyrMYKlSw_WP3mubMLi2w==/109951165872462885.jpg",
+    "songUrl": "https://music.163.com/#/song?id=327601"
+  },
+  "还是会寂寞 陈绮贞": {
+    "songId": "209478",
+    "title": "还是会寂寞",
+    "artist": "陈绮贞",
+    "album": "还是会寂寞",
+    "coverUrl": "https://p3.music.126.net/tCCrihOJLpMCDs--b0R8Xg==/109951163240612491.jpg",
+    "songUrl": "https://music.163.com/#/song?id=209478"
+  },
+  "海阔天空 Beyond": {
+    "songId": "1357375695",
+    "title": "海阔天空",
+    "artist": "Beyond",
+    "album": "华纳廿三周年纪念精选系列 - B﻿eyond",
+    "coverUrl": "https://p4.music.126.net/q6cm6Pk70YArijk1_QDoEg==/109951163984013003.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1357375695"
+  },
+  "光辉岁月 Beyond": {
+    "songId": "346576",
+    "title": "光辉岁月",
+    "artist": "Beyond",
+    "album": "光辉岁月十五年",
+    "coverUrl": "https://p3.music.126.net/JOJvZc_7SqQjKf8TktQ_bw==/29686813951246.jpg",
+    "songUrl": "https://music.163.com/#/song?id=346576"
+  },
+  "旅行 许巍": {
+    "songId": "167971",
+    "title": "旅行",
+    "artist": "许巍",
+    "album": "每一刻都是崭新的",
+    "coverUrl": "https://p3.music.126.net/GoiTB6oG3vQWntnCjKRw0g==/109951163092691594.jpg",
+    "songUrl": "https://music.163.com/#/song?id=167971"
+  },
+  "七里香 周杰伦": {
+    "songId": "3357693420",
+    "title": "七里香",
+    "artist": "周杰伦- / Montagem",
+    "album": "惊鸿一面",
+    "coverUrl": "https://p3.music.126.net/VGsmmMUgkgVoHwn9D7XU4g==/109951172861932473.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3357693420"
+  },
+  "简单爱 周杰伦": null,
+  "园游会 周杰伦": null,
+  "手写的从前 周杰伦": null,
+  "不能说的秘密 周杰伦": {
+    "songId": "3344469861",
+    "title": "不能说的秘密",
+    "artist": "Montagem / 周杰伦、",
+    "album": "慢慢",
+    "coverUrl": "https://p4.music.126.net/8AeJLjbGKnp1gxwMycnDsQ==/109951172661339989.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3344469861"
+  },
+  "等你下课 周杰伦": {
+    "songId": "3384561708",
+    "title": "等你下课（正式版）",
+    "artist": "周杰伦- / 夏蔓蔓",
+    "album": "等你下课",
+    "coverUrl": "https://p3.music.126.net/xixxlqKh2dAzt3SFBsXfGw==/109951173196514882.jpg",
+    "songUrl": "https://music.163.com/#/song?id=3384561708"
+  },
+  "雨爱 杨丞琳": {
+    "songId": "316100",
+    "title": "雨爱",
+    "artist": "杨丞琳",
+    "album": "雨爱",
+    "coverUrl": "https://p4.music.126.net/Qt6sfLxRCscFZVXhbQ4bfg==/109951172020385959.jpg",
+    "songUrl": "https://music.163.com/#/song?id=316100"
+  },
+  "我也很想他 孙燕姿": {
+    "songId": "287280",
+    "title": "我也很想他",
+    "artist": "孙燕姿",
+    "album": "Stefanie",
+    "coverUrl": "https://p3.music.126.net/EZu5tfacW02KP_UeUjVBYQ==/109951166890613011.jpg",
+    "songUrl": "https://music.163.com/#/song?id=287280"
+  },
+  "男孩 梁博": {
+    "songId": "482988834",
+    "title": "男孩",
+    "artist": "梁博 / 陶孟童 / 肖和东 / 高誉容",
+    "album": "我想和你唱 第二季 第7期",
+    "coverUrl": "https://p3.music.126.net/QFXbRb-OOk-ThxtDyg8fjQ==/18618030395080088.jpg",
+    "songUrl": "https://music.163.com/#/song?id=482988834"
+  },
+  "董小姐 宋冬野": {
+    "songId": "27646198",
+    "title": "董小姐",
+    "artist": "宋冬野",
+    "album": "安和桥北",
+    "coverUrl": "https://p4.music.126.net/Ss7mkl2EK3Xl7Vv6iz-XAg==/109951172945820235.jpg",
+    "songUrl": "https://music.163.com/#/song?id=27646198"
+  },
+  "岁月神偷 金玟岐": {
+    "songId": "28285910",
+    "title": "岁月神偷",
+    "artist": "金玟岐",
+    "album": "完美世界",
+    "coverUrl": "https://p3.music.126.net/gWNsPDBbQCQXVNvMdnAH8A==/18815942487303143.jpg",
+    "songUrl": "https://music.163.com/#/song?id=28285910"
+  },
+  "无与伦比的美丽 苏打绿": {
+    "songId": "2023994371",
+    "title": "无与伦比的美丽 (苏打绿版)",
+    "artist": "苏打绿",
+    "album": "无与伦比的美丽 (苏打绿版)",
+    "coverUrl": "https://p3.music.126.net/ybmJWA31qj3vIMs-EuHWQg==/109951169158802816.jpg",
+    "songUrl": "https://music.163.com/#/song?id=2023994371"
+  },
+  "凡人歌 李宗盛": {
+    "songId": "108587",
+    "title": "凡人歌",
+    "artist": "李宗盛",
+    "album": "作品李宗盛",
+    "coverUrl": "https://p4.music.126.net/DjFHDgJxYgByciKsCH3Tlg==/109951169614579889.jpg",
+    "songUrl": "https://music.163.com/#/song?id=108587"
+  },
+  "空白格 蔡健雅": {
+    "songId": "208938",
+    "title": "空白格",
+    "artist": "蔡健雅",
+    "album": "Goodbye & Hello",
+    "coverUrl": "https://p3.music.126.net/AryQmM2GgfCk4C9XfwV5uQ==/109951168271384367.jpg",
+    "songUrl": "https://music.163.com/#/song?id=208938"
+  },
+  "可乐 赵紫骅": {
+    "songId": "1340200924",
+    "title": "可乐",
+    "artist": "赵紫骅",
+    "album": "可乐",
+    "coverUrl": "https://p4.music.126.net/tdFk3G18Jd2i83NNE8mJYg==/109951163798571455.jpg",
+    "songUrl": "https://music.163.com/#/song?id=1340200924"
+  },
+  "慢冷 梁静茹": null,
+  "匆匆那年 王菲": {
+    "songId": "29713754",
+    "title": "匆匆那年",
+    "artist": "王菲",
+    "album": "匆匆那年",
+    "coverUrl": "https://p4.music.126.net/yXyeAl-7m0tqfx4AX7BDSQ==/2542070884980240.jpg",
+    "songUrl": "https://music.163.com/#/song?id=29713754"
+  },
+  "红豆 王菲": {
+    "songId": "299936",
+    "title": "红豆",
+    "artist": "王菲",
+    "album": "唱游",
+    "coverUrl": "https://p4.music.126.net/W6MDlem6_FsymbnxKc_BKQ==/109951171530948990.jpg",
+    "songUrl": "https://music.163.com/#/song?id=299936"
+  },
+  "美好事物 房东的猫": {
+    "songId": "417596830",
+    "title": "美好事物",
+    "artist": "房东的猫",
+    "album": "美好事物",
+    "coverUrl": "https://p3.music.126.net/RsmgVs3F99IfpGOjZ347HA==/18252992533065802.jpg",
+    "songUrl": "https://music.163.com/#/song?id=417596830"
+  },
+  "下一站茶山刘 房东的猫": {
+    "songId": "486188245",
+    "title": "下一站茶山刘",
+    "artist": "房东的猫",
+    "album": "拾贰",
+    "coverUrl": "https://p4.music.126.net/eyY36vwg6DWAJpBy9FZngA==/19176582300236529.jpg",
+    "songUrl": "https://music.163.com/#/song?id=486188245"
+  },
+  "走马 陈粒": {
+    "songId": "30431367",
+    "title": "走马",
+    "artist": "陈粒",
+    "album": "如也",
+    "coverUrl": "https://p4.music.126.net/VuJFMbXzpAProbJPoXLv7g==/7721870161993398.jpg",
+    "songUrl": "https://music.163.com/#/song?id=30431367"
+  },
+  "会呼吸的痛 梁静茹": {
+    "songId": "254132",
+    "title": "会呼吸的痛",
+    "artist": "梁静茹",
+    "album": "崇拜",
+    "coverUrl": "https://p3.music.126.net/8E9NHOTIf6V6Vv45_Taxdg==/109951168163299080.jpg",
+    "songUrl": "https://music.163.com/#/song?id=254132"
+  },
+  "崇拜 梁静茹": {
+    "songId": "254129",
+    "title": "崇拜",
+    "artist": "梁静茹",
+    "album": "崇拜",
+    "coverUrl": "https://p3.music.126.net/8E9NHOTIf6V6Vv45_Taxdg==/109951168163299080.jpg",
+    "songUrl": "https://music.163.com/#/song?id=254129"
+  },
+  "致青春 王菲": {
+    "songId": "26207292",
+    "title": "致青春",
+    "artist": "王菲",
+    "album": "致青春",
+    "coverUrl": "https://p4.music.126.net/hIkqOvTEhIZPm_NfU-Lknw==/1904354139400534.jpg",
+    "songUrl": "https://music.163.com/#/song?id=26207292"
+  },
+  "暖暖 梁静茹": {
+    "songId": "254141",
+    "title": "暖暖",
+    "artist": "梁静茹",
+    "album": "亲亲",
+    "coverUrl": "https://p3.music.126.net/OpFMH1NN5u3DaOUdruORlw==/109951168144462962.jpg",
+    "songUrl": "https://music.163.com/#/song?id=254141"
+  },
+  "小手拉大手 梁静茹": {
+    "songId": "254146",
+    "title": "小手拉大手",
+    "artist": "梁静茹",
+    "album": "亲亲",
+    "coverUrl": "https://p3.music.126.net/OpFMH1NN5u3DaOUdruORlw==/109951168144462962.jpg",
+    "songUrl": "https://music.163.com/#/song?id=254146"
+  },
+  "记念 蔡健雅": {
+    "songId": "209250",
+    "title": "记念",
+    "artist": "蔡健雅",
+    "album": "记念",
+    "coverUrl": "https://p3.music.126.net/Blk_vxCUyT6QR4WvIjhBSA==/109951163447764377.jpg",
+    "songUrl": "https://music.163.com/#/song?id=209250"
+  },
+  "倒带 蔡依林": {
+    "songId": "5233025",
+    "title": "倒带",
+    "artist": "蔡依林",
+    "album": "K情歌9",
+    "coverUrl": "https://p3.music.126.net/dJI3s8q-V-13JcjbSmpXGw==/109951165641458451.jpg",
+    "songUrl": "https://music.163.com/#/song?id=5233025"
+  }
 }

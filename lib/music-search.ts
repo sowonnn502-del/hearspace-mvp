@@ -1,6 +1,5 @@
 import type { MoodResult } from "@/lib/mood-schema";
 import {
-  getEmbeddedMusicRecommendations,
   matchMusicByMemory,
   MUSIC_COVER_PLACEHOLDER,
   type MusicMemoryRecommendation,
@@ -40,7 +39,13 @@ const FINAL_COUNT = 3;
 export async function searchMusicByMood(
   result: MoodResult,
 ): Promise<MusicMemoryRecommendation[]> {
-  const embeddedRecommendations = getEmbeddedMusicRecommendations(result);
+  if (process.env.NODE_ENV === "development") {
+    console.log("[HearSpace Music] Dynamic search disabled: using verified generatedMusicLibrary only.");
+  }
+
+  return matchMusicByMemory(result);
+
+  /*
   const context = extractVisualGrounding(result);
   const memoryTypes = routeSpaceMemoryType(context);
   const queries = buildSearchQueries(context, memoryTypes);
@@ -88,6 +93,7 @@ export async function searchMusicByMood(
     console.warn("[HearSpace Music] Dynamic search failed, using fallback:", error);
     return fillWithFallbackRecommendations(result, embeddedRecommendations);
   }
+  */
 }
 
 /** Copy coverUrl / songUrl from NetEase search results onto embedded songs that lack them. */
@@ -373,7 +379,23 @@ function toRecommendation(
       coverUrl: song.coverUrl,
       songUrl: song.songUrl,
       album: song.album,
+      metadataSource: "manual",
+      metadataVerified: false,
+      unavailableReason: "Dynamic search tracks are disabled for production recommendations.",
       ...knowledgeTags,
+      cityTags: [],
+      timeTags: [],
+      socialContextTags: [],
+      musicSceneTags: [],
+      cultureTags: [],
+      musicFeatures: [],
+      lyricalThemes: [],
+      usageScenes: [],
+      recommendationEvidence: {
+        space: [],
+        scene: [],
+        music: [],
+      },
       recommendationReason: createDynamicReason(context, index),
       confidence: 0.62,
       emotions: context.emotionalTone.slice(0, 4),
@@ -394,7 +416,14 @@ function toRecommendation(
     score: 10,
     reason: createDynamicReason(context, index),
     matchedSignals,
+    matchedEvidence: {
+      space: context.visibleObjects.slice(0, 2),
+      scene: [context.sceneType, spaceMemoryType].filter(Boolean),
+      music: [],
+    },
     spaceMemoryType,
+    coverageRisk: true,
+    candidateCount: 0,
   };
 }
 

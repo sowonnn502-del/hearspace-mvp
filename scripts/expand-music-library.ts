@@ -77,6 +77,22 @@ async function main() {
         songUrl: `https://music.163.com/#/song?id=${raw.songId}`,
         album: raw.album,
         ...classified,
+        metadataSource: "netease",
+        metadataVerified: Boolean(raw.songId && raw.coverUrl),
+        metadataCheckedAt: new Date().toISOString(),
+        cityTags: [],
+        timeTags: [],
+        socialContextTags: [],
+        cultureTags: [],
+        musicSceneTags: [...new Set([...classified.sceneTags, ...classified.memoryTags])].slice(0, 5),
+        musicFeatures: [],
+        lyricalThemes: [],
+        usageScenes: [...new Set([...classified.sceneTags, ...classified.memoryTags])].slice(0, 5),
+        recommendationEvidence: {
+          space: classified.visibleObjects.slice(0, 3),
+          scene: classified.sceneTags.slice(0, 3),
+          music: [],
+        },
       };
 
       allSongs.push(song);
